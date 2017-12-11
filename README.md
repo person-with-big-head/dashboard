@@ -1,2 +1,1 @@
-# dashboard
-the backend of tangobello.
+# tangobello
