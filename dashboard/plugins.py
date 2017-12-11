@@ -12,7 +12,7 @@ def boilerplate_plugin(callback):
 
 def page_plugin(callback):
     default_page = 1
-    default_page_size = 20
+    default_page_size = 10
 
     def wrapper(*args, **kwargs):
         query, serializer = callback(*args, **kwargs)

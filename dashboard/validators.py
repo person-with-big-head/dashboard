@@ -1,5 +1,5 @@
 from collections import defaultdict
-from voluptuous import Schema, REMOVE_EXTRA, Length, All
+from voluptuous import Schema, REMOVE_EXTRA, Length, All, Optional, Coerce
 
 
 def Lower():
@@ -44,4 +44,14 @@ class ValidatorSchema(Schema):
 login_validator = ValidatorSchema({
     'username': Length(min=3, max=64),
     'password': All(Length(min=6), Lower())
+}, required=True, extra=REMOVE_EXTRA)
+
+create_post_validator = ValidatorSchema({
+    'category': Length(min=1),
+    'article_title': Length(min=1),
+    'article_content': Length(min=1),
+    'article_cover': Length(min=1),
+    Optional('post_status'): Length(min=1),
+    Optional('post_type'): Length(min=1),
+    Optional('is_top'): Coerce(int),
 }, required=True, extra=REMOVE_EXTRA)

@@ -10,6 +10,9 @@ config = {
     'user': {
         'jwt_key': 'testkey',
     },
+    'es': {
+        'host': '139.224.105.129',
+    },
     'service': {
         'repayment': {
             'token': '__placeholder__',

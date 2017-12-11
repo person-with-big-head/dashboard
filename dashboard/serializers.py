@@ -102,36 +102,3 @@ class PostsSerializer(Schema):
 
 post_serializer = PostsSerializer(strict=True)
 
-# class CategorySerializer(Schema):
-#     id = fields.Str()
-#     name = fields.Str()
-#     description = fields.Str()
-#     status = EnumField(CategoryStatusEnum)
-#     # parent = fields.Nested('self', only="id")
-#     # path = fields.Str()
-#
-#
-# class AuthorSerializer(Schema):
-#     author_id = fields.Str()
-#     author_name = fields.Str()
-#     author_avatar = fields.Str()
-#     author_description = fields.Str()
-#
-#
-# class ArticleSerializer(Schema):
-#     post_id = fields.Str()
-#     post_author = fields.Nested(AuthorSerializer)
-#     category = fields.Nested(CategorySerializer)
-#     post_content = fields.Str()
-#     post_status = fields.Str()
-#     post_type = fields.Str()
-#     post_shortcut = fields.Str()
-#     post_like_count = fields.Str()
-#     post_comment_count = fields.Str()
-#     article_title = fields.Str()
-#     article_content = fields.Str()
-#     article_tags = fields.List(fields.Str())
-#
-#
-# category_serializer = CategorySerializer(strict=True)
-# article_serializer = ArticleSerializer(strict=True)

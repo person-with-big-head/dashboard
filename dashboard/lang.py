@@ -21,6 +21,36 @@ class Lang(Enum):
         'Don’t freak out... but we lost the page you were looking for :(',
     )
 
+    USER_NOT_FOUND = (
+        '用户名不存在',
+        '404',
+        'Username does not exists.'
+    )
+
+    USERNAME_PASSWORD_UNMATCHED = (
+        '用户名和密码不是一对',
+        '403',
+        'Username is not matched with password'
+    )
+
+    USER_NOT_ACTIVE = (
+        '用户尚未激活',
+        '403',
+        'User is not activated'
+    )
+
+    LOGIN_SUCCESS = (
+        '登陆成功',
+        '200',
+        'Login success'
+    )
+
+    UNAUTHENTICATED = (
+        '尚未登陆',
+        '401',
+        'Unauthenticated'
+    )
+
     def __init__(self, lang_zh, code, lang_id=''):
         self.zh = lang_zh
         self._code = code

@@ -1,12 +1,17 @@
+import hashlib
 from enum import Enum
 
+import bcrypt
 import bottle
 import inspect
+
+from datetime import datetime, timedelta
+import jwt
 from peewee import (DateTimeField, R, Model, DoesNotExist, BigIntegerField, BooleanField,
                     CharField, basestring, TextField, IntegerField, ForeignKeyField)
 
 from dashboard.db import db
-
+from dashboard.utils import idg, request_ip
 
 app = bottle.default_app()
 
@@ -101,7 +106,7 @@ class BasketArticleList(ModelBase):
     category = ForeignKeyField(Categories)
     article_title = TextField()
     article_summary = TextField()
-    article_img_list = TextField()
+    article_cover = TextField()
 
     class Meta:
         db_table = 'basket_article_list'
@@ -117,7 +122,7 @@ class PoolArticle(ModelBase):
     author = ForeignKeyField(Authors)
     category = ForeignKeyField(Categories)
     article_title = TextField()
-    article_img_list = TextField()
+    article_cover = TextField()
     article_content = TextField()
 
     class Meta:
@@ -160,10 +165,88 @@ class Config(ModelBase):
 
 
 class User(ModelBase):
-    id = BigIntegerField()
+    id = BigIntegerField(default=idg, primary_key=True)
     username = CharField(max_length=64)
     hashed_password = CharField(max_length=64)
     email = CharField(max_length=255)
+    is_active = BooleanField(default=False)
+
+    def login(self, expire_days=3):
+        expire_at = datetime.now() + timedelta(days=expire_days)
+        session = Session.create(
+            user=self,
+            ip=request_ip(),
+            expire_at=expire_at)
+
+        UserLoginLog.create(
+            user=self,
+            ip=request_ip())
+
+        return session
+
+    def is_valid(self):
+        return self.is_active
+
+    def set_password(self, password):
+        if isinstance(password, str):
+            password = bytes(password, 'utf-8')
+        self.hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+
+    def check_password(self, password):
+        if not self.hashed_password:
+            return False
+
+        password = password.lower()
+        if isinstance(password, str):
+            password = bytes(password, 'utf-8')
+
+        user_password = bytes(self.hashed_password, 'utf-8')
+        is_valid = bcrypt.checkpw(password, user_password)
+        if not is_valid and len(self.hashed_password) == 32:
+            # 检查是不是 MD5 哈希保存的密码
+            is_valid = hashlib.md5(password).hexdigest() == self.hashed_password
+            if is_valid:
+                # 如果是，转换成 bcrypt 哈希保存
+                self.hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+                self.save()
+        return is_valid
 
     class Meta:
         db_table = 'user'
+
+
+class APIUser(ModelBase):
+    id = BigIntegerField(default=idg, primary_key=True)
+    name = CharField(max_length=64)
+    token = CharField(max_length=64)
+
+    expire_at = DateTimeField(null=True)
+
+    class Meta:
+        db_table = 'api_user'
+
+
+class Session(ModelBase):
+    id = BigIntegerField(default=idg, primary_key=True)
+    user = ForeignKeyField(User, 'sessions')
+    ip = CharField(max_length=64)
+    expire_at = DateTimeField()
+
+    class Meta:
+        db_table = 'session'
+
+    def jwt_token(self):
+        token = jwt.encode({
+            'session_id': str(self.id),
+            'user_id': str(self.user.id),
+        }, app.config['user.jwt_key'])
+        return token.decode('utf-8')
+
+
+class UserLoginLog(ModelBase):
+    id = BigIntegerField(default=idg, primary_key=True)
+    user = ForeignKeyField(User, 'login_logs')
+    ip = CharField(max_length=64)
+
+    class Meta:
+        db_table = 'user_login_log'

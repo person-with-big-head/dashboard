@@ -6,6 +6,7 @@ import logging
 
 
 from dashboard import db
+from dashboard import es
 from dashboard.plugins import boilerplate_plugin
 from dashboard.utils import env_detect
 from dashboard.error import register_error_handler
@@ -56,7 +57,8 @@ def base_config():
 
     load_config()
     db.init()
-    # hbase.init()
+
+    es.init()
 
 
 def init_app():
