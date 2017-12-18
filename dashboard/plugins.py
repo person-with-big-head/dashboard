@@ -1,4 +1,5 @@
 from bottle import request
+from peewee import SQL
 
 
 def boilerplate_plugin(callback):
@@ -18,20 +19,26 @@ def page_plugin(callback):
         query, serializer = callback(*args, **kwargs)
         page = default_page
         page_size = default_page_size
+        order_by = False
 
         if request.query.page.isdigit():
             page = int(request.query.page)
         if request.query.page_size.isdigit():
             page_size = int(request.query.page_size)
+        if request.query.order_by:
+            order_by = request.query.order_by
 
-        result = query.paginate(page, page_size)
+        if order_by and 'asc' in request.query:
+            result = query.order_by(SQL(order_by)).paginate(page, page_size)
+        elif order_by and 'desc' in request.query:
+            result = query.order_by(SQL(order_by).desc()).paginate(page, page_size)
+        else:
+            result = query.paginate(page, page_size)
+
         result = serializer.dump(result, many=True).data
 
-        if len(result) < page_size:
-            total_count = len(result)
-        else:
-            # todo caching
-            total_count = query.count()
+        # todo caching
+        total_count = query.count()
 
         return {
             'page': page,

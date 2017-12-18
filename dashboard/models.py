@@ -8,7 +8,7 @@ import inspect
 from datetime import datetime, timedelta
 import jwt
 from peewee import (DateTimeField, R, Model, DoesNotExist, BigIntegerField, BooleanField,
-                    CharField, basestring, TextField, IntegerField, ForeignKeyField)
+                    CharField, TextField, IntegerField, ForeignKeyField, SmallIntegerField)
 
 from dashboard.db import db
 from dashboard.utils import idg, request_ip
@@ -52,7 +52,7 @@ class ModelBase(Model):
         return self
 
 
-class EnumField(CharField):
+class EnumField(IntegerField):
     """Custom field to support enums"""
 
     def __init__(self, enum, **kwargs):
@@ -60,25 +60,44 @@ class EnumField(CharField):
         self.enum = enum
 
     def db_value(self, value):
-        if isinstance(value, Enum):
-            return str(value.name)  # convert enum to str
-        elif isinstance(value, basestring):
-            return value
+        if isinstance(value, self.enum):
+            return value.value  # convert str to int
         return None
 
     def python_value(self, value):
-        if value:
-            return self.enum[value]  # convert str to enum
+        if isinstance(value, int):
+            return self.enum(value).name  # convert int to str
         return None
 
     def clone_base(self, **kwargs):
         return super(EnumField, self).clone_base(enum=self.enum, **kwargs)
 
 
+class PostTypeEnum(Enum):
+    ORIGINAL_POST = 1
+    REPRINT_POST = 2
+
+
+class ShowStatusEnum(Enum):
+    SECRET_POST = 0
+    PUBLIC_POST = 1
+
+
+class PostStatusEnum(Enum):
+    UNFINISHED_POST = 1
+    FINISHED_POST = 2
+
+
+class JudgeStatusEnum(Enum):
+    NOT_JUDGE = 0
+    JUDGE_PASS = 1
+    JUDGE_DENY = 2
+
+
 class Authors(ModelBase):
-    author_id = BigIntegerField(primary_key=True)
-    author_name = CharField(max_length=255)
-    author_avatar = TextField()
+    author_id = BigIntegerField(default=idg, primary_key=True)
+    author_name = CharField(max_length=64)
+    author_avatar = CharField(max_length=128)
     author_description = TextField()
 
     class Meta:
@@ -86,62 +105,77 @@ class Authors(ModelBase):
 
 
 class Categories(ModelBase):
-    category_id = BigIntegerField(primary_key=True)
-    category_name = CharField(max_length=255)
+    category_id = CharField(max_length=16, primary_key=True)
+    category_name = CharField(max_length=64)
     category_description = TextField()
 
     class Meta:
         db_table = 'categories'
 
 
+class Covers(ModelBase):
+    cover_id = CharField(primary_key=True)
+    cover_path = CharField(max_length=128)
+    cover_name = CharField(max_length=64)
+
+    class Meta:
+        db_table = 'covers'
+
+
 class BasketArticleList(ModelBase):
-    post_id = BigIntegerField(primary_key=True)
-    post_date = DateTimeField()
-    post_status = CharField(max_length=20)
-    post_type = CharField(max_length=10)
+    post_id = CharField(max_length=16, primary_key=True, verbose_name='post_id')
+    post_status = SmallIntegerField(default=PostStatusEnum.UNFINISHED_POST.value,
+                                    choices=PostStatusEnum)
+    post_type = SmallIntegerField(default=PostTypeEnum.ORIGINAL_POST.value,
+                                  choices=PostTypeEnum)
+    judge_status = SmallIntegerField(default=JudgeStatusEnum.NOT_JUDGE.value,
+                                     choices=JudgeStatusEnum)
+    show_status = SmallIntegerField(default=ShowStatusEnum.SECRET_POST.value,
+                                    choices=ShowStatusEnum)
     is_top = BooleanField(default=0)
     post_like_count = IntegerField(default=0)
     post_comment_count = IntegerField(default=0)
     author = ForeignKeyField(Authors)
     category = ForeignKeyField(Categories)
-    article_title = TextField()
+    cover = ForeignKeyField(Covers)
+    article_title = CharField(max_length=512, verbose_name='article_title')
     article_summary = TextField()
-    article_cover = TextField()
 
     class Meta:
-        db_table = 'basket_article_list'
+        db_table = 'basket_articles_list'
 
 
 class PoolArticle(ModelBase):
-    post_id = BigIntegerField(primary_key=True)
-    post_date = DateTimeField()
-    post_status = CharField(max_length=20)
-    post_type = CharField(max_length=10)
+    post_id = CharField(max_length=16, primary_key=True)
+    post_status = SmallIntegerField(default=PostStatusEnum.UNFINISHED_POST.value,
+                                    choices=PostStatusEnum)
+    post_type = SmallIntegerField(default=PostTypeEnum.ORIGINAL_POST.value,
+                                  choices=PostTypeEnum)
     post_like_count = IntegerField(default=0)
     post_comment_count = IntegerField(default=0)
     author = ForeignKeyField(Authors)
     category = ForeignKeyField(Categories)
-    article_title = TextField()
-    article_cover = TextField()
+    cover = ForeignKeyField(Covers)
+    article_title = CharField(max_length=512)
     article_content = TextField()
 
     class Meta:
-        db_table = 'pool_article'
+        db_table = 'pool_articles'
 
 
 class Tags(ModelBase):
-    tag_ID = BigIntegerField(primary_key=True)
-    tag_name = CharField(max_length=255)
-    tag_description = TextField()
+    tag_id = CharField(max_length=16, primary_key=True)
+    tag_name = CharField(max_length=64)
+    tag_description = CharField(max_length=128)
 
     class Meta:
         db_table = 'tags'
 
 
 class TagsArticles(ModelBase):
-    ID = BigIntegerField(primary_key=True)
-    tag_ID = BigIntegerField()
-    post_ID = BigIntegerField()
+    id = BigIntegerField(default=idg, primary_key=True)
+    tag_id = CharField(max_length=16)
+    post_id = CharField(max_length=16)
 
     class Meta:
         db_table = 'tags_articles'

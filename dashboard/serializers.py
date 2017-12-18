@@ -85,20 +85,29 @@ class CategoriesSerializer(Schema):
     category_description = fields.Str()
 
 
-class PostsSerializer(Schema):
-    post_id = fields.Integer()
-    post_date = fields.DateTime()
-    post_status = fields.Str()
-    post_type = fields.Str()
-    post_like_count = fields.Str()
-    post_comment_count = fields.Str()
+class CoversSerializer(Schema):
+    cover_id = fields.Str()
+    cover_path = fields.Str()
+    cover_name = fields.Str()
+
+
+class BasketArticleListSerializer(Schema):
+    post_id = fields.Str()
+    post_status = fields.Integer()
+    post_type = fields.Integer()
+    judge_status = fields.Integer()
+    show_status = fields.Integer()
+    post_like_count = fields.Integer()
+    post_comment_count = fields.Integer()
     author = fields.Nested(AuthorsSerializer)
     category = fields.Nested(CategoriesSerializer)
+    cover = fields.Nested(CoversSerializer)
     article_title = fields.Str()
     article_summary = fields.Str()
-    article_img_list = JsonField()
     article_content = fields.Str()
+    created_at = fields.DateTime(format='%Y-%m-%d')
+    updated_at = fields.DateTime(format='%Y-%m-%d')
 
 
-post_serializer = PostsSerializer(strict=True)
+basket_article_list_serializer = BasketArticleListSerializer(strict=True)
 

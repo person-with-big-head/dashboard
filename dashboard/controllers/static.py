@@ -32,7 +32,8 @@ def layui(file_path):
     return static_file(file_path, root='../website/static/layui')
 
 
-@get('/static/uploads/<file_path:re:.*\.(jpg|png|gif|ico|svg|jpeg)>', skip=[boilerplate_plugin])
-def upload(file_path):
-    return static_file(file_path, root='../website/static/uploads')
+@get('/static/uploads/<year:re:[0-9]{4}>/<month:re:[0-9]{2}>/<file_path:re:.*\.(jpg|png|gif|ico|svg|jpeg)>',
+     skip=[boilerplate_plugin])
+def upload(file_path, year, month):
+    return static_file(file_path, root='../website/static/uploads/%s/%s' % (year, month))
 

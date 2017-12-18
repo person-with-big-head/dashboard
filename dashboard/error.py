@@ -1,7 +1,6 @@
 import bottle
 import peewee
 import voluptuous
-from bottle import template
 
 from dashboard.utils import template
 from dashboard.lang import Lang
@@ -11,6 +10,12 @@ from dashboard.lang import Lang
 def error_404_handler(error):
     print(error)
     return {'note': Lang.NOT_FOUND.auto, 'code': Lang.NOT_FOUND.code}
+
+
+@template('error.html')
+def error_400_handler(error):
+    print(error)
+    return {'note': Lang.REQUEST_INVALID.auto, 'code': Lang.REQUEST_INVALID.code}
 
 
 def error_500_handler(error):
@@ -28,10 +33,7 @@ def error_500_handler(error):
         elif isinstance(exception, voluptuous.error.Invalid):
             errors = [exception]
 
-        @template('error.html')
-        def error_400_handler():
-            print(errors)
-            return {'note': Lang.REQUEST_INVALID.auto, 'code': Lang.REQUEST_INVALID.code}
+        return error_400_handler(errors)
 
 
 @template('error.html')

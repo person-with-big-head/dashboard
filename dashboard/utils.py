@@ -152,3 +152,4 @@ def short_uuid():
 
 number_strip_re = re.compile(r'\d+')
 template = functools.partial(jinja2_view, template_lookup=['../website/templates'])
+allowed_image_ext = [".png", ".jpeg", ".jpg", ".gif"]
