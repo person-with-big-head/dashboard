@@ -20,3 +20,4 @@ six==1.10.0
 voluptuous==0.9.3
 elasticsearch==6.0.0
 bs4==4.6.0
+jwt==1.4.2

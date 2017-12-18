@@ -10,6 +10,13 @@ config = {
     'user': {
         'jwt_key': 'testkey',
     },
+    'es': {
+        'host': '139.224.105.129',
+    },
+    'upload': {
+        'directory': '../website/static/uploads',
+        'url': 'http://127.0.0.1:1110/static/uploads'
+    },
     'service': {
         'repayment': {
             'token': '__placeholder__',

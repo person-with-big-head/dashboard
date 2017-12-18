@@ -56,7 +56,6 @@ def base_config():
 
     load_config()
     db.init()
-    # hbase.init()
 
 
 def init_app():

@@ -1,8 +1,11 @@
 import os
+import uuid
 from enum import Enum
+from base64 import b64encode
+from gzip import compress
 
 import re
-from bottle import request
+from bottle import request, response
 
 import functools
 from bottle import jinja2_view
@@ -110,6 +113,43 @@ def get_text_from_tag(html_src):
     return all_text
 
 
-number_strip_re = re.compile(r'\d+')
+def gzipped():
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            rsp_data = func(*args, **kwargs)
+            if 'gzip' in request.headers.get('Accept-Encoding', ''):
+                response.headers['Content-Encoding'] = 'gzip'
+                rsp_data = compress(rsp_data.encode('utf-8'))
+            return rsp_data
 
+        return wrapper
+
+    return decorator
+
+
+def etagged():
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwds):
+            rsp_data = func(*args, **kwds)
+            etag = '"%s"' % b64encode((hash(rsp_data.encode('utf-8')) + 2 ** 63)
+                                      .to_bytes(8, byteorder='big')).decode()[:11]
+            if etag == request.headers.get('If-None-Match', '').lstrip('W/'):
+                response.status = 304
+                return ''
+            response.headers['ETag'] = etag
+            return rsp_data
+
+        return wrapper
+
+    return decorator
+
+
+def short_uuid():
+    return str(uuid.uuid1())[0:8]
+
+
+number_strip_re = re.compile(r'\d+')
 template = functools.partial(jinja2_view, template_lookup=['../website/templates'])
+allowed_image_ext = [".png", ".jpeg", ".jpg", ".gif"]
