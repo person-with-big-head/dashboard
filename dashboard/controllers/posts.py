@@ -43,6 +43,9 @@ def posts():
     return posts_, basket_article_list_serializer
 
 
+@get('/dashboard/posts/judged')
+
+
 @post('/dashboard/post')
 def create_post():
     # user = get_user_or_401()
