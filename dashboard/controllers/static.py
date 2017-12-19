@@ -22,14 +22,9 @@ def js(file_path):
     return static_file(file_path, root='../website/static/js')
 
 
-@get('/static/json/<file_path:re:.*\.json>', skip=[boilerplate_plugin])
-def json(file_path):
-    return static_file(file_path, root='../website/static/json')
-
-
-@get('/static/layui/<file_path:re:.*>', skip=[boilerplate_plugin])
-def layui(file_path):
-    return static_file(file_path, root='../website/static/layui')
+@get('/static/themes/<file_path:re:.*\.css>', skip=[boilerplate_plugin])
+def theme(file_path):
+    return static_file(file_path, root='../website/static/themes')
 
 
 @get('/static/uploads/<year:re:[0-9]{4}>/<month:re:[0-9]{2}>/<file_path:re:.*\.(jpg|png|gif|ico|svg|jpeg)>',

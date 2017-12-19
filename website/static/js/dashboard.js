@@ -29,6 +29,64 @@
 
     });
 
+    // image master
+    $(".cover_list").click(function () {
+        var $view_pages = "";
+        $view_pages += '<form class="layui-form">';
+        $view_pages += '<blockquote class="layui-elem-quote news_search">';
+        $view_pages += '<div class="layui-inline"><input type="checkbox" name="selectAll" id="selectAll"';
+        $view_pages += 'lay-filter="selectAll" lay-skin="primary" title="全选">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>全选</span><i class="layui-icon"></i></div></div><div class="layui-inline">';
+        $view_pages += '<a class="layui-btn layui-btn-danger batchDel" href="#">批量删除</a></div>';
+        $view_pages += '</blockquote><ul id="Images">';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '</ul></form>';
+
+        $(".container-fluid").html($view_pages);
+    });
+
     $(".article_list").click(function () {
        $(".container-fluid").html(
            '<ol class="breadcrumb">' +
@@ -94,7 +152,6 @@
                     '<th class="sorting" data-url="">审核状态</th>' +
                     '<th class="sorting" data-url="">是否公开</th>' +
                     '<th class="sorting" data-url="">是否置顶</th>' +
-                    // '<th class="sorting" data-url="">封面</th>' +
                     '<th class="sorting" data-url="">发布时间</th>' +
                     '<th>操作</th>' +
                 '</tr>' +
@@ -133,26 +190,18 @@
                  '<div class="layui-inline">' +
                  '<label class="layui-form-label">自定义属性</label>' +
 				 '<div class="layui-input-block">' +
-                     '<input type="checkbox" name="recommend" class="make_top" title="推荐">' +
-                     '<div class="layui-unselect layui-form-checkbox" lay-skin=""><span>推荐</span>' +
-                        '<i class="fa fa-circle" aria-hidden="true"></i>' +
+                     '<input type="checkbox" name="recommend" title="置顶">' +
+                     '<div class="layui-unselect layui-form-checkbox make_top" lay-skin="">' +
+                        '<span>置顶</span>' +
                      '</div>' +
-                     '<input type="checkbox" name="public" class="make_public" title="公开">' +
-                     '<div class="layui-unselect layui-form-checkbox" lay-skin=""><span>公开</span>' +
-                        '<i class="fa fa-circle" aria-hidden="true"></i>' +
+                     '<input type="checkbox" name="public" title="公开">' +
+                     '<div class="layui-unselect layui-form-checkbox make_public" lay-skin="">' +
+                        '<span>公开</span>' +
                      '</div>' +
                  '</div>' +
                  '</div>' +
                  '<div class="layui-inline">' +
                      '<label class="layui-form-label">类别</label>' +
-                     '<div class="layui-input-inline">' +
-                          '<select class="form-control" style="display: block;">' +
-                              '<option>Large select</option>' +
-                          '</select>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="layui-inline">' +
-                     '<label class="layui-form-label">标签</label>' +
                      '<div class="layui-input-inline">' +
                           '<select class="form-control" style="display: block;">' +
                               '<option>Large select</option>' +
@@ -179,7 +228,13 @@
                     '</div>' +
                 '</div>' +
             '</form>');
+
         var md_editor = mdEditor();
+
+        md_editor.codemirror.on("change", function(){
+            loadScript('/static/js/prism.js');
+        });
+
         inlineAttachment.editors.codemirror4.attach(md_editor.codemirror, {
             uploadUrl: 'http://127.0.0.1:1110/upload',
             onFileUploadResponse: function(xhr) {
@@ -374,6 +429,34 @@ function dialogConfirmAndCancel($title, $content, callback, $param){
 }
 
 
+$(document).on('click', '.make_top', function() {
+    $(this).toggleClass("make_top_checked");
+    if ($(this).hasClass("make_top_checked")){
+        var $checked = $(this).children("span");
+        $checked.css("background-color", "#5FB878");
+        $(this).css("background-color", "#d2d2d0");
+    }else{
+        var $checked = $(this).children("span");
+        $checked.css("background-color", "#d2d2d0");
+        $(this).css("background-color", "#5FB878");
+    }
+});
+
+
+$(document).on('click', '.make_public', function() {
+    $(this).toggleClass("make_top_checked");
+    if ($(this).hasClass("make_top_checked")){
+        var $checked = $(this).children("span");
+        $checked.css("background-color", "#5FB878");
+        $(this).css("background-color", "#d2d2d0");
+    }else{
+        var $checked = $(this).children("span");
+        $checked.css("background-color", "#d2d2d0");
+        $(this).css("background-color", "#5FB878");
+    }
+});
+
+
 $(document).on('click','.checkbox-icon', function () {
 
     if ($(this).hasClass("chooseAll")){
@@ -512,12 +595,6 @@ $(document).on('click', '.news_collect', function () {
 });
 
 
-function turnFullScreen(editor) {
-    // $("#mainNav").toggleClass("d-none");
-    SimpleMDE.toggleFullScreen(editor);
-}
-
-
 function mdEditor(){
     return new SimpleMDE({
         element: document.getElementById("write_article"),
@@ -606,21 +683,40 @@ function mdEditor(){
         },
         {
             name: "preview",
-            action: SimpleMDE.togglePreview,
+            action: function preview(editor) {
+                SimpleMDE.togglePreview(editor);
+                loadScript('/static/js/prism.js');
+            },
             className: "fa fa-eye no-disable",
             title: "Toggle Preview"
         },
         {
             name: "side-by-side",
-            action: SimpleMDE.toggleSideBySide,
+            action: function sideBySide(editor){
+                SimpleMDE.toggleSideBySide(editor);
+                loadScript('/static/js/prism.js');
+            },
+            // action: SimpleMDE.toggleSideBySide,
             className: "fa fa-columns no-disable no-mobile",
             title: "Toggle Side by Side"
         },
         {
             name: "fullscreen",
-            action: turnFullScreen,
+            action: function fullScreen(editor){
+                SimpleMDE.toggleFullScreen(editor);
+                loadScript('/static/js/prism.js');
+            },
+            // action: SimpleMDE.toggleFullScreen,
             className: "fa fa-arrows-alt no-disable no-mobile",
             title: "Toggle Fullscreen"
+        },
+        {
+            name: "theme",
+            action: function todo() {
+
+            },
+            className: "fa fa-vimeo-square",
+            title: "Theme"
         },
         {
             name: "guide",
@@ -628,10 +724,6 @@ function mdEditor(){
             className: "fa fa-question-circle",
             title: "Markdown Guide"
         }],
-        shortcuts: {
-		    singleSelection: null
-            // drawLink: 'ESC'
-	    },
     });
 }
 
@@ -953,7 +1045,7 @@ inlineAttachment.prototype.uploadFile = function(file) {
  * @param {File} clipboard data file
  */
 inlineAttachment.prototype.isFileAllowed = function(file) {
-  if (file.kind === 'string') { return false; }
+  if (file.kind === 'string') { return true; }
   if (this.settings.allowedTypes.indexOf('*') === 0){
     return true;
   } else {
@@ -1160,3 +1252,26 @@ codeMirrorEditor4.attach = function(codeMirror, options) {
 };
 
 inlineAttachment.editors.codemirror4 = codeMirrorEditor4;
+
+
+function loadScript(url, callback){
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+
+    if (script.readyState){  //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else {  //Others
+        script.onload = function(){
+            callback();
+        };
+    }
+
+    script.src = url;
+    document.body.appendChild(script);
+}

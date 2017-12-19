@@ -1,0 +1,120 @@
+/**
+ *  Date: 2017.12.15
+ *  filename: atom.css
+ *  Author: heshipeng
+ */
+
+
+/* editor bg and font color. */
+.cm-s-paper {
+    background-color: #282c34;
+    color: #ABB2BF;
+}
+
+/* one to six title. */
+.CodeMirror .CodeMirror-code .cm-header-1,
+.CodeMirror .CodeMirror-code .cm-header-2,
+.CodeMirror .CodeMirror-code .cm-header-3,
+.CodeMirror .CodeMirror-code .cm-header-4,
+.CodeMirror .CodeMirror-code .cm-header-5,
+.CodeMirror .CodeMirror-code .cm-header-6{
+    font-size: inherit;
+    color: #e06c75;
+}
+
+/* font strong and ita */
+.cm-quote, .cm-strong, .cm-em{
+    color: #c678d0;
+    border-color: #F8F8F2;
+}
+
+/* link */
+.CodeMirror .CodeMirror-code .cm-link{
+    color: #61afef;
+}
+
+.CodeMirror .CodeMirror-code .cm-formatting-link,
+.CodeMirror .CodeMirror-code .cm-formatting-link-string{
+    color: #ABB2BF;
+}
+
+.CodeMirror .CodeMirror-code .cm-url{
+    color: #56b6c2;
+}
+
+/* list */
+.CodeMirror .CodeMirror-code .cm-formatting-list-ul,
+.CodeMirror .CodeMirror-code .cm-formatting-list-ol{
+    color: #e06c75;
+}
+
+/* quote */
+.CodeMirror .CodeMirror-code .cm-quote{
+    color: #5c6370;
+    font-style: italic;
+}
+
+/* comment */
+.CodeMirror .CodeMirror-code .cm-comment{
+    color: #98c379;
+}
+
+
+/* preview mode */
+.editor-preview-side, .editor-preview{
+    background-color: #282c34;
+    color: #ABB2BF;
+}
+
+/* one to seven title. */
+.editor-preview-side h1, .editor-preview h1,
+.editor-preview-side h2, .editor-preview h2,
+.editor-preview-side h3, .editor-preview h3,
+.editor-preview-side h4, .editor-preview h4,
+.editor-preview-side h5, .editor-preview h5,
+.editor-preview-side h6, .editor-preview h6{
+    color: #ffffff;
+}
+
+/* font strong and ita */
+strong{
+    color: #ffffff;
+}
+
+/* link */
+.editor-preview-side a, .editor-preview a{
+    color: #5189fb;
+}
+
+/* comment */
+.editor-preview pre, .editor-preview-side pre{
+    background: #31363f;
+    width: 100%;
+    color: #ABB2BF;
+    margin-bottom: 1em;
+}
+
+/* table */
+.editor-preview table thead th,
+.editor-preview-side table thead th{
+    color: #ffffff;
+}
+
+.editor-preview-side table, .editor-preview table{
+    margin-bottom: 1em;
+}
+
+/* img */
+.editor-preview-side img,
+.editor-preview img{
+    height: 50%;
+    width: 50%;
+}
+
+/* code */
+.editor-preview code,
+.editor-preview-side code{
+    background: #31363f;
+    width: 100%;
+    color: #ABB2BF;
+}
