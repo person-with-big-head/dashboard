@@ -64,6 +64,7 @@
 .editor-preview-side, .editor-preview{
     background-color: #282c34;
     color: #ABB2BF;
+    font-size: 15px;
 }
 
 /* one to seven title. */
@@ -117,4 +118,23 @@ strong{
     background: #31363f;
     width: 100%;
     color: #ABB2BF;
+}
+
+/* blockquote */
+.editor-preview blockquote,
+.editor-preview-side blockquote{
+    border-left: 4px solid #4A5261;
+    padding-left: 18px;
+    color: #7c879c;
+}
+
+/* list */
+.editor-preview li,
+.editor-preview-side li{
+    list-style:disc inside;
+}
+
+.editor-preview li:before,
+.editor-preview-side li:before{
+
 }

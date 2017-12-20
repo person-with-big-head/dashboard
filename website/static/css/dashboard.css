@@ -241,7 +241,7 @@ ul{
 	.panel{width:33.3333%;}
 }
 
-.layui-elem-quote {
+.dashboard-elem-quote {
     margin-bottom: 10px;
     padding: 15px;
     line-height: 22px;
@@ -250,21 +250,21 @@ ul{
     background-color: #f2f2f2;
 }
 
-.layui-inline {
+.dashboard-inline {
     margin: 5px 5px 5px 0;
 }
 
-.layui-inline {
+.dashboard-inline {
     position: relative;
     display: inline-block;
     vertical-align: middle;
 }
 
-.layui-form input[type=checkbox], .layui-form input[type=radio], .layui-form select {
+.dashboard-form input[type=checkbox], .dashboard-form input[type=radio], .dashboard-form select {
     display: none;
 }
 
-.layui-form-checkbox[lay-skin=primary] {
+.dashboard-form-checkbox[lay-skin=primary] {
     height: auto!important;
     line-height: normal!important;
     border: none!important;
@@ -273,7 +273,7 @@ ul{
     background: 0 0;
 }
 
-.layui-form-checkbox {
+.dashboard-form-checkbox {
     position: relative;
     height: 30px;
     line-height: 28px;
@@ -288,8 +288,8 @@ ul{
     box-sizing: border-box!important;
 }
 
-.layui-form-checkbox, .layui-form-checkbox *, .layui-form-radio,
-.layui-form-radio *, .layui-form-switch {
+.dashboard-form-checkbox, .dashboard-form-checkbox *, .dashboard-form-radio,
+.dashboard-form-radio *, .dashboard-form-switch {
     display: inline-block;
     vertical-align: middle;
 }
@@ -298,7 +298,7 @@ ul{
     padding: 10px 10px;
 }
 
-.layui-form-checkbox[lay-skin=primary] span {
+.dashboard-form-checkbox[lay-skin=primary] span {
     float: right;
     padding-right: 15px;
     line-height: 18px;
@@ -306,7 +306,7 @@ ul{
     color: #666;
 }
 
-.layui-form-checkbox span {
+.dashboard-form-checkbox span {
     padding: 0 10px;
     height: 100%;
     font-size: 14px;
@@ -317,7 +317,7 @@ ul{
     text-overflow: ellipsis;
 }
 
-.layui-form-checkbox i {
+.dashboard-form-checkbox i {
     position: absolute;
     right: 0;
     width: 30px;
@@ -326,7 +326,7 @@ ul{
     text-align: center;
 }
 
-.layui-btn {
+.dashboard-btn {
     display: inline-block;
     height: 38px;
     line-height: 38px;
@@ -343,44 +343,41 @@ ul{
     filter: alpha(opacity=90);
 }
 
-.layui-btn:hover{
+.dashboard-btn:hover{
     opacity:.8;
     filter:alpha(opacity=80);
     color:#fff;
     text-decoration: none;
 }
 
-.layui-btn:active{
+.dashboard-btn:active{
     opacity:1;
     filter:alpha(opacity=100);
 }
 
-.layui-btn-danger {
+.dashboard-btn-danger {
     background-color: #FF5722;
     color: #fff;
 }
 
-.layui-form-mid {
+.dashboard-form-mid {
     float: left;
     display: block;
     padding: 8px 0;
     margin-right: 10px;
 }
 
-.layui-form-label, .layui-form-mid, .layui-textarea {
+.dashboard-form-label, .dashboard-form-mid, .dashboard-textarea {
     line-height: 20px;
     position: relative;
 }
 
-.layui-word-aux {
+.dashboard-word-aux {
     font-size: 12px;
     color: #999;
     padding: 0 5px;
 }
 
-#Images{
-    height: 800px;
-}
 
 #Images li {
     width: 19%;
@@ -413,8 +410,8 @@ img {
     padding: 11px 0;
 }
 
-.layui-form input[type=checkbox], .layui-form input[type=radio],
-.layui-form select {
+.dashboard-form input[type=checkbox], .dashboard-form input[type=radio],
+.dashboard-form select {
     display: none;
 }
 
@@ -428,6 +425,14 @@ button, input, optgroup, option, select, textarea {
 
 .modal-dialog, .modal-lg{
     max-width: 1600px;
+    height: 900px;
+}
+
+@media screen and (max-width:1440px){
+	.modal-dialog, .modal-lg{
+        max-width: 1200px;
+        height: 700px;
+    }
 }
 
 .fa-trash-o {
@@ -438,20 +443,20 @@ button, input, optgroup, option, select, textarea {
     cursor: pointer;
 }
 
-.layui-input-inline {
+.dashboard-input-inline {
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;
 }
 
-.layui-input, .layui-textarea {
+.dashboard-input, .dashboard-textarea {
     display: block;
     width: 100%;
     padding-left: 10px;
     font-size: 12px;
 }
 
-.layui-input, .layui-select, .layui-textarea {
+.dashboard-input, .dashboard-select, .dashboard-textarea {
     height: 38px;
     line-height: 36px;
     border: 1px solid #e6e6e6;
@@ -471,7 +476,7 @@ button, input, optgroup, option, select, textarea {
     font-size: 16px;
 }
 
-.layui-btn-normal {
+.dashboard-btn-normal {
     background-color: #1E9FFF;
 }
 
@@ -479,11 +484,11 @@ button, input, optgroup, option, select, textarea {
     color: white;
 }
 
-.layui-table th, .layui-table tr {
+.dashboard-table th, .dashboard-table tr {
     text-align: center;
 }
 
-.layui-table {
+.dashboard-table {
     width: 100%;
     margin: 10px 0;
     background-color: #fff;
@@ -494,7 +499,7 @@ table {
     border-spacing: 0;
 }
 
-.layui-form-checkbox[lay-skin=primary] {
+.dashboard-form-checkbox[lay-skin=primary] {
     height: auto!important;
     line-height: normal!important;
     border: none!important;
@@ -503,28 +508,28 @@ table {
     background: 0 0;
 }
 
-.layui-form-checkbox[lay-skin=primary] i {
+.dashboard-form-checkbox[lay-skin=primary] i {
     position: relative;
     top: 0;
     width: 16px;
     line-height: 16px;
-    border: 1px solid #d2d2d2;
+    border: 1px solid #d2d2d2;!important;
     font-size: 12px;
     border-radius: 2px;
-    background-color: #fff;
+    background-color: #fff;!important;
     -webkit-transition: .1s linear;
     transition: .1s linear;
 }
 
-.layui-table tr:hover, .layui-table[lay-even] tr:nth-child(even) {
+.dashboard-table tr:hover, .dashboard-table[lay-even] tr:nth-child(even) {
     background-color: #f8f8f8;
 }
 
-layui-table td, .layui-table th {
+dashboard-table td, .dashboard-table th {
     word-break: break-all;
 }
 
-.layui-table td, .layui-table th {
+.dashboard-table td, .dashboard-table th {
     padding: 9px 15px;
     min-height: 20px;
     line-height: 20px;
@@ -532,11 +537,11 @@ layui-table td, .layui-table th {
     font-size: 14px;
 }
 
-.layui-table thead tr {
+.dashboard-table thead tr {
     background-color: #f2f2f2;
 }
 
-.layui-form-checked[lay-skin=primary] div {
+.dashboard-form-checked[lay-skin=primary] div {
     border-color: #5FB878;
     background-color: #5FB878;
     color: #fff;
@@ -553,6 +558,26 @@ layui-table td, .layui-table th {
     background-color: #fff;
     -webkit-transition: .1s linear;
     transition: .3s linear;
+}
+
+.dashboard-icon{
+    position: relative;
+    top: 0;
+    width: 16px;
+    line-height: 16px;
+    border: 1px solid #d2d2d2;!important;
+    font-size: 12px;
+    border-radius: 2px;
+    background-color: #fff;!important;
+    color: #fff;
+    -webkit-transition: .1s linear;
+    transition: .1s linear;
+}
+
+.dashboard-icon-checked{
+    background-color: #5FB878;
+    color: #5FB878;
+    border-color: #5FB878;
 }
 
 .page-size{
@@ -597,7 +622,7 @@ tbody tr{
     font-size: 12px;
 }
 
-.layui-form-switch {
+.dashboard-form-switch {
     position: relative;
     height: 24px;
     line-height: 22px;
@@ -612,7 +637,7 @@ tbody tr{
     transition: .1s linear;
 }
 
-.layui-form-switch em {
+.dashboard-form-switch em {
     position: absolute;
     right: 5px;
     top: 0;
@@ -624,7 +649,7 @@ tbody tr{
     font-size: 12px;
 }
 
-.layui-form-switch i {
+.dashboard-form-switch i {
     position: absolute;
     left: 5px;
     top: 3px;
@@ -636,17 +661,17 @@ tbody tr{
     transition: .1s linear;
 }
 
-.layui-form-onswitch {
+.dashboard-form-onswitch {
     border-color: #5FB878;
     background-color: #5FB878;
 }
 
-.layui-form-onswitch i {
+.dashboard-form-onswitch i {
     left: 32px;
     background-color: #fff;
 }
 
-.layui-form-onswitch em {
+.dashboard-form-onswitch em {
     left: 5px;
     right: auto;
     color: #fff!important;
@@ -674,37 +699,37 @@ td div.modal-dialog, td div.modal-lg{
     color:#fff;
 }
 
-.layui-table .layui-btn, .layui-table .layui-btn+.layui-btn {
+.dashboard-table .dashboard-btn, .dashboard-table .dashboard-btn+.dashboard-btn {
     margin: 2px 5px;
 }
 
-.layui-btn-mini {
+.dashboard-btn-mini {
     height: 22px;
     line-height: 22px;
     padding: 0 5px;
     font-size: 12px;
 }
 
-.layui-btn-mini span{
+.dashboard-btn-mini span{
     color: white;
 }
 
-.layui-btn-mini i {
+.dashboard-btn-mini i {
     font-size: 14px!important;
     padding-right: 1px;
     color: white;
 }
 
-.layui-form{
+.dashboard-form{
     margin: 10px 10px 0;
 }
 
-.layui-form-item {
+.dashboard-form-item {
     margin-bottom: 15px;
     clear: both;
 }
 
-.layui-form-label {
+.dashboard-form-label {
     float: left;
     display: block;
     padding: 9px 15px;
@@ -714,21 +739,21 @@ td div.modal-dialog, td div.modal-lg{
     width: 100px;
 }
 
-.layui-form-label, .layui-form-mid, .layui-textarea {
+.dashboard-form-label, .dashboard-form-mid, .dashboard-textarea {
     line-height: 20px;
     position: relative;
 }
 
-.layui-input-block {
+.dashboard-input-block {
     margin-left: 110px;
     min-height: 36px;
 }
 
-.layui-input-block, .layui-input-inline {
+.dashboard-input-block, .dashboard-input-inline {
     position: relative;
 }
 
-.layui-input, .layui-select, .layui-textarea {
+.dashboard-input, .dashboard-select, .dashboard-textarea {
     height: 38px;
     line-height: 38px;
     border: 1px solid #e6e6e6;
@@ -736,11 +761,11 @@ td div.modal-dialog, td div.modal-lg{
     border-radius: 2px;
 }
 
-.layui-form-item .layui-form-checkbox {
+.dashboard-form-item .dashboard-form-checkbox {
     margin-top: 4px;
 }
 
-.layui-form-checkbox span {
+.dashboard-form-checkbox span {
     padding: 0 10px;
     height: 100%;
     font-size: 14px;
@@ -751,16 +776,16 @@ td div.modal-dialog, td div.modal-lg{
     text-overflow: ellipsis;
 }
 
-.layui-form-item .layui-inline {
+.dashboard-form-item .dashboard-inline {
     margin-bottom: 5px;
     margin-right: 10px;
 }
 
-.layui-form input[type=checkbox], .layui-form input[type=radio], .layui-form select {
+.dashboard-form input[type=checkbox], .dashboard-form input[type=radio], .dashboard-form select {
     display: none;
 }
 
-.layui-form-select .layui-edge {
+.dashboard-form-select .dashboard-edge {
     position: absolute;
     right: 10px;
     top: 50%;
@@ -773,7 +798,7 @@ td div.modal-dialog, td div.modal-lg{
     -webkit-transition: all .3s;
 }
 
-.layui-edge {
+.dashboard-edge {
     position: absolute;
     width: 0;
     height: 0;
@@ -782,7 +807,7 @@ td div.modal-dialog, td div.modal-lg{
     overflow: hidden;
 }
 
-.layui-form-select dl {
+.dashboard-form-select dl {
     display: none;
     position: absolute;
     left: 0;
@@ -799,28 +824,28 @@ td div.modal-dialog, td div.modal-lg{
     box-sizing: border-box;
 }
 
-.layui-anim-upbit {
-    -webkit-animation-name: layui-upbit;
-    animation-name: layui-upbit;
+.dashboard-anim-upbit {
+    -webkit-animation-name: dashboard-upbit;
+    animation-name: dashboard-upbit;
 }
 
-.layui-anim {
+.dashboard-anim {
     -webkit-animation-duration: .3s;
     animation-duration: .3s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
 
-.layui-form-select dl dd.layui-this {
+.dashboard-form-select dl dd.dashboard-this {
     background-color: #5FB878;
     color: #fff;
 }
 
-.layui-form-select dl dd {
+.dashboard-form-select dl dd {
     cursor: pointer;
 }
 
-.layui-form-select dl dd, .layui-form-select dl dt {
+.dashboard-form-select dl dd, .dashboard-form-select dl dt {
     padding: 0 10px;
     line-height: 36px;
     white-space: nowrap;
@@ -828,11 +853,11 @@ td div.modal-dialog, td div.modal-lg{
     text-overflow: ellipsis;
 }
 
-.layui-btn+.layui-btn {
+.dashboard-btn+.dashboard-btn {
     margin-left: 15px;
 }
 
-.layui-btn-primary {
+.dashboard-btn-primary {
     border: 1px solid #C9C9C9;
     background-color: #fff;
     color: #555;
@@ -850,10 +875,18 @@ td div.modal-dialog, td div.modal-lg{
 }
 
 .make_top, .make_public{
+    background-color: #5FB878;
+}
+
+.make_top_checked span, .make_public_checked span{
     background-color: #d2d2d0;
 }
 
-.make_top span, .make_public span{
+.make_top_checked, .make_public_checked{
+    background-color: #d2d2d0;
+}
+
+.make_top_checked span, .make_public_checked span{
     background-color: #5FB878;
 }
 
@@ -891,4 +924,23 @@ td div.modal-dialog, td div.modal-lg{
     overflow: hidden;
     background-position: -165px -99px;
     cursor: pointer;
+}
+
+.image_name{
+    float: left;
+    display: block;
+    font-weight: 400;
+    text-align: right;
+    font-size: 13px;
+    padding-bottom: 10px;
+}
+
+.image_url{
+    color: #2F4056;
+    text-decoration: none;
+}
+
+.image_url:hover{
+    color: #2F4056;
+    text-decoration: none;
 }
