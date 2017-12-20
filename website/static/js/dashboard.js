@@ -9,21 +9,111 @@
     // view covers.
     $(".panel_images").click(function () {
         var $view_pages = "";
-        $view_pages += '<form class="layui-form">';
-        $view_pages += '<blockquote class="layui-elem-quote news_search">';
-        $view_pages += '<div class="layui-inline"><input type="checkbox" name="selectAll" id="selectAll"';
+        $view_pages += '<form class="dashboard-form">';
+        $view_pages += '<blockquote class="dashboard-elem-quote news_search">';
+        $view_pages += '<div class="dashboard-inline"><input type="checkbox" name="selectAll" id="selectAll"';
         $view_pages += 'lay-filter="selectAll" lay-skin="primary" title="全选">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>全选</span><i class="layui-icon"></i></div></div><div class="layui-inline">';
-        $view_pages += '<a class="layui-btn layui-btn-danger batchDel" href="#">批量删除</a></div>';
-        $view_pages += '</blockquote>';
-        $view_pages += '<ul id="Images"><li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>全选</span><div class="dashboard-icon"></div></div></div><div class="dashboard-inline">';
+        $view_pages += '<a class="dashboard-btn dashboard-btn-danger batchDel" href="#">批量删除</a></div>';
+        $view_pages += '</blockquote><ul id="Images" class="Image_cover_list">';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
-        $view_pages += '<div class="layui-flow-more"><a href="javascript:;"><cite>加载更多</cite></a></div></ul></form>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '</ul></form>';
 
         $(".view_images").html($view_pages);
 
@@ -32,55 +122,55 @@
     // image master
     $(".cover_list").click(function () {
         var $view_pages = "";
-        $view_pages += '<form class="layui-form">';
-        $view_pages += '<blockquote class="layui-elem-quote news_search">';
-        $view_pages += '<div class="layui-inline"><input type="checkbox" name="selectAll" id="selectAll"';
+        $view_pages += '<form class="dashboard-form">';
+        $view_pages += '<blockquote class="dashboard-elem-quote news_search">';
+        $view_pages += '<div class="dashboard-inline"><input type="checkbox" name="selectAll" id="selectAll"';
         $view_pages += 'lay-filter="selectAll" lay-skin="primary" title="全选">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>全选</span><i class="layui-icon"></i></div></div><div class="layui-inline">';
-        $view_pages += '<a class="layui-btn layui-btn-danger batchDel" href="#">批量删除</a></div>';
-        $view_pages += '</blockquote><ul id="Images">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>全选</span><div class="dashboard-icon"></div></div></div><div class="dashboard-inline">';
+        $view_pages += '<a class="dashboard-btn dashboard-btn-danger batchDel" href="#">批量删除</a></div>';
+        $view_pages += '</blockquote><ul id="Images" class="Image_cover_list">';
         $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
         $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
         $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
         $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
         $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
         $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
         $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
         $view_pages += '</ul></form>';
 
@@ -97,23 +187,23 @@
            '<li class="breadcrumb-item active">文章列表</li>' +
            '</ol>' +
 
-           '<blockquote class="layui-elem-quote news_search">'+
-           '<div class="layui-inline">' +
-                '<div class="layui-input-inline">' +
-                    '<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">' +
+           '<blockquote class="dashboard-elem-quote news_search">'+
+           '<div class="dashboard-inline">' +
+                '<div class="dashboard-input-inline">' +
+                    '<input type="text" value="" placeholder="请输入关键字" class="dashboard-input search_input">' +
                 '</div>' +
-                '<a class="layui-btn search_btn" href="#">查询</a>' +
+                '<a class="dashboard-btn search_btn" href="#">查询</a>' +
            '</div>' +
-           '<div class="layui-inline">' +
-                '<a class="layui-btn layui-btn-normal newsAdd_btn" href="#">添加文章</a>' +
+           '<div class="dashboard-inline">' +
+                '<a class="dashboard-btn dashboard-btn-normal newsAdd_btn" href="#">添加文章</a>' +
            '</div>' +
-           '<div class="layui-inline">' +
-                '<a class="layui-btn layui-btn-danger batchDel" href="#">批量删除</a>' +
+           '<div class="dashboard-inline">' +
+                '<a class="dashboard-btn dashboard-btn-danger batchDel" href="#">批量删除</a>' +
            '</div>' +
-           '<div class="layui-inline" style="font-size:13px; padding-top:8px; float:right;">' +
+           '<div class="dashboard-inline" style="font-size:13px; padding-top:8px; float:right;">' +
                 '<label class="page-label">页</label>' +
            '</div>' +
-           '<div class="layui-inline page-size">' +
+           '<div class="dashboard-inline page-size">' +
                 '<select name="page_size" aria-controls="dataTable" class="page_size">' +
                     '<option value="10">10</option>' +
                     '<option value="25">25</option>' +
@@ -121,12 +211,12 @@
                     '<option value="100">100</option>' +
                 '</select>' +
            '</div>' +
-           '<div class="layui-inline" style="font-size:13px; padding-top:8px; float:right;">' +
+           '<div class="dashboard-inline" style="font-size:13px; padding-top:8px; float:right;">' +
                '<label class="page-label">每页显示</label>' +
            '</div>' +
         '</blockquote>' +
-        '<div class="layui-form news_list">' +
-        '<table class="layui-table">' +
+        '<div class="dashboard-form news_list">' +
+        '<table class="dashboard-table">' +
             '<colgroup>' +
                '<col width="50">' +
                '<col width="7%">' +
@@ -142,7 +232,7 @@
                 '<tr>' +
                     '<th>' +
                         '<input type="checkbox" name="" lay-skin="primary" id="allChoose">' +
-                        '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">' +
+                        '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">' +
                             '<div class="checkbox-icon chooseAll" title="反选">&nbsp;</div>' +
                         '</div>' +
                     '</th>' +
@@ -179,55 +269,83 @@
             '<li class="breadcrumb-item active">文章管理</li>' +
             '<li class="breadcrumb-item active">写文章</li>' +
             '</ol>' +
-            '<form class="layui-form">' +
-                 '<div class="layui-form-item">' +
-			     '<label class="layui-form-label">文章标题</label>' +
-                 '<div class="layui-input-block">' +
-				      '<input type="text" class="layui-input newsName" placeholder="请输入文章标题">' +
+            '<form class="dashboard-form">' +
+                 '<div class="dashboard-form-item">' +
+			     '<label class="dashboard-form-label">文章标题</label>' +
+                 '<div class="dashboard-input-block">' +
+				      '<input type="text" class="dashboard-input newsName" placeholder="请输入文章标题">' +
 			     '</div>' +
 		         '</div>' +
-		         '<div class="layui-form-item">' +
-                 '<div class="layui-inline">' +
-                 '<label class="layui-form-label">自定义属性</label>' +
-				 '<div class="layui-input-block">' +
+		         '<div class="dashboard-form-item">' +
+                 '<div class="dashboard-inline">' +
+                 '<label class="dashboard-form-label">自定义属性</label>' +
+				 '<div class="dashboard-input-block">' +
                      '<input type="checkbox" name="recommend" title="置顶">' +
-                     '<div class="layui-unselect layui-form-checkbox make_top" lay-skin="">' +
+                     '<div class="dashboard-unselect dashboard-form-checkbox make_top" lay-skin="">' +
                         '<span>置顶</span>' +
                      '</div>' +
                      '<input type="checkbox" name="public" title="公开">' +
-                     '<div class="layui-unselect layui-form-checkbox make_public" lay-skin="">' +
+                     '<div class="dashboard-unselect dashboard-form-checkbox make_public" lay-skin="">' +
                         '<span>公开</span>' +
                      '</div>' +
                  '</div>' +
                  '</div>' +
-                 '<div class="layui-inline">' +
-                     '<label class="layui-form-label">类别</label>' +
-                     '<div class="layui-input-inline">' +
+                 '<div class="dashboard-inline">' +
+                     '<label class="dashboard-form-label">类别</label>' +
+                     '<div class="dashboard-input-inline">' +
                           '<select class="form-control" style="display: block;">' +
                               '<option>Large select</option>' +
                           '</select>' +
                     '</div>' +
                 '</div>' +
                 '</div>' +
-                '<div class="layui-form-item">' +
-                '<label class="layui-form-label">封面</label>' +
-                '<div class="layui-input-block">' +
-                    '<button class="layui-btn" style="background:#5FB878">点击选择</button>' +
+                '<div class="dashboard-form-item">' +
+                '<div class="dashboard-inline">' +
+                '<label class="dashboard-form-label">封面</label>' +
+                '<div class="dashboard-input-block">' +
+                    '<a href="javascript:;" data-toggle="modal" data-target=".image_list" class="select_image_btn">' +
+                        '<button class="dashboard-btn" style="background:#5FB878">点击选择</button>' +
+                    '</a>' +
                 '</div>' +
                 '</div>' +
-                '<div class="layui-form-item">' +
-                    '<label class="layui-form-label">文章内容</label>' +
-                    '<div class="layui-input-block">' +
+                '<div class="dashboard-inline">' +
+                    '<div class="image_name">' +
+                    '<a class="image_url show-cover" href="#" data-toggle="modal" data-target=".single-cover" ' +
+                    'rel="https://netdna.webdesignerdepot.com/uploads/2017/11/featured_subtlety.jpg">' +
+                    '![hello.jpg](https://netdna.webdesignerdepot.com/uploads/2017/11/featured_subtlety.jpg)</a>' +
+                    '</div>' +
+                    /*image view modal*/
+                    '<div class="modal fade single-cover" tabindex="-1" role="dialog"' +
+                    'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
+                        '<div class="modal-dialog modal-lg">' +
+                            '<div class="modal-content view-cover">' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="dashboard-form-item">' +
+                    '<label class="dashboard-form-label">文章内容</label>' +
+                    '<div class="dashboard-input-block">' +
                         '<textarea id="write_article" name="article_content"></textarea>' +
                     '</div>' +
                 '</div>' +
-                '<div class="layui-form-item">' +
-                    '<div class="layui-input-block">' +
-                        '<button class="layui-btn">发布</button>' +
-                        '<button class="layui-btn layui-btn-primary save_as_draft">存为草稿</button>' +
+                '<div class="dashboard-form-item">' +
+                    '<div class="dashboard-input-block">' +
+                        '<button class="dashboard-btn">发布</button>' +
+                        '<button class="dashboard-btn dashboard-btn-primary save_as_draft">存为草稿</button>' +
                     '</div>' +
                 '</div>' +
-            '</form>');
+            '</form>' +
+            '<div class="modal fade image_list" tabindex="-1" role="dialog"' +
+            'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
+            '<div class="modal-dialog modal-lg">' +
+                '<div class="modal-content select_image">' +
+
+                '</div>' +
+            '</div>' +
+            '</div>'
+        );
 
         var md_editor = mdEditor();
 
@@ -298,7 +416,7 @@ function renderingArticleTable($data) {
         $table_content += '<tr>';
         $table_content += '<td>';
         $table_content += '<input type="checkbox" name="checked" lay-skin="primary" class="choose">';
-        $table_content += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $table_content += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
         $table_content += '<div class="checkbox-icon">&nbsp;</div>';
         $table_content += '</div>';
         $table_content += '</td>';
@@ -330,30 +448,30 @@ function renderingArticleTable($data) {
 
         if ($post_list[$i].show_status == 0){
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch show_status">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch show_status">';
             $table_content += '<em>否</em><i></i></div></td>';
         }else{
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch layui-form-onswitch show_status">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch dashboard-form-onswitch show_status">';
             $table_content += '<em>是</em><i></i></div></td>';
         }
 
         if ($post_list[$i].is_top == 0){
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch is_top">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch is_top">';
             $table_content += '<em>否</em><i></i></div></td>';
         }else{
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch layui-form-onswitch is_top">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch dashboard-form-onswitch is_top">';
             $table_content += '<em>是</em><i></i></div></td>';
         }
 
         $table_content += '<td>' + $post_list[$i].updated_at + '</td>';
-        $table_content += '<td><a class="layui-btn layui-btn-mini news_edit">';
+        $table_content += '<td><a class="dashboard-btn dashboard-btn-mini news_edit">';
         $table_content += '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>编辑</span></a>';
-        $table_content += '<a class="layui-btn layui-btn-mini news_collect" style="background-color: #1E9FFF">';
+        $table_content += '<a class="dashboard-btn dashboard-btn-mini news_collect" style="background-color: #1E9FFF">';
         $table_content += '<i class="fa fa-star-o" aria-hidden="true"></i> <span>收藏</span></a>';
-        $table_content += '<a class="layui-btn layui-btn-mini news_judge" style="background-color: #FF5722;">';
+        $table_content += '<a class="dashboard-btn dashboard-btn-mini news_judge" style="background-color: #FF5722;">';
         $table_content += '<i class="fa fa-eye" aria-hidden="true"></i> <span>审核</span></a></td>';
     }
 
@@ -428,42 +546,66 @@ function dialogConfirmAndCancel($title, $content, callback, $param){
     method.msg_layer($obj);
 }
 
+$(document).on('click', '.select_image_icon', function () {
+    $(".select_image_icon").removeClass("dashboard-icon-selected");
+    $(this).toggleClass("dashboard-icon-checked");
+});
+
+$(document).on('click', '.confirm-image-select', function () {
+    $(".image_list").modal('hide');
+});
+
+
+$(document).on('click', '.select_image_btn button', function () {
+    var $select_image = "";
+    $select_image += '<form class="dashboard-form select_image_form">';
+    $select_image += '<blockquote class="dashboard-elem-quote news_search">';
+    $select_image += '<div class="dashboard-inline" style="width: 85%;">';
+    $select_image += '<div class="dashboard-form-mid dashboard-word-aux">选择一张美美的图片作为你文章的封面</div>';
+    $select_image += '</div>';
+    $select_image += '<div class="dashboard-inline">';
+    $select_image += '<a class="dashboard-btn dashboard-btn-danger confirm-image-select" href="#">确定</a>';
+    $select_image += '</div>';
+    $select_image += '<div class="dashboard-inline">';
+    $select_image += '<a class="dashboard-btn dashboard-btn-normal" href="#">换一批</a>';
+    $select_image += '</div>';
+    $select_image += '</blockquote>';
+    $select_image += '<ul id="Images">';
+    $select_image += '<li data-url="e6ebc034">';
+    $select_image += '<img src="/static/images/userface3.jpg">';
+    $select_image += '<div class="operate">';
+    $select_image += '<div class="check">';
+    $select_image += '<input type="checkbox" name="belle" title="美女生活照1">';
+    $select_image += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+    $select_image += '<span>美女生活照1</span>';
+    $select_image += '<div class="dashboard-icon select_image_icon"></div>';
+    $select_image += '</div>';
+    $select_image += '</div>';
+    $select_image += '</div>';
+    $select_image += '</li>';
+    $select_image += '</ul>';
+    $select_image += '</form>';
+    $(".select_image").html($select_image);
+});
+
 
 $(document).on('click', '.make_top', function() {
     $(this).toggleClass("make_top_checked");
-    if ($(this).hasClass("make_top_checked")){
-        var $checked = $(this).children("span");
-        $checked.css("background-color", "#5FB878");
-        $(this).css("background-color", "#d2d2d0");
-    }else{
-        var $checked = $(this).children("span");
-        $checked.css("background-color", "#d2d2d0");
-        $(this).css("background-color", "#5FB878");
-    }
 });
 
 
 $(document).on('click', '.make_public', function() {
     $(this).toggleClass("make_top_checked");
-    if ($(this).hasClass("make_top_checked")){
-        var $checked = $(this).children("span");
-        $checked.css("background-color", "#5FB878");
-        $(this).css("background-color", "#d2d2d0");
-    }else{
-        var $checked = $(this).children("span");
-        $checked.css("background-color", "#d2d2d0");
-        $(this).css("background-color", "#5FB878");
-    }
 });
 
 
 $(document).on('click','.checkbox-icon', function () {
 
     if ($(this).hasClass("chooseAll")){
-        $(".checkbox-icon").parent().toggleClass("layui-form-checked");
+        $(".checkbox-icon").parent().toggleClass("dashboard-form-checked");
     }
     else{
-        $(this).parent().toggleClass("layui-form-checked");
+        $(this).parent().toggleClass("dashboard-form-checked");
     }
 });
 
@@ -538,7 +680,7 @@ $(document).on('click', '.show-cover', function () {
 $(document).on('click', '.show_status', function () {
     var $text = "是";
     var $content = "确定要将这篇文章公开吗?";
-    if (!$(this).hasClass('layui-form-onswitch')){
+    if (!$(this).hasClass('dashboard-form-onswitch')){
 
     }else{
         $text = "否";
@@ -546,7 +688,7 @@ $(document).on('click', '.show_status', function () {
     }
 
     dialogConfirmAndCancel('Confirm your operation.', $content, function ($e) {
-        $e.toggleClass('layui-form-onswitch');
+        $e.toggleClass('dashboard-form-onswitch');
         $e.children('em').text($text);
 
         method.msg_layer({title:"确认框标题",content:"保存成功"});
@@ -557,7 +699,7 @@ $(document).on('click', '.show_status', function () {
 $(document).on('click', '.is_top', function () {
     var $text = "是";
     var $content = "确定要将这篇文章置顶吗?";
-    if (!$(this).hasClass('layui-form-onswitch')){
+    if (!$(this).hasClass('dashboard-form-onswitch')){
         $content = "确定要将这篇文章置顶吗?";
     }else{
         $text = "否";
@@ -565,7 +707,7 @@ $(document).on('click', '.is_top', function () {
     }
 
     dialogConfirmAndCancel('Confirm your operation.', $content, function ($e) {
-        $e.toggleClass('layui-form-onswitch');
+        $e.toggleClass('dashboard-form-onswitch');
         $e.children('em').text($text);
 
         method.msg_layer({title:"确认框标题",content:"保存成功"});
@@ -576,7 +718,7 @@ $(document).on('click', '.is_top', function () {
 $(document).on('click', '.batchDel', function (event) {
     dialogConfirmAndCancel('Confirm your operation.', '确定要将选中的文章删除吗?', function () {
         event.preventDefault();
-        var $item = $("[class*='layui-form-checked']").parent().parent();
+        var $item = $("[class*='dashboard-form-checked']").parent().parent();
         $item.addClass('removed-item')
             .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
             $item.remove();
