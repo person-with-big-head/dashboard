@@ -43,15 +43,17 @@ class ValidatorSchema(Schema):
 
 login_validator = ValidatorSchema({
     'username': Length(min=3, max=64),
-    'password': All(Length(min=6), Lower())
+    'password': All(Length(min=5), Lower())
 }, required=True, extra=REMOVE_EXTRA)
 
 create_post_validator = ValidatorSchema({
     'category': Length(min=1),
     'article_title': Length(min=1),
     'article_content': Length(min=1),
-    'cover_id': Length(min=1),
-    Optional('post_status'): Length(min=1),
-    Optional('post_type'): Length(min=1),
+    'cover': Length(min=1),
+    Optional('post_status'): Coerce(int),
+    Optional('post_type'): Coerce(int),
+    Optional('show_status'): Coerce(int),
     Optional('is_top'): Coerce(int),
+    Optional('judge_status'): Coerce(int),
 }, required=True, extra=REMOVE_EXTRA)

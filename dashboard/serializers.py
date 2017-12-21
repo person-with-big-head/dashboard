@@ -110,4 +110,5 @@ class BasketArticleListSerializer(Schema):
 
 
 basket_article_list_serializer = BasketArticleListSerializer(strict=True)
-
+categories_serializer = CategoriesSerializer(strict=True)
+covers_serializer = CoversSerializer(strict=True)

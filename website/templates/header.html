@@ -20,75 +20,72 @@
     </li>
 
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-      <a class="nav-link first-menu" href="index.html">
+      <a class="nav-link first-menu" href="/">
         <i class="fa fa-fw fa-dashboard"></i>
         <span class="nav-link-text">首页</span>
       </a>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-      <a class="nav-link first-menu" href="charts.html">
-        <i class="fa fa-fw fa-area-chart"></i>
-        <span class="nav-link-text">文章置顶管理</span>
-      </a>
-    </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-      <a class="nav-link first-menu" href="tables.html">
-        <i class="fa fa-fw fa-table"></i>
-        <span class="nav-link-text">文章收藏管理</span>
-      </a>
-    </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-      <a class="nav-link collapsed first-menu" data-toggle="collapse" href="#collapseComponents"
-         data-parent="#exampleAccordion">
-        <i class="fa fa-fw fa-wrench"></i>
+      <a class="nav-link collapsed first-menu" data-toggle="collapse" href="#article"
+         data-parent="#collapseComponents">
+        <i class="fa fa-fw fa-table"></i>
         <span class="nav-link-text">文章管理</span>
       </a>
-      <ul class="sidenav-second-level collapse" id="collapseComponents">
+      <ul class="sidenav-second-level collapse" id="article">
         <li>
-          <a href="#" class="article_list">文章列表</a>
+          <a href="#article_list" class="article_list">文章列表</a>
         </li>
         <li>
-          <a href="#" class="add_article">写文章</a>
+          <a href="#add_article" class="add_article">新建文章</a>
+        </li>
+        <li>
+          <a href="#star_article" class="star_article">收藏文章</a>
         </li>
       </ul>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-      <a class="nav-link collapsed first-menu" data-toggle="collapse" href="#collapseExamplePages"
+      <a class="nav-link collapsed first-menu" data-toggle="collapse" href="#cover"
          data-parent="#exampleAccordion">
         <i class="fa fa-fw fa-file"></i>
         <span class="nav-link-text">封面管理</span>
       </a>
-      <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+      <ul class="sidenav-second-level collapse" id="cover">
         <li>
-          <a href="login.html">封面列表</a>
+          <a href="#cover_list" class="cover_list">封面列表</a>
         </li>
         <li>
-          <a href="register.html">新增封面</a>
-        </li>
-        <li>
-          <a href="forgot-password.html">Forgot Password Page</a>
-        </li>
-        <li>
-          <a href="blank.html">Blank Page</a>
+          <a href="#add_cover" class="add_cover">新增封面</a>
         </li>
       </ul>
     </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-      <a class="nav-link first-menu" href="charts.html">
-        <i class="fa fa-fw fa-area-chart"></i>
+      <a class="nav-link first-menu draft" href="#draft">
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
         <span class="nav-link-text">草稿箱</span>
       </a>
     </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-      <a class="nav-link first-menu" href="charts.html">
+      <a class="nav-link first-menu notes" href="#notes">
+        <i class="fa fa-book" aria-hidden="true"></i>
+        <span class="nav-link-text">笔记</span>
+      </a>
+    </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+      <a class="nav-link first-menu categories" href="#categories">
         <i class="fa fa-fw fa-area-chart"></i>
         <span class="nav-link-text">分类管理</span>
       </a>
     </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-      <a class="nav-link first-menu" href="charts.html">
+      <a class="nav-link first-menu tags" href="#tags">
         <i class="fa fa-fw fa-tags" aria-hidden="true"></i>
         <span class="nav-link-text">标签管理</span>
+      </a>
+    </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+      <a class="nav-link first-menu settings" href="#settings">
+        <i class="fa fa-wrench" aria-hidden="true"></i>
+        <span class="nav-link-text">设置</span>
       </a>
     </li>
   </ul>

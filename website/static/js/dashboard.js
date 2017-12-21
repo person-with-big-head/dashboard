@@ -9,24 +9,172 @@
     // view covers.
     $(".panel_images").click(function () {
         var $view_pages = "";
-        $view_pages += '<form class="layui-form">';
-        $view_pages += '<blockquote class="layui-elem-quote news_search">';
-        $view_pages += '<div class="layui-inline"><input type="checkbox" name="selectAll" id="selectAll"';
+        $view_pages += '<form class="dashboard-form">';
+        $view_pages += '<blockquote class="dashboard-elem-quote news_search">';
+        $view_pages += '<div class="dashboard-inline"><input type="checkbox" name="selectAll" id="selectAll"';
         $view_pages += 'lay-filter="selectAll" lay-skin="primary" title="全选">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>全选</span><i class="layui-icon"></i></div></div><div class="layui-inline">';
-        $view_pages += '<a class="layui-btn layui-btn-danger batchDel" href="#">批量删除</a></div>';
-        $view_pages += '</blockquote>';
-        $view_pages += '<ul id="Images"><li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>全选</span><div class="dashboard-icon"></div></div></div><div class="dashboard-inline">';
+        $view_pages += '<a class="dashboard-btn dashboard-btn-danger batchDel" href="#">批量删除</a></div>';
+        $view_pages += '</blockquote><ul id="Images" class="Image_cover_list">';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
         $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
         $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
-        $view_pages += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
-        $view_pages += '<span>美女生活照1</span><i class="layui-icon"></i></div></div>';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
         $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
-        $view_pages += '<div class="layui-flow-more"><a href="javascript:;"><cite>加载更多</cite></a></div></ul></form>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '</ul></form>';
 
         $(".view_images").html($view_pages);
 
+    });
+
+    // image master
+    $(".cover_list").click(function () {
+        var $view_pages = "";
+        $view_pages += '<form class="dashboard-form">';
+        $view_pages += '<blockquote class="dashboard-elem-quote news_search">';
+        $view_pages += '<div class="dashboard-inline"><input type="checkbox" name="selectAll" id="selectAll"';
+        $view_pages += 'lay-filter="selectAll" lay-skin="primary" title="全选">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>全选</span><div class="dashboard-icon"></div></div></div><div class="dashboard-inline">';
+        $view_pages += '<a class="dashboard-btn dashboard-btn-danger batchDel" href="#">批量删除</a></div>';
+        $view_pages += '</blockquote><ul id="Images" class="Image_cover_list">';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '<li><img src="/static/images/userface3.jpg">';
+        $view_pages += '<div class="operate"><div class="check"><input type="checkbox" name="belle"';
+        $view_pages += 'lay-filter="choose" lay-skin="primary" title="美女生活照1">';
+        $view_pages += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
+        $view_pages += '<span>美女生活照1</span><div class="dashboard-icon"></div></div></div>';
+        $view_pages += '<i class="fa fa-trash-o" aria-hidden="true"></i></div></li>';
+        $view_pages += '</ul></form>';
+
+        $(".container-fluid").html($view_pages);
     });
 
     $(".article_list").click(function () {
@@ -39,23 +187,23 @@
            '<li class="breadcrumb-item active">文章列表</li>' +
            '</ol>' +
 
-           '<blockquote class="layui-elem-quote news_search">'+
-           '<div class="layui-inline">' +
-                '<div class="layui-input-inline">' +
-                    '<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">' +
+           '<blockquote class="dashboard-elem-quote news_search">'+
+           '<div class="dashboard-inline">' +
+                '<div class="dashboard-input-inline">' +
+                    '<input type="text" value="" placeholder="请输入关键字" class="dashboard-input search_input">' +
                 '</div>' +
-                '<a class="layui-btn search_btn" href="#">查询</a>' +
+                '<a class="dashboard-btn search_btn" href="#">查询</a>' +
            '</div>' +
-           '<div class="layui-inline">' +
-                '<a class="layui-btn layui-btn-normal newsAdd_btn" href="#">添加文章</a>' +
+           '<div class="dashboard-inline">' +
+                '<a class="dashboard-btn dashboard-btn-normal newsAdd_btn" href="#">添加文章</a>' +
            '</div>' +
-           '<div class="layui-inline">' +
-                '<a class="layui-btn layui-btn-danger batchDel" href="#">批量删除</a>' +
+           '<div class="dashboard-inline">' +
+                '<a class="dashboard-btn dashboard-btn-danger batchDel" href="#">批量删除</a>' +
            '</div>' +
-           '<div class="layui-inline" style="font-size:13px; padding-top:8px; float:right;">' +
+           '<div class="dashboard-inline" style="font-size:13px; padding-top:8px; float:right;">' +
                 '<label class="page-label">页</label>' +
            '</div>' +
-           '<div class="layui-inline page-size">' +
+           '<div class="dashboard-inline page-size">' +
                 '<select name="page_size" aria-controls="dataTable" class="page_size">' +
                     '<option value="10">10</option>' +
                     '<option value="25">25</option>' +
@@ -63,12 +211,12 @@
                     '<option value="100">100</option>' +
                 '</select>' +
            '</div>' +
-           '<div class="layui-inline" style="font-size:13px; padding-top:8px; float:right;">' +
+           '<div class="dashboard-inline" style="font-size:13px; padding-top:8px; float:right;">' +
                '<label class="page-label">每页显示</label>' +
            '</div>' +
         '</blockquote>' +
-        '<div class="layui-form news_list">' +
-        '<table class="layui-table">' +
+        '<div class="dashboard-form news_list">' +
+        '<table class="dashboard-table">' +
             '<colgroup>' +
                '<col width="50">' +
                '<col width="7%">' +
@@ -84,7 +232,7 @@
                 '<tr>' +
                     '<th>' +
                         '<input type="checkbox" name="" lay-skin="primary" id="allChoose">' +
-                        '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">' +
+                        '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">' +
                             '<div class="checkbox-icon chooseAll" title="反选">&nbsp;</div>' +
                         '</div>' +
                     '</th>' +
@@ -94,7 +242,6 @@
                     '<th class="sorting" data-url="">审核状态</th>' +
                     '<th class="sorting" data-url="">是否公开</th>' +
                     '<th class="sorting" data-url="">是否置顶</th>' +
-                    // '<th class="sorting" data-url="">封面</th>' +
                     '<th class="sorting" data-url="">发布时间</th>' +
                     '<th>操作</th>' +
                 '</tr>' +
@@ -109,7 +256,7 @@
         '</div>' +
         '</div>');
 
-        var $url = 'http://127.0.0.1:1110/dashboard/posts/list';
+        var $url = 'http://127.0.0.1:1110/v1/posts';
         getTableData($url, true, renderingArticleTable);
     });
 
@@ -122,66 +269,93 @@
             '<li class="breadcrumb-item active">文章管理</li>' +
             '<li class="breadcrumb-item active">写文章</li>' +
             '</ol>' +
-            '<form class="layui-form">' +
-                 '<div class="layui-form-item">' +
-			     '<label class="layui-form-label">文章标题</label>' +
-                 '<div class="layui-input-block">' +
-				      '<input type="text" class="layui-input newsName" placeholder="请输入文章标题">' +
+            '<form class="dashboard-form">' +
+                 '<div class="dashboard-form-item">' +
+			     '<label class="dashboard-form-label">文章标题</label>' +
+                 '<div class="dashboard-input-block">' +
+				      '<input type="text" class="dashboard-input articleName" placeholder="请输入文章标题">' +
 			     '</div>' +
 		         '</div>' +
-		         '<div class="layui-form-item">' +
-                 '<div class="layui-inline">' +
-                 '<label class="layui-form-label">自定义属性</label>' +
-				 '<div class="layui-input-block">' +
-                     '<input type="checkbox" name="recommend" class="make_top" title="推荐">' +
-                     '<div class="layui-unselect layui-form-checkbox" lay-skin=""><span>推荐</span>' +
-                        '<i class="fa fa-circle" aria-hidden="true"></i>' +
+		         '<div class="dashboard-form-item">' +
+                 '<div class="dashboard-inline">' +
+                 '<label class="dashboard-form-label">自定义属性</label>' +
+				 '<div class="dashboard-input-block">' +
+                     '<input type="checkbox" name="recommend" title="置顶">' +
+                     '<div class="dashboard-unselect dashboard-form-checkbox make_top" lay-skin="">' +
+                        '<span>置顶</span>' +
                      '</div>' +
-                     '<input type="checkbox" name="public" class="make_public" title="公开">' +
-                     '<div class="layui-unselect layui-form-checkbox" lay-skin=""><span>公开</span>' +
-                        '<i class="fa fa-circle" aria-hidden="true"></i>' +
+                     '<input type="checkbox" name="public" title="公开">' +
+                     '<div class="dashboard-unselect dashboard-form-checkbox make_public" lay-skin="">' +
+                        '<span>公开</span>' +
                      '</div>' +
                  '</div>' +
                  '</div>' +
-                 '<div class="layui-inline">' +
-                     '<label class="layui-form-label">类别</label>' +
-                     '<div class="layui-input-inline">' +
-                          '<select class="form-control" style="display: block;">' +
-                              '<option>Large select</option>' +
-                          '</select>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="layui-inline">' +
-                     '<label class="layui-form-label">标签</label>' +
-                     '<div class="layui-input-inline">' +
-                          '<select class="form-control" style="display: block;">' +
-                              '<option>Large select</option>' +
+                 '<div class="dashboard-inline">' +
+                     '<label class="dashboard-form-label">类别</label>' +
+                     '<div class="dashboard-input-inline">' +
+                          '<select class="form-control select_category" style="display: block;">' +
                           '</select>' +
                     '</div>' +
                 '</div>' +
                 '</div>' +
-                '<div class="layui-form-item">' +
-                '<label class="layui-form-label">封面</label>' +
-                '<div class="layui-input-block">' +
-                    '<button class="layui-btn" style="background:#5FB878">点击选择</button>' +
+                '<div class="dashboard-form-item">' +
+                '<div class="dashboard-inline">' +
+                '<label class="dashboard-form-label">封面</label>' +
+                '<div class="dashboard-input-block">' +
+                    '<a href="javascript:;" data-toggle="modal" data-target=".image_list" class="select_image_btn">' +
+                        '<button class="dashboard-btn" style="background:#5FB878">点击选择</button>' +
+                    '</a>' +
                 '</div>' +
                 '</div>' +
-                '<div class="layui-form-item">' +
-                    '<label class="layui-form-label">文章内容</label>' +
-                    '<div class="layui-input-block">' +
+                '<div class="dashboard-inline">' +
+                    '<div class="image_name">' +
+                    '<a class="image_url show-cover" href="#" data-toggle="modal" data-target=".single-cover" ' +
+                    'rel=""></a>' +
+                    '</div>' +
+                    /*image view modal*/
+                    '<div class="modal fade single-cover" tabindex="-1" role="dialog"' +
+                    'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
+                        '<div class="modal-dialog modal-lg">' +
+                            '<div class="modal-content view-cover">' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="dashboard-form-item">' +
+                    '<label class="dashboard-form-label">文章内容</label>' +
+                    '<div class="dashboard-input-block">' +
                         '<textarea id="write_article" name="article_content"></textarea>' +
                     '</div>' +
                 '</div>' +
-                '<div class="layui-form-item">' +
-                    '<div class="layui-input-block">' +
-                        '<button class="layui-btn">发布</button>' +
-                        '<button class="layui-btn layui-btn-primary save_as_draft">存为草稿</button>' +
+                '<div class="dashboard-form-item">' +
+                    '<div class="dashboard-input-block">' +
+                        '<a class="dashboard-btn release_article" href="#">发布</a>' +
+                        '<a class="dashboard-btn dashboard-btn-primary save_as_draft" href="#">存为草稿</a>' +
                     '</div>' +
                 '</div>' +
-            '</form>');
+            '</form>' +
+            '<div class="modal fade image_list" tabindex="-1" role="dialog"' +
+            'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
+            '<div class="modal-dialog modal-lg">' +
+                '<div class="modal-content select_image">' +
+
+                '</div>' +
+            '</div>' +
+            '</div>'
+        );
+
+        // 编辑器
         var md_editor = mdEditor();
+
+        // 编辑器发生文本变化计算code语法。
+        // md_editor.codemirror.on("change", function(){
+        //     loadScript('/static/js/prism.js');
+        // });
+
+        // 编辑器支持图片的拖拽上传
         inlineAttachment.editors.codemirror4.attach(md_editor.codemirror, {
-            uploadUrl: 'http://127.0.0.1:1110/upload',
+            uploadUrl: 'http://127.0.0.1:1110/v1/covers',
             onFileUploadResponse: function(xhr) {
                 var result = JSON.parse(xhr.responseText),
                 filename = result[this.settings.jsonFieldName];
@@ -203,11 +377,123 @@
                 return false;
             }
         });
+
+        // 加载分类信息
+        var $url = 'http://127.0.0.1:1110/v1/categories';
+        getCategories($url, renderingSelectCategories);
+
+        // 发布文章
+        $(document).on('click', '.release_article', function () {
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
+
+            var $show_status = $(".make_public").hasClass("make_public_checked");
+            var $is_top = $(".make_top").hasClass("make_top_checked");
+
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
+
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
+
+            if (!$category || !$article_title || !$article_content || !$cover){
+                method.msg_layer({title:"提示", content:"似乎忘了什么"});
+                method.msg_close();
+            }else{
+                var $data = {
+                    post_status: 2,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
+
+                createArticle($data, function () {
+                    method.msg_layer({title:"提示", content:"发布成功"});
+                    method.msg_close();
+                });
+            }
+        });
+
+        // 保存草稿
+        $(document).on('click', '.release_article', function () {
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
+
+            var $show_status = $(".make_public").hasClass("make_public_checked");
+            var $is_top = $(".make_top").hasClass("make_top_checked");
+
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
+
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
+
+            if (!$article_title || !$article_content){
+                method.msg_layer({title:"提示", content:"似乎忘了什么"});
+                method.msg_close();
+            }else{
+                var $data = {
+                    post_status: 1,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
+
+                createArticle($data, function () {
+                    method.msg_layer({title:"提示", content:"保存成功"});
+                    method.msg_close();
+                });
+            }
+        });
+
     });
 
     $('.chooseAll').tooltip();
 
 })(jQuery);
+
+
+function createArticle($data, callback){
+    // 创建文章
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:1110/v1/posts',
+        data: $data,
+        success: function (data) {
+            callback();
+        }
+    })
+}
 
 
 function getTableData($url, $pagination, callback) {
@@ -233,6 +519,33 @@ function getTableData($url, $pagination, callback) {
     });
 }
 
+function getCategories($url, callback){
+    // 获取分类信息
+    // url: 请求地址
+
+    var result = {};
+    $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function ($response) {
+            result['select_list'] = $response.data;
+            callback(result);
+        }
+    })
+}
+
+function renderingSelectCategories($data){
+    // 渲染类别选择框
+    // url: 表单数据地址
+    var $select_category = $(".select_category");
+    var $select_list = $data['select_list'];
+    for (var $i = 0; $i < $select_list.length; $i++){
+        var $tag = '<option value="' + $select_list[$i].category_id + '">'
+            + $select_list[$i].category_name + '</option>';
+        $select_category.append($tag);
+    }
+}
+
 function renderingArticleTable($data) {
     // 渲染文章列表页面
     // url: 表单数据地址
@@ -243,7 +556,7 @@ function renderingArticleTable($data) {
         $table_content += '<tr>';
         $table_content += '<td>';
         $table_content += '<input type="checkbox" name="checked" lay-skin="primary" class="choose">';
-        $table_content += '<div class="layui-unselect layui-form-checkbox" lay-skin="primary">';
+        $table_content += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
         $table_content += '<div class="checkbox-icon">&nbsp;</div>';
         $table_content += '</div>';
         $table_content += '</td>';
@@ -275,30 +588,30 @@ function renderingArticleTable($data) {
 
         if ($post_list[$i].show_status == 0){
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch show_status">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch show_status">';
             $table_content += '<em>否</em><i></i></div></td>';
         }else{
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch layui-form-onswitch show_status">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch dashboard-form-onswitch show_status">';
             $table_content += '<em>是</em><i></i></div></td>';
         }
 
         if ($post_list[$i].is_top == 0){
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch is_top">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch is_top">';
             $table_content += '<em>否</em><i></i></div></td>';
         }else{
             $table_content += '<td><input type="checkbox" name="show" lay-skin="switch" checked="">';
-            $table_content += '<div class="layui-unselect layui-form-switch layui-form-onswitch is_top">';
+            $table_content += '<div class="dashboard-unselect dashboard-form-switch dashboard-form-onswitch is_top">';
             $table_content += '<em>是</em><i></i></div></td>';
         }
 
         $table_content += '<td>' + $post_list[$i].updated_at + '</td>';
-        $table_content += '<td><a class="layui-btn layui-btn-mini news_edit">';
+        $table_content += '<td><a class="dashboard-btn dashboard-btn-mini news_edit">';
         $table_content += '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>编辑</span></a>';
-        $table_content += '<a class="layui-btn layui-btn-mini news_collect" style="background-color: #1E9FFF">';
+        $table_content += '<a class="dashboard-btn dashboard-btn-mini news_collect" style="background-color: #1E9FFF">';
         $table_content += '<i class="fa fa-star-o" aria-hidden="true"></i> <span>收藏</span></a>';
-        $table_content += '<a class="layui-btn layui-btn-mini news_judge" style="background-color: #FF5722;">';
+        $table_content += '<a class="dashboard-btn dashboard-btn-mini news_judge" style="background-color: #FF5722;">';
         $table_content += '<i class="fa fa-eye" aria-hidden="true"></i> <span>审核</span></a></td>';
     }
 
@@ -374,13 +687,129 @@ function dialogConfirmAndCancel($title, $content, callback, $param){
 }
 
 
+$(document).on('click', '.select_image_icon', function () {
+    $(".select_image_icon").removeClass("dashboard-icon-checked");
+    $(this).toggleClass("dashboard-icon-checked");
+});
+
+
+$(document).on('click', '.confirm-image-select', function () {
+    $(".image_list").modal('hide');
+    var $data_id = $(".dashboard-icon-checked").parent().attr("data-id");
+    var $data_url = $(".dashboard-icon-checked").parent().attr("data-url");
+    var $data_name = $(".dashboard-icon-checked").parent().attr("data-name");
+    var $image_url = $(".image_url");
+    $image_url.text('![' + $data_name + '](' + $data_url + ')');
+    $image_url.attr("rel", $data_url);
+    $image_url.attr("data-id", $data_id);
+    $(".select_image_btn").children(".dashboard-btn").text("重新选择");
+});
+
+
+function getCovers($page, callback) {
+    // 获取分类信息
+    // url: 请求地址
+
+    var result = {};
+    var $url = 'http://127.0.0.1:1110/v1/covers?page=' + $page;
+    $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function ($response) {
+            result['cover_list'] = $response.data.result;
+            result['page'] = $response.data.page;
+            result['total_page'] = $response.data.total_page;
+            callback(result);
+        }
+    })
+}
+
+
+function renderingSelectCovers($data){
+    // 渲染封面选择列表
+    var $page = parseInt($data['page']);
+    var $total_page = parseInt($data['total_page']);
+    var $cover_list = $data['cover_list'];
+
+    var $select_image_list = $(".select_image_list");
+    var $next_image_select = $(".next-image-select");
+    $select_image_list.empty();
+
+    for (var $i = 0; $i < $cover_list.length; $i++){
+        var $tag = "";
+        $tag += '<li data-url="' + $cover_list[$i].cover_id + '">';
+        $tag += '<img src="' + $cover_list[$i].cover_path + '">';
+        $tag += '<div class="operate">';
+        $tag += '<div class="check">';
+        $tag += '<input type="checkbox" name="belle" title="' + $cover_list[$i].cover_name + '">';
+        $tag += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary" ';
+        $tag += 'data-url="' + $cover_list[$i].cover_path + '" data-name="' + $cover_list[$i].cover_name;
+        $tag += ' "data-id="' + $cover_list[$i].cover_id + '">';
+        $tag += '<span>' + $cover_list[$i].cover_name + '</span>';
+        $tag += '<div class="dashboard-icon select_image_icon"></div>';
+        $tag += '</div>';
+        $tag += '</div>';
+        $tag += '</div>';
+        $tag += '</li>';
+        $select_image_list.append($tag);
+    }
+
+    if ($page == $total_page){
+        $next_image_select.attr("data-url", 0);
+        $next_image_select.text("重新浏览");
+    }else{
+        $next_image_select.attr("data-url", $page);
+        $next_image_select.text("换一批");
+    }
+}
+
+
+$(document).on('click', '.select_image_btn button', function () {
+    var $select_image = "";
+    $select_image += '<form class="dashboard-form select_image_form">';
+    $select_image += '<blockquote class="dashboard-elem-quote news_search">';
+    $select_image += '<div class="dashboard-inline" style="width: 85%;">';
+    $select_image += '<div class="dashboard-form-mid dashboard-word-aux">选择一张美美的图片作为你文章的封面</div>';
+    $select_image += '</div>';
+    $select_image += '<div class="dashboard-inline">';
+    $select_image += '<a class="dashboard-btn dashboard-btn-danger confirm-image-select" href="#">确定</a>';
+    $select_image += '</div>';
+    $select_image += '<div class="dashboard-inline">';
+    $select_image += '<a class="dashboard-btn dashboard-btn-normal next-image-select" href="#" data-url="1">换一批</a>';
+    $select_image += '</div>';
+    $select_image += '</blockquote>';
+    $select_image += '<ul id="Images" class="select_image_list">';
+
+    $select_image += '</ul>';
+    $select_image += '</form>';
+    $(".select_image").html($select_image);
+
+    getCovers(1, renderingSelectCovers);
+});
+
+$(document).on('click', '.next-image-select', function () {
+    $data_url = $(this).attr("data-url");
+    $page = parseInt($data_url) + 1;
+    getCovers($page, renderingSelectCovers);
+});
+
+$(document).on('click', '.make_top', function() {
+    $(this).toggleClass("make_top_checked");
+});
+
+
+$(document).on('click', '.make_public', function() {
+    $(this).toggleClass("make_public_checked");
+});
+
+
 $(document).on('click','.checkbox-icon', function () {
 
     if ($(this).hasClass("chooseAll")){
-        $(".checkbox-icon").parent().toggleClass("layui-form-checked");
+        $(".checkbox-icon").parent().toggleClass("dashboard-form-checked");
     }
     else{
-        $(this).parent().toggleClass("layui-form-checked");
+        $(this).parent().toggleClass("dashboard-form-checked");
     }
 });
 
@@ -400,7 +829,7 @@ $(document).on('click', '.sorting', function () {
     var $asc = $(this).hasClass("asc");
     var $desc = $(this).hasClass("desc");
     var $order_by = $(this).attr("data-url");
-    var $url = "http://127.0.0.1:1110/dashboard/posts/list";
+    var $url = "http://127.0.0.1:1110/v1/posts";
     if ($asc && $page_size){
         $url += '?order_by=' + $order_by + '&asc&page_size=' + $page_size;
     }
@@ -420,7 +849,7 @@ $(document).on('click', '.page-article', function () {
     var $desc = $(this).hasClass("desc");
     var $order_by = $(this).attr("data-url");
     var $page = $(this).text();
-    var $url = "http://127.0.0.1:1110/dashboard/posts/list";
+    var $url = "http://127.0.0.1:1110/v1/posts";
 
     if ($asc){
         $url += '?order_by=' + $order_by + '&asc'
@@ -455,7 +884,7 @@ $(document).on('click', '.show-cover', function () {
 $(document).on('click', '.show_status', function () {
     var $text = "是";
     var $content = "确定要将这篇文章公开吗?";
-    if (!$(this).hasClass('layui-form-onswitch')){
+    if (!$(this).hasClass('dashboard-form-onswitch')){
 
     }else{
         $text = "否";
@@ -463,10 +892,10 @@ $(document).on('click', '.show_status', function () {
     }
 
     dialogConfirmAndCancel('Confirm your operation.', $content, function ($e) {
-        $e.toggleClass('layui-form-onswitch');
+        $e.toggleClass('dashboard-form-onswitch');
         $e.children('em').text($text);
 
-        method.msg_layer({title:"确认框标题",content:"保存成功"});
+        method.msg_layer({title:"提示",content:"保存成功"});
     }, $(this));
 });
 
@@ -474,7 +903,7 @@ $(document).on('click', '.show_status', function () {
 $(document).on('click', '.is_top', function () {
     var $text = "是";
     var $content = "确定要将这篇文章置顶吗?";
-    if (!$(this).hasClass('layui-form-onswitch')){
+    if (!$(this).hasClass('dashboard-form-onswitch')){
         $content = "确定要将这篇文章置顶吗?";
     }else{
         $text = "否";
@@ -482,7 +911,7 @@ $(document).on('click', '.is_top', function () {
     }
 
     dialogConfirmAndCancel('Confirm your operation.', $content, function ($e) {
-        $e.toggleClass('layui-form-onswitch');
+        $e.toggleClass('dashboard-form-onswitch');
         $e.children('em').text($text);
 
         method.msg_layer({title:"确认框标题",content:"保存成功"});
@@ -493,7 +922,7 @@ $(document).on('click', '.is_top', function () {
 $(document).on('click', '.batchDel', function (event) {
     dialogConfirmAndCancel('Confirm your operation.', '确定要将选中的文章删除吗?', function () {
         event.preventDefault();
-        var $item = $("[class*='layui-form-checked']").parent().parent();
+        var $item = $("[class*='dashboard-form-checked']").parent().parent();
         $item.addClass('removed-item')
             .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
             $item.remove();
@@ -510,13 +939,6 @@ $(document).on('click', '.news_collect', function () {
     }
     $(this).toggleClass("collected");
 });
-
-
-function turnFullScreen(editor) {
-    // $("#mainNav").toggleClass("d-none");
-    SimpleMDE.toggleFullScreen(editor);
-}
-
 
 function mdEditor(){
     return new SimpleMDE({
@@ -606,21 +1028,40 @@ function mdEditor(){
         },
         {
             name: "preview",
-            action: SimpleMDE.togglePreview,
+            action: function preview(editor) {
+                SimpleMDE.togglePreview(editor);
+                loadScript('/static/js/prism.js');
+            },
             className: "fa fa-eye no-disable",
             title: "Toggle Preview"
         },
         {
             name: "side-by-side",
-            action: SimpleMDE.toggleSideBySide,
+            action: function sideBySide(editor){
+                SimpleMDE.toggleSideBySide(editor);
+                loadScript('/static/js/prism.js');
+            },
+            // action: SimpleMDE.toggleSideBySide,
             className: "fa fa-columns no-disable no-mobile",
             title: "Toggle Side by Side"
         },
         {
             name: "fullscreen",
-            action: turnFullScreen,
+            action: function fullScreen(editor){
+                SimpleMDE.toggleFullScreen(editor);
+                loadScript('/static/js/prism.js');
+            },
+            // action: SimpleMDE.toggleFullScreen,
             className: "fa fa-arrows-alt no-disable no-mobile",
             title: "Toggle Fullscreen"
+        },
+        {
+            name: "theme",
+            action: function todo() {
+
+            },
+            className: "fa fa-vimeo-square",
+            title: "Theme"
         },
         {
             name: "guide",
@@ -628,10 +1069,6 @@ function mdEditor(){
             className: "fa fa-question-circle",
             title: "Markdown Guide"
         }],
-        shortcuts: {
-		    singleSelection: null
-            // drawLink: 'ESC'
-	    },
     });
 }
 
@@ -668,13 +1105,6 @@ this.screenshotPreview = function(){
 	});
 };
 
-
-/*
- * Inline Text Attachment
- *
- * Author: Roy van Kaathoven
- * Contact: ik@royvankaathoven.nl
- */
 
 var inlineAttachment = function(options, instance) {
   this.settings = inlineAttachment.util.merge(options, inlineAttachment.defaults);
@@ -953,7 +1383,7 @@ inlineAttachment.prototype.uploadFile = function(file) {
  * @param {File} clipboard data file
  */
 inlineAttachment.prototype.isFileAllowed = function(file) {
-  if (file.kind === 'string') { return false; }
+  if (file.kind === 'string') { return true; }
   if (this.settings.allowedTypes.indexOf('*') === 0){
     return true;
   } else {
@@ -1160,3 +1590,26 @@ codeMirrorEditor4.attach = function(codeMirror, options) {
 };
 
 inlineAttachment.editors.codemirror4 = codeMirrorEditor4;
+
+
+function loadScript(url, callback){
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+
+    if (script.readyState){  //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else {  //Others
+        script.onload = function(){
+            callback();
+        };
+    }
+
+    script.src = url;
+    document.body.appendChild(script);
+}

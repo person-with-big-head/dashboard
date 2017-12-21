@@ -22,19 +22,19 @@ class Lang(Enum):
     )
 
     USER_NOT_FOUND = (
-        '用户名不存在',
+        'Oops, something goes wrong. The username may be not in the earth.',
         '404',
         'Username does not exists.'
     )
 
     USERNAME_PASSWORD_UNMATCHED = (
-        '用户名和密码不是一对',
+        'Oops, something goes wrong. The password is not the wife of the username.',
         '403',
         'Username is not matched with password'
     )
 
     USER_NOT_ACTIVE = (
-        '用户尚未激活',
+        'Oops, something goes wrong. ',
         '403',
         'User is not activated'
     )

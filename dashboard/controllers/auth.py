@@ -1,14 +1,14 @@
-from bottle import post
+from bottle import post, response, redirect, get, request
 
 from dashboard.validators import login_validator
-from dashboard.utils import plain_forms
+from dashboard.utils import plain_forms, plain_query
 from dashboard.models import User
 from dashboard.lang import Lang
 
 
-@post('/dashboard/auth/login')
+@get('/v1/auth/login')
 def login():
-    args = login_validator(plain_forms())
+    args = login_validator(plain_query())
     user = User.get_or_none(User.username == args['username'])
     if not user:
         return {
@@ -22,15 +22,20 @@ def login():
             'text': Lang.USERNAME_PASSWORD_UNMATCHED.auto,
         }
 
-    if not user.valid():
+    if not user.is_valid():
         return {
             'code': Lang.USER_NOT_ACTIVE.code,
             'text': Lang.USER_NOT_ACTIVE.auto,
         }
 
-    session = user.login()
-    return {
-        'code': Lang.LOGIN_SUCCESS.code,
-        'text': Lang.LOGIN_SUCCESS.auto,
-        'token': session.jwt_token()
-    }
+    session, expire_at = user.login()
+
+    # response.set_cookie('token', "bearer " + session.jwt_token(), path='/', expires=expire_at)
+    # response.set_header('Location', '/')
+    # response.set_header('Authorization', session.jwt_token())
+    # response.status = 303
+    # print(request.headers)
+    # response.headers['']
+    redirect('/', 302)
+    return 302
+

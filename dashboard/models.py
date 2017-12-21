@@ -216,7 +216,7 @@ class User(ModelBase):
             user=self,
             ip=request_ip())
 
-        return session
+        return session, expire_at
 
     def is_valid(self):
         return self.is_active
