@@ -430,7 +430,7 @@
         });
 
         // 保存草稿
-        $(document).on('click', '.release_article', function () {
+        $(document).on('click', '.save_as_draft', function () {
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
             var $article_title = $(".articleName").val();
