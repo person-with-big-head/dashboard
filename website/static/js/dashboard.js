@@ -256,7 +256,7 @@
         '</div>' +
         '</div>');
 
-        var $url = 'http://127.0.0.1:1110/dashboard/posts/list';
+        var $url = 'http://127.0.0.1:1110/v1/posts';
         getTableData($url, true, renderingArticleTable);
     });
 
@@ -273,7 +273,7 @@
                  '<div class="dashboard-form-item">' +
 			     '<label class="dashboard-form-label">文章标题</label>' +
                  '<div class="dashboard-input-block">' +
-				      '<input type="text" class="dashboard-input newsName" placeholder="请输入文章标题">' +
+				      '<input type="text" class="dashboard-input articleName" placeholder="请输入文章标题">' +
 			     '</div>' +
 		         '</div>' +
 		         '<div class="dashboard-form-item">' +
@@ -293,8 +293,7 @@
                  '<div class="dashboard-inline">' +
                      '<label class="dashboard-form-label">类别</label>' +
                      '<div class="dashboard-input-inline">' +
-                          '<select class="form-control" style="display: block;">' +
-                              '<option>Large select</option>' +
+                          '<select class="form-control select_category" style="display: block;">' +
                           '</select>' +
                     '</div>' +
                 '</div>' +
@@ -311,8 +310,7 @@
                 '<div class="dashboard-inline">' +
                     '<div class="image_name">' +
                     '<a class="image_url show-cover" href="#" data-toggle="modal" data-target=".single-cover" ' +
-                    'rel="https://netdna.webdesignerdepot.com/uploads/2017/11/featured_subtlety.jpg">' +
-                    '![hello.jpg](https://netdna.webdesignerdepot.com/uploads/2017/11/featured_subtlety.jpg)</a>' +
+                    'rel=""></a>' +
                     '</div>' +
                     /*image view modal*/
                     '<div class="modal fade single-cover" tabindex="-1" role="dialog"' +
@@ -332,8 +330,8 @@
                 '</div>' +
                 '<div class="dashboard-form-item">' +
                     '<div class="dashboard-input-block">' +
-                        '<button class="dashboard-btn">发布</button>' +
-                        '<button class="dashboard-btn dashboard-btn-primary save_as_draft">存为草稿</button>' +
+                        '<a class="dashboard-btn release_article" href="#">发布</a>' +
+                        '<a class="dashboard-btn dashboard-btn-primary save_as_draft" href="#">存为草稿</a>' +
                     '</div>' +
                 '</div>' +
             '</form>' +
@@ -347,14 +345,17 @@
             '</div>'
         );
 
+        // 编辑器
         var md_editor = mdEditor();
 
-        md_editor.codemirror.on("change", function(){
-            loadScript('/static/js/prism.js');
-        });
+        // 编辑器发生文本变化计算code语法。
+        // md_editor.codemirror.on("change", function(){
+        //     loadScript('/static/js/prism.js');
+        // });
 
+        // 编辑器支持图片的拖拽上传
         inlineAttachment.editors.codemirror4.attach(md_editor.codemirror, {
-            uploadUrl: 'http://127.0.0.1:1110/upload',
+            uploadUrl: 'http://127.0.0.1:1110/v1/covers',
             onFileUploadResponse: function(xhr) {
                 var result = JSON.parse(xhr.responseText),
                 filename = result[this.settings.jsonFieldName];
@@ -376,11 +377,123 @@
                 return false;
             }
         });
+
+        // 加载分类信息
+        var $url = 'http://127.0.0.1:1110/v1/categories';
+        getCategories($url, renderingSelectCategories);
+
+        // 发布文章
+        $(document).on('click', '.release_article', function () {
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
+
+            var $show_status = $(".make_public").hasClass("make_public_checked");
+            var $is_top = $(".make_top").hasClass("make_top_checked");
+
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
+
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
+
+            if (!$category || !$article_title || !$article_content || !$cover){
+                method.msg_layer({title:"提示", content:"似乎忘了什么"});
+                method.msg_close();
+            }else{
+                var $data = {
+                    post_status: 2,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
+
+                createArticle($data, function () {
+                    method.msg_layer({title:"提示", content:"发布成功"});
+                    method.msg_close();
+                });
+            }
+        });
+
+        // 保存草稿
+        $(document).on('click', '.save_as_draft', function () {
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
+
+            var $show_status = $(".make_public").hasClass("make_public_checked");
+            var $is_top = $(".make_top").hasClass("make_top_checked");
+
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
+
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
+
+            if (!$article_title || !$article_content){
+                method.msg_layer({title:"提示", content:"似乎忘了什么"});
+                method.msg_close();
+            }else{
+                var $data = {
+                    post_status: 1,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
+
+                createArticle($data, function () {
+                    method.msg_layer({title:"提示", content:"保存成功"});
+                    method.msg_close();
+                });
+            }
+        });
+
     });
 
     $('.chooseAll').tooltip();
 
 })(jQuery);
+
+
+function createArticle($data, callback){
+    // 创建文章
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:1110/v1/posts',
+        data: $data,
+        success: function (data) {
+            callback();
+        }
+    })
+}
 
 
 function getTableData($url, $pagination, callback) {
@@ -404,6 +517,33 @@ function getTableData($url, $pagination, callback) {
             callback(result);
         }
     });
+}
+
+function getCategories($url, callback){
+    // 获取分类信息
+    // url: 请求地址
+
+    var result = {};
+    $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function ($response) {
+            result['select_list'] = $response.data;
+            callback(result);
+        }
+    })
+}
+
+function renderingSelectCategories($data){
+    // 渲染类别选择框
+    // url: 表单数据地址
+    var $select_category = $(".select_category");
+    var $select_list = $data['select_list'];
+    for (var $i = 0; $i < $select_list.length; $i++){
+        var $tag = '<option value="' + $select_list[$i].category_id + '">'
+            + $select_list[$i].category_name + '</option>';
+        $select_category.append($tag);
+    }
 }
 
 function renderingArticleTable($data) {
@@ -546,14 +686,82 @@ function dialogConfirmAndCancel($title, $content, callback, $param){
     method.msg_layer($obj);
 }
 
+
 $(document).on('click', '.select_image_icon', function () {
-    $(".select_image_icon").removeClass("dashboard-icon-selected");
+    $(".select_image_icon").removeClass("dashboard-icon-checked");
     $(this).toggleClass("dashboard-icon-checked");
 });
 
+
 $(document).on('click', '.confirm-image-select', function () {
     $(".image_list").modal('hide');
+    var $data_id = $(".dashboard-icon-checked").parent().attr("data-id");
+    var $data_url = $(".dashboard-icon-checked").parent().attr("data-url");
+    var $data_name = $(".dashboard-icon-checked").parent().attr("data-name");
+    var $image_url = $(".image_url");
+    $image_url.text('![' + $data_name + '](' + $data_url + ')');
+    $image_url.attr("rel", $data_url);
+    $image_url.attr("data-id", $data_id);
+    $(".select_image_btn").children(".dashboard-btn").text("重新选择");
 });
+
+
+function getCovers($page, callback) {
+    // 获取分类信息
+    // url: 请求地址
+
+    var result = {};
+    var $url = 'http://127.0.0.1:1110/v1/covers?page=' + $page;
+    $.ajax({
+        type: 'GET',
+        url: $url,
+        success: function ($response) {
+            result['cover_list'] = $response.data.result;
+            result['page'] = $response.data.page;
+            result['total_page'] = $response.data.total_page;
+            callback(result);
+        }
+    })
+}
+
+
+function renderingSelectCovers($data){
+    // 渲染封面选择列表
+    var $page = parseInt($data['page']);
+    var $total_page = parseInt($data['total_page']);
+    var $cover_list = $data['cover_list'];
+
+    var $select_image_list = $(".select_image_list");
+    var $next_image_select = $(".next-image-select");
+    $select_image_list.empty();
+
+    for (var $i = 0; $i < $cover_list.length; $i++){
+        var $tag = "";
+        $tag += '<li data-url="' + $cover_list[$i].cover_id + '">';
+        $tag += '<img src="' + $cover_list[$i].cover_path + '">';
+        $tag += '<div class="operate">';
+        $tag += '<div class="check">';
+        $tag += '<input type="checkbox" name="belle" title="' + $cover_list[$i].cover_name + '">';
+        $tag += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary" ';
+        $tag += 'data-url="' + $cover_list[$i].cover_path + '" data-name="' + $cover_list[$i].cover_name;
+        $tag += ' "data-id="' + $cover_list[$i].cover_id + '">';
+        $tag += '<span>' + $cover_list[$i].cover_name + '</span>';
+        $tag += '<div class="dashboard-icon select_image_icon"></div>';
+        $tag += '</div>';
+        $tag += '</div>';
+        $tag += '</div>';
+        $tag += '</li>';
+        $select_image_list.append($tag);
+    }
+
+    if ($page == $total_page){
+        $next_image_select.attr("data-url", 0);
+        $next_image_select.text("重新浏览");
+    }else{
+        $next_image_select.attr("data-url", $page);
+        $next_image_select.text("换一批");
+    }
+}
 
 
 $(document).on('click', '.select_image_btn button', function () {
@@ -567,27 +775,23 @@ $(document).on('click', '.select_image_btn button', function () {
     $select_image += '<a class="dashboard-btn dashboard-btn-danger confirm-image-select" href="#">确定</a>';
     $select_image += '</div>';
     $select_image += '<div class="dashboard-inline">';
-    $select_image += '<a class="dashboard-btn dashboard-btn-normal" href="#">换一批</a>';
+    $select_image += '<a class="dashboard-btn dashboard-btn-normal next-image-select" href="#" data-url="1">换一批</a>';
     $select_image += '</div>';
     $select_image += '</blockquote>';
-    $select_image += '<ul id="Images">';
-    $select_image += '<li data-url="e6ebc034">';
-    $select_image += '<img src="/static/images/userface3.jpg">';
-    $select_image += '<div class="operate">';
-    $select_image += '<div class="check">';
-    $select_image += '<input type="checkbox" name="belle" title="美女生活照1">';
-    $select_image += '<div class="dashboard-unselect dashboard-form-checkbox" lay-skin="primary">';
-    $select_image += '<span>美女生活照1</span>';
-    $select_image += '<div class="dashboard-icon select_image_icon"></div>';
-    $select_image += '</div>';
-    $select_image += '</div>';
-    $select_image += '</div>';
-    $select_image += '</li>';
+    $select_image += '<ul id="Images" class="select_image_list">';
+
     $select_image += '</ul>';
     $select_image += '</form>';
     $(".select_image").html($select_image);
+
+    getCovers(1, renderingSelectCovers);
 });
 
+$(document).on('click', '.next-image-select', function () {
+    $data_url = $(this).attr("data-url");
+    $page = parseInt($data_url) + 1;
+    getCovers($page, renderingSelectCovers);
+});
 
 $(document).on('click', '.make_top', function() {
     $(this).toggleClass("make_top_checked");
@@ -595,7 +799,7 @@ $(document).on('click', '.make_top', function() {
 
 
 $(document).on('click', '.make_public', function() {
-    $(this).toggleClass("make_top_checked");
+    $(this).toggleClass("make_public_checked");
 });
 
 
@@ -625,7 +829,7 @@ $(document).on('click', '.sorting', function () {
     var $asc = $(this).hasClass("asc");
     var $desc = $(this).hasClass("desc");
     var $order_by = $(this).attr("data-url");
-    var $url = "http://127.0.0.1:1110/dashboard/posts/list";
+    var $url = "http://127.0.0.1:1110/v1/posts";
     if ($asc && $page_size){
         $url += '?order_by=' + $order_by + '&asc&page_size=' + $page_size;
     }
@@ -645,7 +849,7 @@ $(document).on('click', '.page-article', function () {
     var $desc = $(this).hasClass("desc");
     var $order_by = $(this).attr("data-url");
     var $page = $(this).text();
-    var $url = "http://127.0.0.1:1110/dashboard/posts/list";
+    var $url = "http://127.0.0.1:1110/v1/posts";
 
     if ($asc){
         $url += '?order_by=' + $order_by + '&asc'
@@ -691,7 +895,7 @@ $(document).on('click', '.show_status', function () {
         $e.toggleClass('dashboard-form-onswitch');
         $e.children('em').text($text);
 
-        method.msg_layer({title:"确认框标题",content:"保存成功"});
+        method.msg_layer({title:"提示",content:"保存成功"});
     }, $(this));
 });
 
@@ -735,7 +939,6 @@ $(document).on('click', '.news_collect', function () {
     }
     $(this).toggleClass("collected");
 });
-
 
 function mdEditor(){
     return new SimpleMDE({
@@ -902,13 +1105,6 @@ this.screenshotPreview = function(){
 	});
 };
 
-
-/*
- * Inline Text Attachment
- *
- * Author: Roy van Kaathoven
- * Contact: ik@royvankaathoven.nl
- */
 
 var inlineAttachment = function(options, instance) {
   this.settings = inlineAttachment.util.merge(options, inlineAttachment.defaults);

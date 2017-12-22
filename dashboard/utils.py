@@ -1,10 +1,16 @@
 import os
+import random
+import string
 import uuid
 from enum import Enum
 from base64 import b64encode
 from gzip import compress
 
 import re
+from urllib.parse import urlencode
+
+import jwt
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from bottle import request, response
 
 import functools
@@ -148,6 +154,95 @@ def etagged():
 
 def short_uuid():
     return str(uuid.uuid1())[0:8]
+
+
+def url_add_params(url, params):
+    if type(params) is not dict:
+        raise (TypeError, "Params of url must be a dict.")
+
+    return url + "?" + urlencode(params)
+
+
+def draw_captcha(seed=string.ascii_letters + string.digits, size=(120, 30), img_type='GIF', mode='RGB',
+                 bg_color=(0, 0, 255), font_size=18, font_type="Playball.ttf", length=5, draw_lines=True,
+                 n_lines=(1, 2), draw_points=True, point_chance=2):
+    """
+        generator capture images.
+
+    :param seed: the source.
+    :param size: the image size.
+    :param img_type: the extension name.
+    :param mode: the mode.
+    :param bg_color: the background color.
+    :param font_size: the font size.
+    :param font_type: the font family.
+    :param length: the character len.
+    :param draw_lines: weather draw line.
+    :param n_lines: lines number.
+    :param draw_points: weather draw point.
+    :param point_chance: point position.
+    :return: capture name.
+    """
+
+    width, height = size
+    img = Image.new(mode, size, bg_color)
+    draw = ImageDraw.Draw(img)
+    font_type = "../website/static/fonts/" + font_type
+
+    def get_chars():
+        """生成给定长度的字符串，返回列表格式"""
+        return random.sample(seed, length)
+
+    def create_lines():
+        """绘制干扰线"""
+        line_num = random.randint(*n_lines)
+
+        for i in range(line_num):
+            begin = (random.randint(0, size[0]), random.randint(0, size[1]))
+            end = (random.randint(0, size[0]), random.randint(0, size[1]))
+            draw.line([begin, end], fill=(0, 0, 0))
+
+    def create_points():
+        """绘制干扰点"""
+        chance = min(100, max(0, int(point_chance)))
+
+        for w in range(width):
+            for h in range(height):
+                tmp = random.randint(0, 100)
+                if tmp > 100 - chance:
+                    draw.point((w, h), fill=(0, 0, 0))
+
+    def create_strs():
+        """绘制验证码字符"""
+        c_chars = get_chars()
+        strs_ = ' %s ' % ' '.join(c_chars)
+
+        font = ImageFont.truetype(font_type, font_size)
+        font_width, font_height = font.getsize(strs_)
+
+        draw.text(((width - font_width) / 3, (height - font_height) / 3),
+                  strs_, font=font, fill=bg_color)
+
+        return ''.join(c_chars)
+
+    if draw_lines:
+        create_lines()
+    if draw_points:
+        create_points()
+    strs_ = create_strs()
+
+    # 图形扭曲参数
+    params = [1 - float(random.randint(1, 2)) / 100, 0, 0, 0,
+              1 - float(random.randint(1, 10)) / 100,
+              float(random.randint(1, 2)) / 500, 0.001,
+              float(random.randint(1, 2)) / 500]
+    img = img.transform(size, Image.PERSPECTIVE, params)
+    img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
+
+    captcha = "../website/static/verify_code" + short_uuid() + ".gif"
+    img.save(captcha, img_type)
+
+    return captcha, strs_
 
 
 number_strip_re = re.compile(r'\d+')

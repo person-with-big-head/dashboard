@@ -216,7 +216,7 @@ class User(ModelBase):
             user=self,
             ip=request_ip())
 
-        return session
+        return session, expire_at
 
     def is_valid(self):
         return self.is_active
@@ -276,6 +276,9 @@ class Session(ModelBase):
         }, app.config['user.jwt_key'])
         return token.decode('utf-8')
 
+    def ticket(self):
+        return self.id
+
 
 class UserLoginLog(ModelBase):
     id = BigIntegerField(default=idg, primary_key=True)
@@ -284,3 +287,21 @@ class UserLoginLog(ModelBase):
 
     class Meta:
         db_table = 'user_login_log'
+
+
+class CaptchaCode(ModelBase):
+    id = BigIntegerField(default=idg, primary_key=True)
+    cookie = CharField(max_length=128, null=True)
+    key = CharField(max_length=16)
+    expire_at = DateTimeField()
+
+    class Meta:
+        db_table = 'captcha_code'
+
+    @staticmethod
+    def create_cookie(cid, key):
+        token = jwt.encode({
+            'captcha_id': cid,
+            'key': key
+        }, app.config['user.jwt_key'])
+        return token.decode('utf-8')

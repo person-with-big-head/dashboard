@@ -16,7 +16,7 @@ def get_user():
     """
     :rtype: dashboard.models.User
     """
-    auth_header = request.headers.get('Authorization', None)
+    auth_header = request.get_cookie('token')
     if auth_header is None:
         return
 
