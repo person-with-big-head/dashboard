@@ -11,7 +11,7 @@ $(".login").click(function () {
        $("._bsa_fancybar").css("display", "block");
    }else{
        $.ajax({
-           type: 'GET',
+           type: 'POST',
            url: 'http://127.0.0.1:1110/v1/auth/login',
            data: {username: $username, password: $password},
            success: function (data) {
@@ -19,7 +19,7 @@ $(".login").click(function () {
                   $(".fancybar-text").text(data.data.text);
                   $("._bsa_fancybar").css("display", "block");
               } else{
-
+                  window.location.href = data.data.redirect_url;
               }
            }
        })

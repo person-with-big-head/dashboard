@@ -166,6 +166,24 @@
     color: #ffffff;
 }
 
+.verification{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+form input.input_code{
+    width: 60%;
+    float: left;
+    padding: 5px 0 0 0;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
