@@ -1,6 +1,6 @@
 import datetime
 import base64
-from bottle import post, response, redirect, get, abort, request
+from bottle import post, response, redirect, get, abort, request, default_app
 
 from dashboard.validators import login_validator
 from dashboard.models import Authors, CaptchaCode, Session
@@ -44,9 +44,11 @@ def login():
             'text': Lang.USER_NOT_ACTIVE.auto,
         }
 
+    app = default_app()
+
     session, expire_at = user.login()
 
-    redirect_url = 'http://127.0.0.1:1110/v1/auth/login_success'
+    redirect_url = app.config['root.url'] + '/v1/auth/login_success'
     redirect_url = url_add_params(redirect_url, {
         'ticket': session.id,
     })
@@ -74,9 +76,11 @@ def create_verify_code():
     cap_code.cookie = cookie
     cap_code.save()
 
-    response.set_cookie('passport', cookie, path='/', domain='127.0.0.1',
+    app = default_app()
+
+    response.set_cookie('passport', cookie, path='/', domain=app.config['root.url'],
                         expires=expire_at, httponly=True)
-    response.set_cookie('id', token, path='/', domain='127.0.0.1',
+    response.set_cookie('id', token, path='/', domain=app.config['root.url'],
                         expires=expire_at, httponly=True)
 
     with open(capture, 'rb') as img_f:
@@ -91,11 +95,13 @@ def login_success():
     args = plain_query()
     ticket = args.get('ticket')
     session = Session.get_or_none(Session.id == ticket)
-    print(session)
+
     if not ticket or not session:
         redirect('/login')
 
+    app = default_app()
+
     token = "bearer " + session.jwt_token()
-    response.set_cookie('token', token, path='/', domain='127.0.0.1',
+    response.set_cookie('token', token, path='/', domain=app.config['root.url'],
                         expires=session.expire_at, httponly=True)
     return redirect('/')
