@@ -1,61 +1,96 @@
+import json
 from datetime import datetime
 from bottle import get, post, default_app
 from elasticsearch import Elasticsearch
 
 from dashboard.auth import get_user_or_401
-from dashboard.models import (BasketArticleList, PoolArticle, Authors, PostTypeEnum,
+from dashboard.models import (BasketArticleList, PoolArticle, PostTypeEnum,
                               PostStatusEnum, ShowStatusEnum, JudgeStatusEnum)
 from dashboard.db import db
 from dashboard.serializers import basket_article_list_serializer
 from dashboard.plugins import page_plugin
 from dashboard.utils import plain_forms, short_uuid, get_text_from_tag
-from dashboard.validators import create_post_validator
-
-
-@get('/v1/posts/set_top/<post_id>')
-def set_top(post_id):
-    get_user_or_401()
-    post_ = BasketArticleList.get(BasketArticleList.post_id == post_id)
-
-    with db.atomic():
-        post_.is_top = False
-        post_.save()
-
-    return {}
-
-
-@get('/v1/posts/unset_top/<post_id>')
-def unset_top(post_id):
-    get_user_or_401()
-    post_ = BasketArticleList.get(BasketArticleList.post_id == post_id)
-
-    with db.atomic():
-        post_.is_top = True
-        post_.save()
-
-    return {}
+from dashboard.validators import create_post_validator, delete_post_validator
 
 
 @get('/v1/posts', apply=[page_plugin])
 def get_posts():
-    # get_user_or_401()
-    posts = BasketArticleList.select()
+    user = get_user_or_401()
+    posts = BasketArticleList.filter(BasketArticleList.author == user.author_id)
     return posts, basket_article_list_serializer
 
 
-# @get('/dashboard/posts/judged')
+@get('/v1/post/<post_id>/public')
+def public_post(post_id):
+    user = get_user_or_401()
+    article = BasketArticleList.get(BasketArticleList.post_id == post_id,
+                                    BasketArticleList.author == user.author_id)
+    if article.show_status == ShowStatusEnum.PUBLIC_POST.value:
+        return
+
+    with db.atomic():
+        article.show_status = ShowStatusEnum.PUBLIC_POST.value
+        article.save()
+
+    return
+
+
+@get('/v1/post/<post_id>/hide')
+def hide_post(post_id):
+    user = get_user_or_401()
+    article = BasketArticleList.get(BasketArticleList.post_id == post_id,
+                                    BasketArticleList.author == user.author_id)
+
+    if article.show_status == ShowStatusEnum.SECRET_POST.value:
+        return
+
+    with db.atomic():
+        article.show_status = ShowStatusEnum.SECRET_POST.value
+        article.save()
+
+    return
+
+
+@post('/v1/posts/batch_delete')
+def delete_post():
+    user = get_user_or_401()
+
+    args = delete_post_validator(plain_forms())
+    post_id_list = args['post_id_list']
+    post_id_list = json.loads(post_id_list)
+
+    i = 0
+    while i < len(post_id_list):
+        if not post_id_list[i]:
+            del post_id_list[i]
+            i += 1
+            continue
+
+        item = BasketArticleList.get_or_none(BasketArticleList.post_id == post_id_list[i],
+                                             BasketArticleList.author == user.author_id)
+        if not item:
+            del post_id_list[i]
+
+        i += 1
+
+    BasketArticleList.delete().where(BasketArticleList.post_id << post_id_list).execute()
+    PoolArticle.delete().where(PoolArticle.post_id << post_id_list).execute()
+
+    app = default_app()
+    es_ = Elasticsearch(app.config['es.host'])
+    for item in post_id_list:
+        es_.delete(index='pool_articles', doc_type='info', id=item)
 
 
 @post('/v1/posts')
 def create_post():
-    # user = get_user_or_401()
+    author = get_user_or_401()
     args = create_post_validator(plain_forms())
 
     # compute article summary.
     article_summary = get_text_from_tag(args['article_content'])
 
     post_id = short_uuid()
-    author = Authors.get(Authors.author_id == 1)
 
     body = {
         'post_id': post_id,

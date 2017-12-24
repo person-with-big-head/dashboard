@@ -3,7 +3,9 @@ import json
 import bottle
 import peewee
 import voluptuous
+import elasticsearch
 from bottle import response
+
 
 from dashboard.lang import Lang
 
@@ -14,6 +16,10 @@ def error_500_handler(error):
     result = {'error': {'message': error.body}}
 
     if isinstance(exception, peewee.DoesNotExist):
+        response.status = 404
+        result['error']['message'] = Lang.NOT_FOUND.auto
+
+    elif isinstance(exception, elasticsearch.exceptions.NotFoundError):
         response.status = 404
         result['error']['message'] = Lang.NOT_FOUND.auto
 

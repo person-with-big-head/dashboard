@@ -156,6 +156,7 @@
     width: 100%;
     padding: 10px 55px 14px 30px;
     box-sizing: border-box;
+    cursor: default;
 }
 
 ._bsa_fancybar a .fancybar-text {
@@ -182,6 +183,10 @@ form input.input_code{
     width: 60%;
     float: left;
     padding: 5px 0 0 0;
+}
+
+span.fancybar-close, img{
+    cursor: pointer;
 }
 
 body {

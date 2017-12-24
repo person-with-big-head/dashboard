@@ -13,9 +13,9 @@
       <span class="nav-link" href="index.html">
 
          <center><img class="card-img-top rounded-circle user-avatar mx-auto"
-                      src="/static/images/face.jpg" alt="Card image cap" />
+                      src="{{ user_avatar }}" alt="Card image cap" />
           </center>
-         <p class="card-text user-text">你好！<span class="user-name">请叫我马aaa哥</span>, 欢迎登录</p>
+         <p class="card-text user-text">你好！<span class="user-name">{{ username }}</span>, 欢迎登录</p>
       </span>
     </li>
 
@@ -38,9 +38,9 @@
         <li>
           <a href="#add_article" class="add_article">新建文章</a>
         </li>
-        <li>
-          <a href="#star_article" class="star_article">收藏文章</a>
-        </li>
+        <!--<li>-->
+          <!--<a href="#star_article" class="star_article">收藏文章</a>-->
+        <!--</li>-->
       </ul>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
@@ -107,7 +107,7 @@
       <div class="dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="user-text-sm">请叫我马aaaa哥</span>
+            <span class="user-text-sm">{{ username }}</span>
         </a>
         <div class="dropdown-menu control-box" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">
