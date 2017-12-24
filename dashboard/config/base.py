@@ -11,13 +11,14 @@ config = {
         'jwt_key': 'testkey',
     },
     'es': {
-        'host': '139.224.105.129',
+        'host': '127.0.0.1',
     },
     'upload': {
         'directory': '../website/static/uploads',
-        'url': 'http://127.0.0.1:1110/static/uploads'
+        'url': 'http://blog.tangobello.cn/static/uploads'
     },
     'root': {
-        'url': 'http://127.0.0.1',
+        'url': 'http://blog.tangobello.cn',
+        'domain': 'tangobello.cn'
     }
 }
