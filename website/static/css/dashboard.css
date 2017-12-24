@@ -944,3 +944,10 @@ td div.modal-dialog, td div.modal-lg{
     color: #2F4056;
     text-decoration: none;
 }
+
+.upload-cover-title{
+    font-size: 14px;
+    margin-top: 10px;
+    float: right;
+    color: #666;
+}

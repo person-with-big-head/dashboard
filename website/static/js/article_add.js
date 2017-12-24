@@ -3,7 +3,7 @@ function getCovers($page, callback) {
     // url: 请求地址
 
     var result = {};
-    var $url = 'http://127.0.0.1:1110/v1/covers?page=' + $page;
+    var $url = $root + '/v1/covers?page=' + $page;
     $.ajax({
         type: 'GET',
         url: $url,
@@ -52,11 +52,10 @@ $(document).on('click', '.select_image_btn button', function () {
 });
 
 $(document).on('click', '.next-image-select', function () {
-    $data_url = $(this).attr("data-url");
-    $page = parseInt($data_url) + 1;
+    var $data_url = $(this).attr("data-url");
+    var $page = parseInt($data_url) + 1;
     getCovers($page, renderingSelectCovers);
 });
-
 
 
 function renderingSelectCovers($data){
@@ -321,7 +320,7 @@ $(document).on('click', '.add_article', function () {
 
     // 编辑器支持图片的拖拽上传
     inlineAttachment.editors.codemirror4.attach(md_editor.codemirror, {
-        uploadUrl: 'http://127.0.0.1:1110/v1/covers',
+        uploadUrl: $root + '/v1/covers',
         onFileUploadResponse: function(xhr) {
             var result = JSON.parse(xhr.responseText),
             filename = result[this.settings.jsonFieldName];
@@ -345,7 +344,7 @@ $(document).on('click', '.add_article', function () {
     });
 
     // 加载分类信息
-    var $url = 'http://127.0.0.1:1110/v1/categories';
+    var $url = $root + '/v1/categories';
     getCategories($url, renderingSelectCategories);
 
     // 发布文章
@@ -448,7 +447,7 @@ function createArticle($data, callback){
     // 创建文章
     $.ajax({
         type: 'POST',
-        url: 'http://127.0.0.1:1110/v1/posts',
+        url: $root + '/v1/posts',
         data: $data,
         success: function (data) {
             callback();
