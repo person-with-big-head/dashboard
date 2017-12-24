@@ -73,7 +73,7 @@ class DictJsonField(fields.Field):
 
 
 class AuthorsSerializer(Schema):
-    author_id = fields.Integer()
+    author_id = fields.Str()
     author_name = fields.Str()
     author_avatar = fields.Str()
     author_description = fields.Str()

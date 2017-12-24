@@ -7,7 +7,7 @@ import peewee
 from bottle import request, abort
 
 from dashboard.lang import Lang
-from dashboard.models import User, Session, APIUser
+from dashboard.models import Authors, Session, APIUser
 
 app = bottle.default_app()
 
@@ -39,8 +39,8 @@ def get_user():
 
     try:
         session = (Session
-                   .select(Session, User)
-                   .join(User)
+                   .select(Session, Authors)
+                   .join(Authors)
                    .where(Session.id == payload['session_id'])
                    .get())
     except peewee.DoesNotExist:
@@ -48,7 +48,7 @@ def get_user():
 
     if datetime.now() > session.expire_at:
         return
-    return session.user
+    return session.author
 
 
 def get_user_or_401():

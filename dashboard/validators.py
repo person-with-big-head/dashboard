@@ -43,7 +43,8 @@ class ValidatorSchema(Schema):
 
 login_validator = ValidatorSchema({
     'username': Length(min=3, max=64),
-    'password': All(Length(min=5), Lower())
+    'password': All(Length(min=5), Lower()),
+    'captcha': All(Length(4), Lower())
 }, required=True, extra=REMOVE_EXTRA)
 
 create_post_validator = ValidatorSchema({
@@ -56,4 +57,8 @@ create_post_validator = ValidatorSchema({
     Optional('show_status'): Coerce(int),
     Optional('is_top'): Coerce(int),
     Optional('judge_status'): Coerce(int),
+}, required=True, extra=REMOVE_EXTRA)
+
+delete_post_validator = ValidatorSchema({
+    'post_id_list': Length(min=1)
 }, required=True, extra=REMOVE_EXTRA)

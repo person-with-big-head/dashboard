@@ -164,8 +164,8 @@ def url_add_params(url, params):
 
 
 def draw_captcha(seed=string.ascii_letters + string.digits, size=(120, 30), img_type='GIF', mode='RGB',
-                 bg_color=(0, 0, 255), font_size=18, font_type="Playball.ttf", length=5, draw_lines=True,
-                 n_lines=(1, 2), draw_points=True, point_chance=2):
+                 bg_color=(255, 255, 255), font_size=18, font_type="Playball.ttf", length=4, draw_lines=True,
+                 n_lines=(1, 2), draw_points=True, point_chance=2, fg_color=(0, 0, 255)):
     """
         generator capture images.
 
@@ -181,6 +181,7 @@ def draw_captcha(seed=string.ascii_letters + string.digits, size=(120, 30), img_
     :param n_lines: lines number.
     :param draw_points: weather draw point.
     :param point_chance: point position.
+    :param fg_color: the foreground color.
     :return: capture name.
     """
 
@@ -221,7 +222,7 @@ def draw_captcha(seed=string.ascii_letters + string.digits, size=(120, 30), img_
         font_width, font_height = font.getsize(strs_)
 
         draw.text(((width - font_width) / 3, (height - font_height) / 3),
-                  strs_, font=font, fill=bg_color)
+                  strs_, font=font, fill=fg_color)
 
         return ''.join(c_chars)
 
@@ -239,8 +240,11 @@ def draw_captcha(seed=string.ascii_letters + string.digits, size=(120, 30), img_
     img = img.transform(size, Image.PERSPECTIVE, params)
     img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
 
-    captcha = "../website/static/verify_code" + short_uuid() + ".gif"
+    image_id = short_uuid()
+    captcha = "../website/static/verify_code/" + image_id + ".gif"
     img.save(captcha, img_type)
+
+    img_url = 'http://127.0.0.1/static/verify_code/' + image_id + ".gif"
 
     return captcha, strs_
 

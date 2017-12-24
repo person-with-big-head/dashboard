@@ -1,8 +1,9 @@
 import datetime
-from bottle import post, response, redirect, get
+import base64
+from bottle import post, response, redirect, get, abort, request
 
 from dashboard.validators import login_validator
-from dashboard.models import User, CaptchaCode, Session
+from dashboard.models import Authors, CaptchaCode, Session
 from dashboard.lang import Lang
 from dashboard.plugins import boilerplate_plugin
 from dashboard.utils import plain_forms, plain_query, url_add_params, draw_captcha
@@ -12,7 +13,18 @@ from dashboard.utils import plain_forms, plain_query, url_add_params, draw_captc
 def login():
 
     args = login_validator(plain_forms())
-    user = User.get_or_none(User.username == args['username'])
+
+    captcha = args['captcha']
+    passport = request.get_cookie('id')
+    token = request.get_cookie('passport')
+
+    if not passport or not token or not CaptchaCode.check_captcha(token, passport, captcha):
+        return {
+            'code': Lang.CAPTCHA_ERROR.code,
+            'text': Lang.CAPTCHA_ERROR.auto,
+        }
+
+    user = Authors.get_or_none(Authors.author_name == args['username'])
 
     if not user:
         return {
@@ -36,7 +48,7 @@ def login():
 
     redirect_url = 'http://127.0.0.1:1110/v1/auth/login_success'
     redirect_url = url_add_params(redirect_url, {
-        'ticket': session.ticket,
+        'ticket': session.id,
     })
 
     return {
@@ -48,15 +60,29 @@ def login():
 
 @get('/v1/auth/verify_code', skip=[boilerplate_plugin])
 def create_verify_code():
+
+    args = plain_query()
+    token = args.get('token')
+    if not token:
+        abort(403, "Missing token.")
+
     capture, key = draw_captcha()
 
     expire_at = datetime.datetime.now() + datetime.timedelta(seconds=60 * 3)
     cap_code = CaptchaCode.create(key=key, expire_at=expire_at)
-    cookie = CaptchaCode.create_cookie(cap_code.id, key)
+    cookie = CaptchaCode.create_cookie(cap_code.id, key, token)
     cap_code.cookie = cookie
     cap_code.save()
 
-    return capture
+    response.set_cookie('passport', cookie, path='/', domain='127.0.0.1',
+                        expires=expire_at, httponly=True)
+    response.set_cookie('id', token, path='/', domain='127.0.0.1',
+                        expires=expire_at, httponly=True)
+
+    with open(capture, 'rb') as img_f:
+        img_stream = img_f.read()
+        img_stream = base64.b64encode(img_stream)
+    return img_stream
 
 
 @get('/v1/auth/login_success')
@@ -65,6 +91,7 @@ def login_success():
     args = plain_query()
     ticket = args.get('ticket')
     session = Session.get_or_none(Session.id == ticket)
+    print(session)
     if not ticket or not session:
         redirect('/login')
 

@@ -65,7 +65,6 @@ var method={
             }
 
         }else{
-            //_layer.css({"width":_layer.width()+20,"height":_layer.height()+40,"left":winW/2-(_layer.width()+20)/2,"top":winH/2-(_layer.height()+30)/2});
             _layer.css("margin","-"+((_layer.height()+10)/2)+"px 0 0 -"+((_layer.width()+20)/2)+"px");
         }
     },

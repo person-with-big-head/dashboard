@@ -1,7 +1,7 @@
 config = {
     'db': {
         'database': 'tangobello_db',
-        'host': '139.224.105.129',
+        'host': '127.0.0.1',
         'port': 3306,
         'user': 'root',
         'password': '1234',
@@ -17,31 +17,7 @@ config = {
         'directory': '../website/static/uploads',
         'url': 'http://127.0.0.1:1110/static/uploads'
     },
-    'service': {
-        'repayment': {
-            'token': '__placeholder__',
-            'base_url': '__placeholder__',
-        }
-    },
-    'gcp': {
-        'storage': {
-            'bucket_name': 'danacepat-aws-staging',
-        }
-    },
-    'aws': {
-        'rekognition': {
-            'collection_id': '__placeholder__',
-            'region_name': '__placeholder__',
-        },
-        'sns': {
-            'arn_bus': '__placeholder__',
-        }
-    },
-    'facebook': {
-        'app_id': '__placeholder__',
-        'app_secret': '__placeholder__',
-        'account_kit': {
-            'app_secret': '__placeholder__',
-        }
-    },
+    'root': {
+        'url': 'http://127.0.0.1',
+    }
 }

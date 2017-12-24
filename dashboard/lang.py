@@ -39,6 +39,12 @@ class Lang(Enum):
         'User is not activated'
     )
 
+    CAPTCHA_ERROR = (
+        'Oops, something goes wrong. The captcha is not correct.',
+        '403',
+        'Oops, something goes wrong. The captcha is not correct.'
+    )
+
     LOGIN_SUCCESS = (
         '登陆成功',
         '200',

@@ -11,7 +11,7 @@ from peewee import (DateTimeField, R, Model, DoesNotExist, BigIntegerField, Bool
                     CharField, TextField, IntegerField, ForeignKeyField, SmallIntegerField)
 
 from dashboard.db import db
-from dashboard.utils import idg, request_ip
+from dashboard.utils import idg, request_ip, short_uuid
 
 app = bottle.default_app()
 
@@ -95,17 +95,61 @@ class JudgeStatusEnum(Enum):
 
 
 class Authors(ModelBase):
-    author_id = BigIntegerField(default=idg, primary_key=True)
+    author_id = CharField(max_length=16, default=short_uuid(), primary_key=True)
     author_name = CharField(max_length=64)
+    hashed_password = CharField(max_length=64)
     author_avatar = CharField(max_length=128)
     author_description = TextField()
+    author_email = CharField(max_length=255)
+    is_active = BooleanField(default=False)
+
+    def login(self, expire_days=3):
+        expire_at = datetime.now() + timedelta(days=expire_days)
+        session = Session.create(
+            author=self,
+            ip=request_ip(),
+            expire_at=expire_at)
+
+        UserLoginLog.create(
+            author=self,
+            ip=request_ip())
+
+        return session, expire_at
+
+    def is_valid(self):
+        return self.is_active
+
+    def set_password(self, password):
+        if isinstance(password, str):
+            password = bytes(password, 'utf-8')
+        self.hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+
+    def check_password(self, password):
+        if not self.hashed_password:
+            return False
+
+        password = password.lower()
+        if isinstance(password, str):
+            password = bytes(password, 'utf-8')
+
+        user_password = bytes(self.hashed_password, 'utf-8')
+        is_valid = bcrypt.checkpw(password, user_password)
+        if not is_valid and len(self.hashed_password) == 32:
+            # 检查是不是 MD5 哈希保存的密码
+            is_valid = hashlib.md5(password).hexdigest() == self.hashed_password
+            if is_valid:
+                # 如果是，转换成 bcrypt 哈希保存
+                self.hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+                self.save()
+        return is_valid
 
     class Meta:
         db_table = 'authors'
 
 
 class Categories(ModelBase):
-    category_id = CharField(max_length=16, primary_key=True)
+    category_id = CharField(max_length=16, default=short_uuid(),
+                            primary_key=True, verbose_name='category_id')
     category_name = CharField(max_length=64)
     category_description = TextField()
 
@@ -114,7 +158,7 @@ class Categories(ModelBase):
 
 
 class Covers(ModelBase):
-    cover_id = CharField(primary_key=True)
+    cover_id = CharField(max_length=16, default=short_uuid(), primary_key=True)
     cover_path = CharField(max_length=128)
     cover_name = CharField(max_length=64)
 
@@ -123,7 +167,8 @@ class Covers(ModelBase):
 
 
 class BasketArticleList(ModelBase):
-    post_id = CharField(max_length=16, primary_key=True, verbose_name='post_id')
+    post_id = CharField(max_length=16, default=short_uuid(),
+                        primary_key=True, verbose_name='post_id')
     post_status = SmallIntegerField(default=PostStatusEnum.UNFINISHED_POST.value,
                                     choices=PostStatusEnum)
     post_type = SmallIntegerField(default=PostTypeEnum.ORIGINAL_POST.value,
@@ -146,7 +191,7 @@ class BasketArticleList(ModelBase):
 
 
 class PoolArticle(ModelBase):
-    post_id = CharField(max_length=16, primary_key=True)
+    post_id = CharField(max_length=16, default=short_uuid(), primary_key=True)
     post_status = SmallIntegerField(default=PostStatusEnum.UNFINISHED_POST.value,
                                     choices=PostStatusEnum)
     post_type = SmallIntegerField(default=PostTypeEnum.ORIGINAL_POST.value,
@@ -164,7 +209,7 @@ class PoolArticle(ModelBase):
 
 
 class Tags(ModelBase):
-    tag_id = CharField(max_length=16, primary_key=True)
+    tag_id = CharField(max_length=16, default=short_uuid(), primary_key=True)
     tag_name = CharField(max_length=64)
     tag_description = CharField(max_length=128)
 
@@ -198,57 +243,6 @@ class Config(ModelBase):
         db_table = 'site_cfg'
 
 
-class User(ModelBase):
-    id = BigIntegerField(default=idg, primary_key=True)
-    username = CharField(max_length=64)
-    hashed_password = CharField(max_length=64)
-    email = CharField(max_length=255)
-    is_active = BooleanField(default=False)
-
-    def login(self, expire_days=3):
-        expire_at = datetime.now() + timedelta(days=expire_days)
-        session = Session.create(
-            user=self,
-            ip=request_ip(),
-            expire_at=expire_at)
-
-        UserLoginLog.create(
-            user=self,
-            ip=request_ip())
-
-        return session, expire_at
-
-    def is_valid(self):
-        return self.is_active
-
-    def set_password(self, password):
-        if isinstance(password, str):
-            password = bytes(password, 'utf-8')
-        self.hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-
-    def check_password(self, password):
-        if not self.hashed_password:
-            return False
-
-        password = password.lower()
-        if isinstance(password, str):
-            password = bytes(password, 'utf-8')
-
-        user_password = bytes(self.hashed_password, 'utf-8')
-        is_valid = bcrypt.checkpw(password, user_password)
-        if not is_valid and len(self.hashed_password) == 32:
-            # 检查是不是 MD5 哈希保存的密码
-            is_valid = hashlib.md5(password).hexdigest() == self.hashed_password
-            if is_valid:
-                # 如果是，转换成 bcrypt 哈希保存
-                self.hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-                self.save()
-        return is_valid
-
-    class Meta:
-        db_table = 'user'
-
-
 class APIUser(ModelBase):
     id = BigIntegerField(default=idg, primary_key=True)
     name = CharField(max_length=64)
@@ -262,7 +256,7 @@ class APIUser(ModelBase):
 
 class Session(ModelBase):
     id = BigIntegerField(default=idg, primary_key=True)
-    user = ForeignKeyField(User, 'sessions')
+    author = ForeignKeyField(Authors, 'sessions')
     ip = CharField(max_length=64)
     expire_at = DateTimeField()
 
@@ -272,17 +266,14 @@ class Session(ModelBase):
     def jwt_token(self):
         token = jwt.encode({
             'session_id': str(self.id),
-            'user_id': str(self.user.id),
+            'user_id': str(self.author.id),
         }, app.config['user.jwt_key'])
         return token.decode('utf-8')
-
-    def ticket(self):
-        return self.id
 
 
 class UserLoginLog(ModelBase):
     id = BigIntegerField(default=idg, primary_key=True)
-    user = ForeignKeyField(User, 'login_logs')
+    user = ForeignKeyField(Authors, 'login_logs')
     ip = CharField(max_length=64)
 
     class Meta:
@@ -299,9 +290,28 @@ class CaptchaCode(ModelBase):
         db_table = 'captcha_code'
 
     @staticmethod
-    def create_cookie(cid, key):
+    def create_cookie(cid, key, passport):
         token = jwt.encode({
             'captcha_id': cid,
-            'key': key
+            'key': key,
+            'passport': passport
         }, app.config['user.jwt_key'])
         return token.decode('utf-8')
+
+    @classmethod
+    def check_captcha(cls, token, passport_, key_):
+        try:
+            payload = jwt.decode(token, app.config['user.jwt_key'])
+            passport = payload['passport']
+            if passport != passport_:
+                return False
+            key = payload['key']
+            if key.lower() != key_:
+                return False
+            if not cls.get_or_none(cls.id == payload['captcha_id']):
+                return False
+
+        except jwt.DecodeError:
+            return False
+
+        return True

@@ -8,10 +8,11 @@ from dashboard.plugins import boilerplate_plugin
 @get(['/'], skip=[boilerplate_plugin])
 @template('index.html')
 def home():
-    # print(request.get)
-    if not get_user():
+    user = get_user()
+    if not user:
         redirect('/login')
-    return {}
+
+    return {'username': user.author_name, 'user_avatar': user.author_avatar}
 
 
 @get('/login', skip=[boilerplate_plugin])

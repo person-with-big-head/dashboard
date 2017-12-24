@@ -21,3 +21,4 @@ gunicorn_conf.py
 golden_eye/config/staging.py
 golden_eye/config/prod.py
 gcp-service-account-key.json
+
