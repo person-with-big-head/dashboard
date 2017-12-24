@@ -1,4 +1,5 @@
-var $root= 'http://blog.tangobello.cn';
+var $root= 'http://dashboard.tangobello.cn';
+// var $root = 'http://127.0.0.1:1110';
 
 (function($) {
   "use strict"; // Start of use strict

@@ -24,7 +24,7 @@ $(".article_list").click(function () {
             '<a class="dashboard-btn dashboard-btn-normal add_article" href="#">添加文章</a>' +
        '</div>' +
        '<div class="dashboard-inline">' +
-            '<a class="dashboard-btn dashboard-btn-danger batchDel" href="#">批量删除</a>' +
+            '<a class="dashboard-btn dashboard-btn-danger article-batchDel" href="#">批量删除</a>' +
        '</div>' +
        '<div class="dashboard-inline" style="font-size:13px; padding-top:8px; float:right;">' +
             '<label class="page-label">页</label>' +
@@ -272,10 +272,10 @@ $(document).on('click', '.page-article', function () {
 });
 
 
-$(document).on('click', '.batchDel', function () {
+$(document).on('click', '.article-batchDel', function () {
     var $post_list = $("[class*='dashboard-form-checked']");
 
-    if (!$.isEmptyObject($post_list)){
+    if (!($("div.dashboard-form-checkbox").hasClass("dashboard-form-checked"))){
         method.msg_layer({title:"提示", content:"请选择需要删除的文章!"});
         method.msg_close();
         return
@@ -327,4 +327,10 @@ $(document).on('click', '.show_status', function () {
             method.msg_close();
         }
     });
+});
+
+
+$(document).on('click', '.select_image_icon', function () {
+    $(".select_image_icon").removeClass("dashboard-icon-checked");
+    $(this).toggleClass("dashboard-icon-checked");
 });

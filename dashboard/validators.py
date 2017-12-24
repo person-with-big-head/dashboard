@@ -62,3 +62,7 @@ create_post_validator = ValidatorSchema({
 delete_post_validator = ValidatorSchema({
     'post_id_list': Length(min=1)
 }, required=True, extra=REMOVE_EXTRA)
+
+delete_cover_validator = ValidatorSchema({
+    'cover_id_list': Length(min=1)
+}, required=True, extra=REMOVE_EXTRA)

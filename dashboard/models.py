@@ -159,6 +159,7 @@ class Categories(ModelBase):
 
 class Covers(ModelBase):
     cover_id = CharField(max_length=16, default=short_uuid(), primary_key=True)
+    author = ForeignKeyField(Authors)
     cover_path = CharField(max_length=128)
     cover_name = CharField(max_length=64)
 
