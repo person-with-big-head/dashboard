@@ -32,7 +32,7 @@ $(document).on('click', '.select_image_btn button', function () {
     var $select_image = "";
     $select_image += '<form class="dashboard-form select_image_form">';
     $select_image += '<blockquote class="dashboard-elem-quote news_search">';
-    $select_image += '<div class="dashboard-inline" style="width: 85%;">';
+    $select_image += '<div class="dashboard-inline" style="width: 80%;">';
     $select_image += '<div class="dashboard-form-mid dashboard-word-aux">选择一张美美的图片作为你文章的封面</div>';
     $select_image += '</div>';
     $select_image += '<div class="dashboard-inline">';
@@ -102,7 +102,7 @@ function mdEditor(){
         element: document.getElementById("write_article"),
         spellChecker: true,
         autosave: {
-            enabled: false,
+            enabled: true,
             unique_id: "write_article"
         },
         toolbar: [{
@@ -379,6 +379,7 @@ $(document).on('click', '.add_article', function () {
 
             createArticle($data, function () {
                 $(".article_list").trigger("click");
+                md_editor = null;
             });
         }
     });
@@ -409,8 +410,6 @@ $(document).on('click', '.add_article', function () {
         }
 
         if (!$article_title || !$article_content){
-            method.msg_layer({title:"提示", content:"似乎忘了什么"});
-            method.msg_close();
         }else{
             var $data = {
                 post_status: 1,
@@ -424,7 +423,8 @@ $(document).on('click', '.add_article', function () {
             };
 
             createArticle($data, function () {
-
+                $(".article_list").trigger("click");
+                md_editor = null;
             });
         }
     });
