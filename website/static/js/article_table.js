@@ -153,7 +153,7 @@ function renderingArticleTable($data) {
         }
 
         $table_content += '<td>' + $post_list[$i].updated_at + '</td>';
-        $table_content += '<td><a class="dashboard-btn dashboard-btn-mini news_edit">';
+        $table_content += '<td><a class="dashboard-btn dashboard-btn-mini article_edit">';
         $table_content += '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>编辑</span></a></td></tr>';
     }
 
@@ -300,8 +300,6 @@ $(document).on('click', '.article-batchDel', function () {
         url: $url,
         data: {post_id_list: JSON.stringify($post_list_id)},
         success: function () {
-            method.msg_layer({title:"提示", content:"保存成功"});
-            method.msg_close();
         }
     });
 });
@@ -323,8 +321,7 @@ $(document).on('click', '.show_status', function () {
         type: 'GET',
         url: $url,
         success: function () {
-            method.msg_layer({title:"提示", content:"保存成功"});
-            method.msg_close();
+
         }
     });
 });
