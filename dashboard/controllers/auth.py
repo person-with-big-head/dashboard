@@ -78,9 +78,9 @@ def create_verify_code():
 
     app = default_app()
 
-    response.set_cookie('passport', cookie, path='/', domain=app.config['root.url'],
+    response.set_cookie('passport', cookie, path='/', domain=app.config['root.domain'],
                         expires=expire_at, httponly=True)
-    response.set_cookie('id', token, path='/', domain=app.config['root.url'],
+    response.set_cookie('id', token, path='/', domain=app.config['root.domain'],
                         expires=expire_at, httponly=True)
 
     with open(capture, 'rb') as img_f:
@@ -102,6 +102,6 @@ def login_success():
     app = default_app()
 
     token = "bearer " + session.jwt_token()
-    response.set_cookie('token', token, path='/', domain=app.config['root.url'],
+    response.set_cookie('token', token, path='/', domain=app.config['root.domain'],
                         expires=session.expire_at, httponly=True)
-    return redirect('/')
+    return redirect(app.config['root.url'])

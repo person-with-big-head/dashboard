@@ -80,7 +80,7 @@ class AuthorsSerializer(Schema):
 
 
 class CategoriesSerializer(Schema):
-    category_id = fields.Integer()
+    category_id = fields.Str()
     category_name = fields.Str()
     category_description = fields.Str()
 

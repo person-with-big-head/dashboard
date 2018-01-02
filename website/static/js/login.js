@@ -2,10 +2,9 @@
  * Created by tiger on 2017/12/21.
  */
 
-
 $.ajax({
    type: 'GET',
-   url: $root + '/v1/auth/verify_code',
+   url: '/v1/auth/verify_code',
    data: {token: random_string()},
    success: function (data) {
        if (data){
@@ -27,7 +26,7 @@ $(".login").click(function () {
    }else{
        $.ajax({
            type: 'POST',
-           url:  $root + '/v1/auth/login',
+           url:  '/v1/auth/login',
            data: {username: $username, password: $password, captcha: $captcha},
            success: function (data) {
               if (data && data.data &&data.data.code != '200'){
@@ -45,7 +44,7 @@ $(".login").click(function () {
 $(".code_image img").click(function () {
    $.ajax({
        type: 'GET',
-       url: $root + '/v1/auth/verify_code',
+       url: '/v1/auth/verify_code',
        data: {token: random_string()},
        success: function (data) {
            if (data){
