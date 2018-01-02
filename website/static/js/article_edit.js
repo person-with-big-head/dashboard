@@ -221,7 +221,7 @@ function mdEditor(){
     });
 }
 
-function get_article($post_id) {
+function get_article($post_id, callback) {
     // 获取分类信息
     // url: 请求地址
 
@@ -231,7 +231,7 @@ function get_article($post_id) {
         type: 'GET',
         url: $url,
         success: function ($response) {
-            result['post'] = $response.data.article_content;
+            result['article_content'] = $response.data.article_content;
             callback(result);
         }
     })
@@ -239,211 +239,216 @@ function get_article($post_id) {
 
 $(document).on('click', '.article_edit', function () {
     alert($(this).closest("tr").attr("data-id"));
-    $(".container-fluid").html(
-        '<ol class="breadcrumb">' +
-        '<li class="breadcrumb-item">' +
-            '<a href="#">首页</a>' +
-        '</li>'+
-        '<li class="breadcrumb-item active">文章管理</li>' +
-        '<li class="breadcrumb-item active">写文章</li>' +
-        '</ol>' +
-        '<form class="dashboard-form">' +
-             '<div class="dashboard-form-item">' +
-             '<label class="dashboard-form-label">文章标题</label>' +
-             '<div class="dashboard-input-block">' +
-                  '<input type="text" class="dashboard-input articleName" placeholder="请输入文章标题">' +
-             '</div>' +
-             '</div>' +
-             '<div class="dashboard-form-item">' +
-             '<div class="dashboard-inline">' +
-             '<label class="dashboard-form-label">自定义属性</label>' +
-             '<div class="dashboard-input-block">' +
-                 '<input type="checkbox" name="public" title="公开">' +
-                 '<div class="dashboard-unselect dashboard-form-checkbox make_public" lay-skin="">' +
-                    '<span>公开</span>' +
+
+    get_article($(this).closest("tr").attr("data-id"), function ($result) {
+        $(".container-fluid").html(
+            '<ol class="breadcrumb">' +
+            '<li class="breadcrumb-item">' +
+                '<a href="#">首页</a>' +
+            '</li>'+
+            '<li class="breadcrumb-item active">文章管理</li>' +
+            '<li class="breadcrumb-item active">写文章</li>' +
+            '</ol>' +
+            '<form class="dashboard-form">' +
+                 '<div class="dashboard-form-item">' +
+                 '<label class="dashboard-form-label">文章标题</label>' +
+                 '<div class="dashboard-input-block">' +
+                      '<input type="text" class="dashboard-input articleName" placeholder="请输入文章标题">' +
                  '</div>' +
-             '</div>' +
-             '</div>' +
-             '<div class="dashboard-inline">' +
-                 '<label class="dashboard-form-label">类别</label>' +
-                 '<div class="dashboard-input-inline">' +
-                      '<select class="form-control select_category" style="display: block;">' +
-                      '</select>' +
+                 '</div>' +
+                 '<div class="dashboard-form-item">' +
+                 '<div class="dashboard-inline">' +
+                 '<label class="dashboard-form-label">自定义属性</label>' +
+                 '<div class="dashboard-input-block">' +
+                     '<input type="checkbox" name="public" title="公开">' +
+                     '<div class="dashboard-unselect dashboard-form-checkbox make_public" lay-skin="">' +
+                        '<span>公开</span>' +
+                     '</div>' +
+                 '</div>' +
+                 '</div>' +
+                 '<div class="dashboard-inline">' +
+                     '<label class="dashboard-form-label">类别</label>' +
+                     '<div class="dashboard-input-inline">' +
+                          '<select class="form-control select_category" style="display: block;">' +
+                          '</select>' +
+                    '</div>' +
                 '</div>' +
-            '</div>' +
-            '</div>' +
-            '<div class="dashboard-form-item">' +
-            '<div class="dashboard-inline">' +
-            '<label class="dashboard-form-label">封面</label>' +
-            '<div class="dashboard-input-block">' +
-                '<a href="javascript:;" data-toggle="modal" data-target=".image_list" class="select_image_btn">' +
-                    '<button class="dashboard-btn" style="background:#5FB878">点击选择</button>' +
-                '</a>' +
-            '</div>' +
-            '</div>' +
-            '<div class="dashboard-inline">' +
-                '<div class="image_name">' +
-                '<a class="image_url show-cover" href="#" data-toggle="modal" data-target=".single-cover" ' +
-                'rel=""></a>' +
                 '</div>' +
-                /*image view modal*/
-                '<div class="modal fade single-cover" tabindex="-1" role="dialog"' +
-                'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
-                    '<div class="modal-dialog modal-lg">' +
-                        '<div class="modal-content view-cover">' +
+                '<div class="dashboard-form-item">' +
+                '<div class="dashboard-inline">' +
+                '<label class="dashboard-form-label">封面</label>' +
+                '<div class="dashboard-input-block">' +
+                    '<a href="javascript:;" data-toggle="modal" data-target=".image_list" class="select_image_btn">' +
+                        '<button class="dashboard-btn" style="background:#5FB878">点击选择</button>' +
+                    '</a>' +
+                '</div>' +
+                '</div>' +
+                '<div class="dashboard-inline">' +
+                    '<div class="image_name">' +
+                    '<a class="image_url show-cover" href="#" data-toggle="modal" data-target=".single-cover" ' +
+                    'rel=""></a>' +
+                    '</div>' +
+                    /*image view modal*/
+                    '<div class="modal fade single-cover" tabindex="-1" role="dialog"' +
+                    'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
+                        '<div class="modal-dialog modal-lg">' +
+                            '<div class="modal-content view-cover">' +
+                            '</div>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
-            '</div>' +
-            '</div>' +
-            '<div class="dashboard-form-item">' +
-                '<label class="dashboard-form-label">文章内容</label>' +
-                '<div class="dashboard-input-block">' +
-                    '<textarea id="write_article" name="article_content"></textarea>' +
+                '</div>' +
+                '<div class="dashboard-form-item">' +
+                    '<label class="dashboard-form-label">文章内容</label>' +
+                    '<div class="dashboard-input-block">' +
+                        '<textarea id="write_article" name="article_content"></textarea>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="dashboard-form-item">' +
+                    '<div class="dashboard-input-block">' +
+                        '<a class="dashboard-btn release_article" href="#">发布</a>' +
+                        '<a class="dashboard-btn dashboard-btn-primary save_as_draft" href="#">存为草稿</a>' +
+                    '</div>' +
+                '</div>' +
+            '</form>' +
+            '<div class="modal fade image_list" tabindex="-1" role="dialog"' +
+            'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
+            '<div class="modal-dialog modal-lg">' +
+                '<div class="modal-content select_image">' +
+
                 '</div>' +
             '</div>' +
-            '<div class="dashboard-form-item">' +
-                '<div class="dashboard-input-block">' +
-                    '<a class="dashboard-btn release_article" href="#">发布</a>' +
-                    '<a class="dashboard-btn dashboard-btn-primary save_as_draft" href="#">存为草稿</a>' +
-                '</div>' +
-            '</div>' +
-        '</form>' +
-        '<div class="modal fade image_list" tabindex="-1" role="dialog"' +
-        'aria-labelledby="myLargeModalLabel" aria-hidden="true">' +
-        '<div class="modal-dialog modal-lg">' +
-            '<div class="modal-content select_image">' +
+            '</div>'
+        );
 
-            '</div>' +
-        '</div>' +
-        '</div>'
-    );
+        // 编辑器
+        var md_editor = mdEditor();
 
-    // 编辑器
-    var md_editor = mdEditor();
+        // 编辑器发生文本变化计算code语法。
+        // md_editor.codemirror.on("change", function(){
+        //     loadScript('/static/js/prism.js');
+        // });
 
-    // 编辑器发生文本变化计算code语法。
-    // md_editor.codemirror.on("change", function(){
-    //     loadScript('/static/js/prism.js');
-    // });
+        // 编辑器支持图片的拖拽上传
+        inlineAttachment.editors.codemirror4.attach(md_editor.codemirror, {
+            uploadUrl: $root + '/v1/images',
+            onFileUploadResponse: function(xhr) {
+                var result = JSON.parse(xhr.responseText),
+                filename = result[this.settings.jsonFieldName];
 
-    // 编辑器支持图片的拖拽上传
-    inlineAttachment.editors.codemirror4.attach(md_editor.codemirror, {
-        uploadUrl: $root + '/v1/images',
-        onFileUploadResponse: function(xhr) {
-            var result = JSON.parse(xhr.responseText),
-            filename = result[this.settings.jsonFieldName];
+                if (result && filename) {
+                    var newValue;
+                    if (typeof this.settings.urlText === 'function') {
+                        newValue = this.settings.urlText.call(this, filename, result);
+                    } else {
+                        newValue = this.settings.urlText.replace(this.filenameTag, filename);
+                    }
+                    var text = this.editor.getValue().replace(this.lastValue, newValue);
+                    this.editor.setValue(text);
+                    this.settings.onFileUploaded.call(this, filename);
+                }else{
 
-            if (result && filename) {
-                var newValue;
-                if (typeof this.settings.urlText === 'function') {
-                    newValue = this.settings.urlText.call(this, filename, result);
-                } else {
-                    newValue = this.settings.urlText.replace(this.filenameTag, filename);
                 }
-                var text = this.editor.getValue().replace(this.lastValue, newValue);
-                this.editor.setValue(text);
-                this.settings.onFileUploaded.call(this, filename);
-            }else{
-
+                return false;
             }
-            return false;
-        }
-    });
+        });
 
-    // 加载分类信息
-    var $url = $root + '/v1/categories';
-    getCategories($url, renderingSelectCategories);
+        md_editor.value($result.article_content);
 
-    // 发布文章
-    $(document).on('click', '.release_article', function () {
-        var $converter = new showdown.Converter();
-        var $category = $(".select_category").val();
-        var $article_title = $(".articleName").val();
-        var $cover = $(".image_url").attr("data-id");
-        var $article_content = $converter.makeHtml(md_editor.value());
+        // 加载分类信息
+        var $url = $root + '/v1/categories';
+        getCategories($url, renderingSelectCategories);
 
-        var $show_status = $(".make_public").hasClass("make_public_checked");
-        var $is_top = $(".make_top").hasClass("make_top_checked");
+        // 发布文章
+        $(document).on('click', '.release_article', function () {
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
 
-        // 是否公开
-        if ($show_status){
-            $show_status = 1;
-        }else{
-            $show_status = 0;
-        }
+            var $show_status = $(".make_public").hasClass("make_public_checked");
+            var $is_top = $(".make_top").hasClass("make_top_checked");
 
-        // 是否置顶
-        if ($is_top){
-            $is_top = 1;
-        }else{
-            $is_top = 0;
-        }
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
 
-        if (!$category || !$article_title || !$article_content || !$cover){
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
 
-        }else{
-            var $data = {
-                post_status: 2,
-                category: $category,
-                article_title: $article_title,
-                article_content: $article_content,
-                cover: $cover,
-                show_status: $show_status,
-                judge_status: 1,
-                is_top: $is_top
-            };
+            if (!$category || !$article_title || !$article_content || !$cover){
 
-            createArticle($data, function () {
-                $(".article_list").trigger("click");
-                md_editor = null;
-            });
-        }
-    });
+            }else{
+                var $data = {
+                    post_status: 2,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
 
-    // 保存草稿
-    $(document).on('click', '.save_as_draft', function () {
-        var $converter = new showdown.Converter();
-        var $category = $(".select_category").val();
-        var $article_title = $(".articleName").val();
-        var $cover = $(".image_url").attr("data-id");
-        var $article_content = $converter.makeHtml(md_editor.value());
+                createArticle($data, function () {
+                    $(".article_list").trigger("click");
+                    md_editor = null;
+                });
+            }
+        });
 
-        var $show_status = $(".make_public").hasClass("make_public_checked");
-        var $is_top = $(".make_top").hasClass("make_top_checked");
+        // 保存草稿
+        $(document).on('click', '.save_as_draft', function () {
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
 
-        // 是否公开
-        if ($show_status){
-            $show_status = 1;
-        }else{
-            $show_status = 0;
-        }
+            var $show_status = $(".make_public").hasClass("make_public_checked");
+            var $is_top = $(".make_top").hasClass("make_top_checked");
 
-        // 是否置顶
-        if ($is_top){
-            $is_top = 1;
-        }else{
-            $is_top = 0;
-        }
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
 
-        if (!$article_title || !$article_content){
-        }else{
-            var $data = {
-                post_status: 1,
-                category: $category,
-                article_title: $article_title,
-                article_content: $article_content,
-                cover: $cover,
-                show_status: $show_status,
-                judge_status: 1,
-                is_top: $is_top
-            };
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
 
-            createArticle($data, function () {
-                $(".article_list").trigger("click");
-                md_editor = null;
-            });
-        }
+            if (!$article_title || !$article_content){
+            }else{
+                var $data = {
+                    post_status: 1,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
+
+                createArticle($data, function () {
+                    $(".article_list").trigger("click");
+                    md_editor = null;
+                });
+            }
+        });
     });
 });
 
