@@ -100,9 +100,9 @@ function renderingSelectCovers($data){
 function mdEditor(){
     return new SimpleMDE({
         element: document.getElementById("write_article"),
-        spellChecker: false,
+        spellChecker: true,
         autosave: {
-            enabled: true,
+            enabled: false,
             unique_id: "write_article"
         },
         toolbar: [{
@@ -213,14 +213,6 @@ function mdEditor(){
             title: "Toggle Fullscreen"
         },
         {
-            name: "theme",
-            action: function todo() {
-
-            },
-            className: "fa fa-vimeo-square",
-            title: "Theme"
-        },
-        {
             name: "guide",
             action: "www.baidu.com",
             className: "fa fa-question-circle",
@@ -320,7 +312,7 @@ $(document).on('click', '.add_article', function () {
 
     // 编辑器支持图片的拖拽上传
     inlineAttachment.editors.codemirror4.attach(md_editor.codemirror, {
-        uploadUrl: $root + '/v1/covers',
+        uploadUrl: $root + '/v1/images',
         onFileUploadResponse: function(xhr) {
             var result = JSON.parse(xhr.responseText),
             filename = result[this.settings.jsonFieldName];
@@ -336,8 +328,7 @@ $(document).on('click', '.add_article', function () {
                 this.editor.setValue(text);
                 this.settings.onFileUploaded.call(this, filename);
             }else{
-                method.msg_layer({title:"提示",content:"不支持的文件格式"});
-                method.msg_close()
+
             }
             return false;
         }
@@ -373,8 +364,7 @@ $(document).on('click', '.add_article', function () {
         }
 
         if (!$category || !$article_title || !$article_content || !$cover){
-            method.msg_layer({title:"提示", content:"似乎忘了什么"});
-            method.msg_close();
+
         }else{
             var $data = {
                 post_status: 2,
@@ -388,8 +378,7 @@ $(document).on('click', '.add_article', function () {
             };
 
             createArticle($data, function () {
-                method.msg_layer({title:"提示", content:"发布成功"});
-                method.msg_close();
+                $(".article_list").trigger("click");
             });
         }
     });
@@ -435,8 +424,7 @@ $(document).on('click', '.add_article', function () {
             };
 
             createArticle($data, function () {
-                method.msg_layer({title:"提示", content:"保存成功"});
-                method.msg_close();
+
             });
         }
     });

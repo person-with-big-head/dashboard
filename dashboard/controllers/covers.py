@@ -50,6 +50,23 @@ def create_cover():
     return json.dumps({"filename": file_url})
 
 
+@post('/v1/images', skip=[boilerplate_plugin])
+def create_images():
+    user = get_user_or_401()
+
+    file = request.files.get('file') or request.files.get('files[]')
+    name, ext = os.path.splitext(file.filename)
+
+    if ext.lower() not in allowed_image_ext:
+        return json.dumps({'error': 'File extension not allowed.'})
+
+    cover_id = short_uuid()
+    save_path, file_url = get_save_path(cover_id, ext)
+    file.save(save_path)
+
+    return json.dumps({"filename": file_url})
+
+
 @get('/v1/covers', apply=[page_plugin])
 def get_covers():
     user = get_user_or_401()
