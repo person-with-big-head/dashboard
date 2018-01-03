@@ -51,6 +51,7 @@ create_post_validator = ValidatorSchema({
     'category': Length(min=1),
     'article_title': Length(min=1),
     'article_content': Length(min=1),
+    'article_content_md': Length(min=1),
     'cover': Length(min=1),
     Optional('post_status'): Coerce(int),
     Optional('post_type'): Coerce(int),

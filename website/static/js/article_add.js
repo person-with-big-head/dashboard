@@ -380,8 +380,8 @@ $(document).on('click', '.add_article', function () {
             };
 
             createArticle($data, function () {
-                $(".article_list").trigger("click");
                 md_editor = null;
+                $(".article_list").trigger("click");
             });
         }
     });
@@ -427,8 +427,8 @@ $(document).on('click', '.add_article', function () {
             };
 
             createArticle($data, function () {
-                $(".article_list").trigger("click");
                 md_editor = null;
+                $(".article_list").trigger("click");
             });
         }
     });

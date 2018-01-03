@@ -123,6 +123,7 @@ def create_post():
 
         del body['article_summary']
         body['article_content'] = args['article_content']
+        body['article_content_md'] = args['article_content_md']
 
         PoolArticle.create(**body)
 
