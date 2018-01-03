@@ -26,7 +26,7 @@ def get_post(post_id):
     article = (BasketArticleList.select()
                .join(PoolArticle, on=(BasketArticleList.post_id == PoolArticle.post_id))
                .where(BasketArticleList.post_id == post_id and BasketArticleList.author == user.author_id))
-    if not post:
+    if not article:
         return
     return basket_article_list_serializer.dump(article).data
 

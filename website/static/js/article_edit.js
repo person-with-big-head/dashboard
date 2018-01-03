@@ -232,7 +232,6 @@ function get_article($post_id, callback) {
         url: $url,
         success: function ($response) {
             result['article_content'] = $response.data.article_content;
-            alert($response.data.article_content);
             callback(result);
         }
     })
