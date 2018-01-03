@@ -232,13 +232,13 @@ function get_article($post_id, callback) {
         url: $url,
         success: function ($response) {
             result['article_content'] = $response.data.article_content;
+            alert($response.data.article_content);
             callback(result);
         }
     })
 }
 
 $(document).on('click', '.article_edit', function () {
-    alert($(this).closest("tr").attr("data-id"));
 
     get_article($(this).closest("tr").attr("data-id"), function ($result) {
         $(".container-fluid").html(
@@ -261,7 +261,7 @@ $(document).on('click', '.article_edit', function () {
                  '<label class="dashboard-form-label">自定义属性</label>' +
                  '<div class="dashboard-input-block">' +
                      '<input type="checkbox" name="public" title="公开">' +
-                     '<div class="dashboard-unselect dashboard-form-checkbox make_public" lay-skin="">' +
+                     '<div class="dashboard-unselect dashboard-form-checkbox edit_make_public" lay-skin="">' +
                         '<span>公开</span>' +
                      '</div>' +
                  '</div>' +
@@ -493,6 +493,6 @@ function renderingSelectCategories($data){
 }
 
 
-$(document).on('click', '.make_public', function() {
+$(document).on('click', '.edit_make_public', function() {
     $(this).toggleClass("make_public_checked");
 });
