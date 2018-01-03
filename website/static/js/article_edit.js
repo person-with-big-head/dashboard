@@ -233,6 +233,9 @@ function get_article($post_id, callback) {
         url: $url,
         success: function ($response) {
             result['article_content'] = $response.data.article_content;
+            result['article_content_md'] = $response.data.article_content_md;
+            result['category_id'] = $response.data.category.category_id;
+            // result[''] = $response.data.cover;
             callback(result);
         }
     })
@@ -358,7 +361,7 @@ $(document).on('click', '.article_edit', function () {
         // 加载分类信息
         var $url = $root + '/v1/categories';
         getCategories($url, renderingSelectCategories, function () {
-            $(".select_category").val($result.category.category_id);
+            $(".select_category").val($result.category_id);
         });
 
         // 发布文章
