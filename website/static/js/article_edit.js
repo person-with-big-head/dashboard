@@ -238,6 +238,8 @@ function get_article($post_id, callback) {
             result['cover_id'] = $response.data.cover.cover_id;
             result['cover_name'] = $response.data.cover.cover_name;
             result['cover_path'] = $response.data.cover.cover_path;
+            result['show_status'] = $response.data.show_status;
+            result['article_title'] = $response.data.article_title;
             callback(result);
         }
     })
@@ -371,6 +373,14 @@ $(document).on('click', '.article_edit', function () {
         $image_url.attr("rel", $result.cover_path);
         $image_url.attr("data-id", $result.cover_id);
         $(".select_image_btn").children(".dashboard-btn").text("重新选择");
+
+        if ($result.show_status == "0"){
+            $(".make_public").addClass("make_public_checked");
+        }else{
+            $(".make_public").removeClass("make_public_checked");
+        }
+
+        $(".articleName").val($result.article_title);
 
         // 发布文章
         $(document).on('click', '.release_article', function () {
