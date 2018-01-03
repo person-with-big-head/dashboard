@@ -29,6 +29,7 @@ def get_post(post_id):
     print(article)
     print(post_id)
     if not article:
+        print(111)
         return
     return basket_article_list_serializer.dump(article).data
 
