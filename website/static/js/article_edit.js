@@ -354,11 +354,12 @@ $(document).on('click', '.article_edit', function () {
         });
 
         md_editor.value($result.article_content_md);
-        $(".select_category").val($result.category.category_id);
 
         // 加载分类信息
         var $url = $root + '/v1/categories';
         getCategories($url, renderingSelectCategories);
+
+        $(".select_category").val($result.category.category_id);
 
         // 发布文章
         $(document).on('click', '.release_article', function () {
