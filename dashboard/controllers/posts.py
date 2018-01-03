@@ -26,12 +26,9 @@ def get_post(post_id):
     article = (BasketArticleList.select()
                .join(PoolArticle, on=(BasketArticleList.post_id == PoolArticle.post_id))
                .where(BasketArticleList.post_id == post_id, BasketArticleList.author == user.author_id))
-    print(article)
-    print(post_id)
     if not article:
-        print(111)
         return
-    return basket_article_list_serializer.dump(article).data
+    return basket_article_list_serializer.dump(article[0]).data
 
 
 @get('/v1/post/<post_id>/public')
