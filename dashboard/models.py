@@ -204,6 +204,7 @@ class PoolArticle(ModelBase):
     cover = ForeignKeyField(Covers)
     article_title = CharField(max_length=512)
     article_content = TextField()
+    article_content_md = TextField()
 
     class Meta:
         db_table = 'pool_articles'

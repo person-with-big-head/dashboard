@@ -217,7 +217,7 @@ function mdEditor(){
             action: "www.baidu.com",
             className: "fa fa-question-circle",
             title: "Markdown Guide"
-        }],
+        }]
     });
 }
 
@@ -352,7 +352,7 @@ $(document).on('click', '.article_edit', function () {
             }
         });
 
-        md_editor.value($result.article_content);
+        md_editor.value($result.article_content_md);
 
         // 加载分类信息
         var $url = $root + '/v1/categories';

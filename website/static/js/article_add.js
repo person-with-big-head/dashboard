@@ -345,6 +345,7 @@ $(document).on('click', '.add_article', function () {
         var $article_title = $(".articleName").val();
         var $cover = $(".image_url").attr("data-id");
         var $article_content = $converter.makeHtml(md_editor.value());
+        var $article_content_md = md_editor.value();
 
         var $show_status = $(".make_public").hasClass("make_public_checked");
         var $is_top = $(".make_top").hasClass("make_top_checked");
@@ -371,6 +372,7 @@ $(document).on('click', '.add_article', function () {
                 category: $category,
                 article_title: $article_title,
                 article_content: $article_content,
+                article_content_md: $article_content_md,
                 cover: $cover,
                 show_status: $show_status,
                 judge_status: 1,
@@ -391,6 +393,7 @@ $(document).on('click', '.add_article', function () {
         var $article_title = $(".articleName").val();
         var $cover = $(".image_url").attr("data-id");
         var $article_content = $converter.makeHtml(md_editor.value());
+        var $article_content_md = md_editor.value();
 
         var $show_status = $(".make_public").hasClass("make_public_checked");
         var $is_top = $(".make_top").hasClass("make_top_checked");
@@ -416,6 +419,7 @@ $(document).on('click', '.add_article', function () {
                 category: $category,
                 article_title: $article_title,
                 article_content: $article_content,
+                article_content_md: $article_content_md,
                 cover: $cover,
                 show_status: $show_status,
                 judge_status: 1,

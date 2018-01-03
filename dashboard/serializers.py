@@ -105,6 +105,7 @@ class BasketArticleListSerializer(Schema):
     article_title = fields.Str()
     article_summary = fields.Str()
     article_content = fields.Str()
+    article_content_md = fields.Str()
     created_at = fields.DateTime(format='%Y-%m-%d')
     updated_at = fields.DateTime(format='%Y-%m-%d')
 
