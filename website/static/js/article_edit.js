@@ -235,7 +235,9 @@ function get_article($post_id, callback) {
             result['article_content'] = $response.data.article_content;
             result['article_content_md'] = $response.data.article_content_md;
             result['category_id'] = $response.data.category.category_id;
-            // result[''] = $response.data.cover;
+            result['cover_id'] = $response.data.cover.cover_id;
+            result['cover_name'] = $response.data.cover.cover_name;
+            result['cover_path'] = $response.data.cover.cover_path;
             callback(result);
         }
     })
@@ -363,6 +365,12 @@ $(document).on('click', '.article_edit', function () {
         getCategories($url, renderingSelectCategories, function () {
             $(".select_category").val($result.category_id);
         });
+
+        var $image_url = $(".image_url");
+        $image_url.text('![' + $result.cover_name + '](' + $result.cover_path + ')');
+        $image_url.attr("rel", $result.cover_path);
+        $image_url.attr("data-id", $result.cover_id);
+        $(".select_image_btn").children(".dashboard-btn").text("重新选择");
 
         // 发布文章
         $(document).on('click', '.release_article', function () {
