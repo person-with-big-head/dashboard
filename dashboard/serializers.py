@@ -108,7 +108,6 @@ class BasketArticleListSerializer(Schema):
     created_at = fields.DateTime(format='%Y-%m-%d')
     updated_at = fields.DateTime(format='%Y-%m-%d')
 
-
 basket_article_list_serializer = BasketArticleListSerializer(strict=True)
 categories_serializer = CategoriesSerializer(strict=True)
 covers_serializer = CoversSerializer(strict=True)
