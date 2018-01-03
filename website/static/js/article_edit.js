@@ -357,7 +357,9 @@ $(document).on('click', '.article_edit', function () {
 
         // 加载分类信息
         var $url = $root + '/v1/categories';
-        getCategories($url, $result.category.category_id, renderingSelectCategories);
+        getCategories($url, renderingSelectCategories, function () {
+            $(".select_category").val($result.category.category_id);
+        });
 
         // 发布文章
         $(document).on('click', '.release_article', function () {
@@ -465,7 +467,7 @@ function createArticle($data, callback){
     })
 }
 
-function getCategories($url, $cid, callback){
+function getCategories($url, callback1, callback2){
     // 获取分类信息
     // url: 请求地址
 
@@ -475,12 +477,13 @@ function getCategories($url, $cid, callback){
         url: $url,
         success: function ($response) {
             result['select_list'] = $response.data;
-            callback(result, $cid);
+            callback1(result);
+            callback2();
         }
     })
 }
 
-function renderingSelectCategories($data, $cid){
+function renderingSelectCategories($data){
     // 渲染类别选择框
     // url: 表单数据地址
     var $select_category = $(".select_category");
@@ -490,7 +493,6 @@ function renderingSelectCategories($data, $cid){
             + $select_list[$i].category_name + '</option>';
         $select_category.append($tag);
     }
-    $select_category.val($cid);
 }
 
 
