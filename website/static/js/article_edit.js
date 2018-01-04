@@ -376,9 +376,9 @@ $(document).on('click', '.article_edit', function () {
 
         alert($result.show_status);
         if (parseInt($result.show_status) == 1){
-            $(".make_public").addClass("make_public_checked");
+            $(".edit_make_public").addClass("make_public_checked");
         }else{
-            $(".make_public").removeClass("make_public_checked");
+            $(".edit_make_public").removeClass("make_public_checked");
         }
 
         $(".articleName").val($result.article_title);
