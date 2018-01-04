@@ -374,6 +374,7 @@ $(document).on('click', '.article_edit', function () {
         $image_url.attr("data-id", $result.cover_id);
         $(".select_image_btn").children(".dashboard-btn").text("重新选择");
 
+        alert($result.show_status);
         if (parseInt($result.show_status) == 0){
             $(".make_public").addClass("make_public_checked");
         }else{
