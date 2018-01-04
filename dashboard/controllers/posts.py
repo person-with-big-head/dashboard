@@ -32,9 +32,6 @@ def get_post(post_id):
     article[0].show_status = article[0].post_id.show_status
     article[0].post_id = article[0].post_id.post_id
 
-    print(basket_article_list_serializer.dump(article[0]).data)
-    print(article[0].post_id)
-
     return basket_article_list_serializer.dump(article[0]).data
 
 

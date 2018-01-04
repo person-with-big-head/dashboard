@@ -375,7 +375,7 @@ $(document).on('click', '.article_edit', function () {
         $(".select_image_btn").children(".dashboard-btn").text("重新选择");
 
         alert($result.show_status);
-        if (parseInt($result.show_status) == 0){
+        if (parseInt($result.show_status) == 1){
             $(".make_public").addClass("make_public_checked");
         }else{
             $(".make_public").removeClass("make_public_checked");
