@@ -23,7 +23,7 @@ def get_posts():
 @get('/v1/post/<post_id>')
 def get_post(post_id):
     user = get_user_or_401()
-    article = (PoolArticle.select()
+    article = (PoolArticle.select(PoolArticle, BasketArticleList)
                .join(BasketArticleList, on=(BasketArticleList.post_id == PoolArticle.post_id))
                .where(BasketArticleList.post_id == post_id, BasketArticleList.author == user.author_id))
     if not article:
