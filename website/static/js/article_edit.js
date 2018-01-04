@@ -391,8 +391,8 @@ $(document).on('click', '.article_edit', function () {
             var $cover = $(".image_url").attr("data-id");
             var $article_content = $converter.makeHtml(md_editor.value());
 
-            var $show_status = $(".make_public").hasClass("make_public_checked");
-            var $is_top = $(".make_top").hasClass("make_top_checked");
+            var $show_status = $(".edit_make_public").hasClass("make_public_checked");
+            var $is_top = $(".edit_make_top").hasClass("make_top_checked");
 
             // 是否公开
             if ($show_status){
@@ -477,7 +477,7 @@ $(document).on('click', '.article_edit', function () {
 });
 
 
-function createArticle($data, callback){
+function updateArticle($data, callback){
     // 创建文章
     $.ajax({
         type: 'POST',
