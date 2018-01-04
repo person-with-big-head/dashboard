@@ -30,7 +30,7 @@ def get_post(post_id):
         return
 
     print(basket_article_list_serializer.dump(article[0]).data)
-    print(article[0])
+    print(article[0].post_id)
 
     return basket_article_list_serializer.dump(article[0]).data
 
