@@ -430,6 +430,7 @@ $(document).on('click', '.article_edit', function () {
                 updateArticle($data, $result.post_id, function () {
                     $(".article_list").trigger("click");
                     md_editor = null;
+                    swal("Here's a message!")
                 });
             }
         });
