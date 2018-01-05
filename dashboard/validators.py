@@ -47,20 +47,6 @@ login_validator = ValidatorSchema({
     'captcha': All(Length(4), Lower())
 }, required=True, extra=REMOVE_EXTRA)
 
-update_post_validator = ValidatorSchema({
-    'post_id': Length(min=1),
-    'category': Length(min=1),
-    'article_title': Length(min=1),
-    'article_content': Length(min=1),
-    'article_content_md': Length(min=1),
-    'cover': Length(min=1),
-    Optional('post_status'): Coerce(int),
-    Optional('post_type'): Coerce(int),
-    Optional('show_status'): Coerce(int),
-    Optional('is_top'): Coerce(int),
-    Optional('judge_status'): Coerce(int),
-}, required=True, extra=REMOVE_EXTRA)
-
 create_post_validator = ValidatorSchema({
     'category': Length(min=1),
     'article_title': Length(min=1),
@@ -81,3 +67,5 @@ delete_post_validator = ValidatorSchema({
 delete_cover_validator = ValidatorSchema({
     'cover_id_list': Length(min=1)
 }, required=True, extra=REMOVE_EXTRA)
+
+update_post_validator = create_post_validator
