@@ -385,7 +385,7 @@ $(document).on('click', '.article_edit', function () {
 
         // 发布文章
         $(document).on('click', '.edit_release_article', function () {
-            $(".edit_release_article").click(function (e) {return false;});
+            // $(".edit_release_article").click(function (e) {return false;});
 
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
