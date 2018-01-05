@@ -410,7 +410,10 @@ $(document).on('click', '.article_edit', function () {
             }
 
             if (!$category || !$article_title || !$article_content || !$cover){
-
+                alert($category);
+                alert($article_title);
+                alert($article_content);
+                alert($cover);
             }else{
                 var $data = {
                     post_status: 2,
