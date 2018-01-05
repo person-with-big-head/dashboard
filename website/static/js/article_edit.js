@@ -385,6 +385,8 @@ $(document).on('click', '.article_edit', function () {
 
         // 发布文章
         $(document).on('click', '.edit_release_article', function () {
+            $(".edit_release_article").click(function (e) {return false;});
+
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
             var $article_title = $(".articleName").val();
@@ -410,10 +412,7 @@ $(document).on('click', '.article_edit', function () {
             }
 
             if (!$category || !$article_title || !$article_content || !$cover){
-                alert($category);
-                alert($article_title);
-                alert($article_content);
-                alert($cover);
+
             }else{
                 var $data = {
                     post_status: 2,
@@ -430,7 +429,7 @@ $(document).on('click', '.article_edit', function () {
                 updateArticle($data, $result.post_id, function () {
                     $(".article_list").trigger("click");
                     md_editor = null;
-                    swal("Here's a message!")
+                    swal("发布成功");
                 });
             }
         });
