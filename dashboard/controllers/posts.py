@@ -97,15 +97,13 @@ def delete_post():
         es_.delete(index='pool_articles', doc_type='info', id=item)
 
 
-@post('/v1/posts')
-def update_post():
+@post('/v1/post/<post_id>')
+def update_post(post_id):
     author = get_user_or_401()
     args = update_post_validator(plain_forms())
 
     # compute article summary.
     article_summary = get_text_from_tag(args['article_content'])
-
-    post_id = args['post_id']
 
     body = {
         'post_id': post_id,
