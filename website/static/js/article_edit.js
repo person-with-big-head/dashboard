@@ -411,6 +411,11 @@ $(document).on('click', '.article_edit', function () {
                 $is_top = 0;
             }
 
+            alert($category);
+            alert($article_title);
+            alert($article_content);
+            alert($cover);
+
             if (!$category || !$article_title || !$article_content || !$cover){
                 swal("提示", "请填写所有字段");
             }else{
