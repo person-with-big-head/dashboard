@@ -396,6 +396,8 @@ $(document).on('click', '.article_edit', function () {
             var $article_content = $converter.makeHtml(md_editor.value());
             var $article_content_md = md_editor.value();
 
+            alert(2);
+
             var $show_status = $(".edit_make_public").hasClass("make_public_checked");
             var $is_top = $(".edit_make_top").hasClass("make_top_checked");
 
@@ -411,7 +413,9 @@ $(document).on('click', '.article_edit', function () {
                 $is_top = 1;
             }else{
                 $is_top = 0;
-            }
+
+
+                alert(3);
 
             if (!$category || !$article_title || !$article_content || !$cover){
                 swal("提示", "请填写所有字段");
