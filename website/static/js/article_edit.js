@@ -232,6 +232,7 @@ function get_article($post_id, callback) {
         type: 'GET',
         url: $url,
         success: function ($response) {
+            result['post_id'] = $response.data.post_id;
             result['article_content'] = $response.data.article_content;
             result['article_content_md'] = $response.data.article_content_md;
             result['category_id'] = $response.data.category.category_id;
@@ -424,7 +425,7 @@ $(document).on('click', '.article_edit', function () {
                     is_top: $is_top
                 };
 
-                createArticle($data, function () {
+                updateArticle($data, $result.post_id, function () {
                     $(".article_list").trigger("click");
                     md_editor = null;
                 });
@@ -471,7 +472,7 @@ $(document).on('click', '.article_edit', function () {
                     is_top: $is_top
                 };
 
-                createArticle($data, function () {
+                updateArticle($data, $result.post_id, function () {
                     $(".article_list").trigger("click");
                     md_editor = null;
                 });
@@ -481,11 +482,11 @@ $(document).on('click', '.article_edit', function () {
 });
 
 
-function updateArticle($data, callback){
+function updateArticle($data, $post_id, callback){
     // 创建文章
     $.ajax({
         type: 'POST',
-        url: $root + '/v1/posts',
+        url: $root + '/v1/post/' + $post_id,
         data: $data,
         success: function (data) {
             callback();
