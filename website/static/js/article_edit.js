@@ -411,11 +411,11 @@ $(document).on('click', '.article_edit', function () {
             // 是否置顶
             if ($is_top){
                 $is_top = 1;
-            }else{
+            }else {
                 $is_top = 0;
+            }
 
-
-                alert(3);
+            alert(3);
 
             if (!$category || !$article_title || !$article_content || !$cover){
                 swal("提示", "请填写所有字段");
