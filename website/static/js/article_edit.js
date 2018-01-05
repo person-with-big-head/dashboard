@@ -383,6 +383,8 @@ $(document).on('click', '.article_edit', function () {
 
         $(".articleName").val($result.article_title);
 
+        alert(md_editor);
+
         // 发布文章
         $(document).on('click', '.edit_release_article', function () {
             // $(".edit_release_article").click(function (e) {return false;});
