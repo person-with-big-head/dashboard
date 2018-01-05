@@ -437,7 +437,7 @@ $(document).on('click', '.article_edit', function () {
 
         // 保存草稿
         $(".edit_save_as_draft").bind('click', md_editor, function () {
-            $(".edit_save_as_draft").bind('click', md_editor, function () {
+            $(".edit_save_as_draft").click(function (e) {return false;});
 
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
