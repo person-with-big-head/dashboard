@@ -1,5 +1,5 @@
 var $root= 'http://dashboard.tangobello.cn';
-// var $root = 'http://127.0.0.1:1110';
+var md_editor;
 
 (function($) {
   "use strict"; // Start of use strict

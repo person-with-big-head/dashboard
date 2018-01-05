@@ -330,7 +330,7 @@ $(document).on('click', '.article_edit', function () {
         );
 
         // 编辑器
-        var md_editor = mdEditor();
+        md_editor = mdEditor();
 
         // 编辑器发生文本变化计算code语法。
         // md_editor.codemirror.on("change", function(){
