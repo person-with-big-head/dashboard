@@ -106,7 +106,6 @@ def update_post(post_id):
     article_summary = get_text_from_tag(args['article_content'])
 
     body = {
-        'post_id': post_id,
         'post_status': args.get('post_status') or PostStatusEnum.UNFINISHED_POST.value,
         'post_type': args.get('post_type') or PostTypeEnum.ORIGINAL_POST.value,
         'show_status': args.get('show_status') or ShowStatusEnum.SECRET_POST.value,
@@ -121,13 +120,13 @@ def update_post(post_id):
 
     with db.atomic():
 
-        BasketArticleList.update_dict(**body)
+        BasketArticleList.update(body).where(BasketArticleList.post_id == post_id)
 
         del body['article_summary']
         body['article_content'] = args['article_content']
         body['article_content_md'] = args['article_content_md']
 
-        PoolArticle.update_dict(**body)
+        PoolArticle.update(body).where(PoolArticle.post_id == post_id)
 
     app = default_app()
     es_ = Elasticsearch(app.config['es.host'])
