@@ -125,6 +125,7 @@ def update_post(post_id):
         del body['article_summary']
         del body['show_status']
         del body['is_top']
+        del body['judge_status']
         body['article_content'] = args['article_content']
         body['article_content_md'] = args['article_content_md']
 
@@ -180,6 +181,7 @@ def create_post():
         del body['article_summary']
         del body['show_status']
         del body['is_top']
+        del body['judge_status']
         body['article_content'] = args['article_content']
         body['article_content_md'] = args['article_content_md']
 
