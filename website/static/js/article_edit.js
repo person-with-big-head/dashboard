@@ -314,8 +314,8 @@ $(document).on('click', '.article_edit', function () {
                 '</div>' +
                 '<div class="dashboard-form-item">' +
                     '<div class="dashboard-input-block">' +
-                        '<a class="dashboard-btn release_article" href="#">发布</a>' +
-                        '<a class="dashboard-btn dashboard-btn-primary save_as_draft" href="#">存为草稿</a>' +
+                        '<a class="dashboard-btn edit_release_article" href="#">发布</a>' +
+                        '<a class="dashboard-btn dashboard-btn-primary edit_save_as_draft" href="#">存为草稿</a>' +
                     '</div>' +
                 '</div>' +
             '</form>' +
@@ -384,7 +384,7 @@ $(document).on('click', '.article_edit', function () {
         $(".articleName").val($result.article_title);
 
         // 发布文章
-        $(document).on('click', '.release_article', function () {
+        $(document).on('click', '.edit_release_article', function () {
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
             var $article_title = $(".articleName").val();
@@ -432,7 +432,7 @@ $(document).on('click', '.article_edit', function () {
         });
 
         // 保存草稿
-        $(document).on('click', '.save_as_draft', function () {
+        $(document).on('click', '.edit_save_as_draft', function () {
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
             var $article_title = $(".articleName").val();
