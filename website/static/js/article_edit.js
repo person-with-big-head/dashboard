@@ -385,22 +385,15 @@ $(document).on('click', '.article_edit', function () {
 
         // 发布文章
         $(".edit_release_article").bind('click', md_editor, function () {
-            // $(".edit_release_article").click(function (e) {return false;});
-
-            alert(1);
+            $(".edit_release_article").click(function (e) {return false;});
 
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
             var $article_title = $(".articleName").val();
             var $cover = $(".image_url").attr("data-id");
-            alert(0);
-
-            alert(md_editor);
 
             var $article_content = $converter.makeHtml(md_editor.value());
             var $article_content_md = md_editor.value();
-
-            alert(2);
 
             var $show_status = $(".edit_make_public").hasClass("make_public_checked");
             var $is_top = $(".edit_make_top").hasClass("make_top_checked");
@@ -418,8 +411,6 @@ $(document).on('click', '.article_edit', function () {
             }else {
                 $is_top = 0;
             }
-
-            alert(3);
 
             if (!$category || !$article_title || !$article_content || !$cover){
                 swal("提示", "请填写所有字段");
@@ -445,7 +436,7 @@ $(document).on('click', '.article_edit', function () {
         });
 
         // 保存草稿
-        $(document).on('click', '.edit_save_as_draft', function () {
+        $(".edit_save_as_draft").bind('click', md_editor, function () {
             var $converter = new showdown.Converter();
             var $category = $(".select_category").val();
             var $article_title = $(".articleName").val();
@@ -470,8 +461,8 @@ $(document).on('click', '.article_edit', function () {
                 $is_top = 0;
             }
 
-            if (!$article_title || !$article_content){
-                swal({title: "提示", text: "请填写所有字段", timer: 2000});
+            if (!$article_title){
+                swal("提示", "请填写标题");
             }else{
                 var $data = {
                     post_status: 1,
@@ -488,7 +479,7 @@ $(document).on('click', '.article_edit', function () {
                 updateArticle($data, $result.post_id, function () {
                     $(".article_list").trigger("click");
                     md_editor = null;
-                    swal({title: "提示", text: "请填写所有字段", timer: 2000});
+                    swal("提示", "保存成功");
                 });
             }
         });
