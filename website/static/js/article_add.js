@@ -100,7 +100,7 @@ function renderingSelectCovers($data){
 function mdEditor(){
     return new SimpleMDE({
         element: document.getElementById("write_article"),
-        spellChecker: true,
+        spellChecker: false,
         autosave: {
             enabled: true,
             unique_id: "write_article"
@@ -339,16 +339,19 @@ $(document).on('click', '.add_article', function () {
     getCategories($url, renderingSelectCategories);
 
     // 发布文章
-    $(document).on('click', '.release_article', function () {
+    $(".release_article").bind('click', md_editor, function () {
+        $(".release_article").click(function (e) {return false;});
+
         var $converter = new showdown.Converter();
         var $category = $(".select_category").val();
         var $article_title = $(".articleName").val();
         var $cover = $(".image_url").attr("data-id");
+
         var $article_content = $converter.makeHtml(md_editor.value());
         var $article_content_md = md_editor.value();
 
-        var $show_status = $(".make_public").hasClass("make_public_checked");
-        var $is_top = $(".make_top").hasClass("make_top_checked");
+        var $show_status = $(".edit_make_public").hasClass("make_public_checked");
+        var $is_top = $(".edit_make_top").hasClass("make_top_checked");
 
         // 是否公开
         if ($show_status){
@@ -360,12 +363,12 @@ $(document).on('click', '.add_article', function () {
         // 是否置顶
         if ($is_top){
             $is_top = 1;
-        }else{
+        }else {
             $is_top = 0;
         }
 
         if (!$category || !$article_title || !$article_content || !$cover){
-
+            swal("提示", "请填写所有字段");
         }else{
             var $data = {
                 post_status: 2,
@@ -380,14 +383,17 @@ $(document).on('click', '.add_article', function () {
             };
 
             createArticle($data, function () {
-                md_editor = null;
                 $(".article_list").trigger("click");
+                md_editor = null;
+                swal("提示", "发布成功");
             });
         }
     });
 
     // 保存草稿
-    $(document).on('click', '.save_as_draft', function () {
+    $(".save_as_draft").bind('click', md_editor, function () {
+        $(".save_as_draft").click(function (e) {return false;});
+
         var $converter = new showdown.Converter();
         var $category = $(".select_category").val();
         var $article_title = $(".articleName").val();
@@ -412,7 +418,8 @@ $(document).on('click', '.add_article', function () {
             $is_top = 0;
         }
 
-        if (!$article_title || !$article_content){
+        if (!$article_title){
+            swal("提示", "请填写标题");
         }else{
             var $data = {
                 post_status: 1,
@@ -427,8 +434,9 @@ $(document).on('click', '.add_article', function () {
             };
 
             createArticle($data, function () {
-                md_editor = null;
                 $(".article_list").trigger("click");
+                md_editor = null;
+                swal("提示", "保存成功");
             });
         }
     });
