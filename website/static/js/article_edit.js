@@ -429,7 +429,7 @@ $(document).on('click', '.article_edit', function () {
                 updateArticle($data, $result.post_id, function () {
                     $(".article_list").trigger("click");
                     md_editor = null;
-                    swal({text: "发布成功", timer: 2000});
+                    swal({text: "发布成功", timer: 2000})
                 });
             }
         });
