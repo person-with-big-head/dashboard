@@ -393,6 +393,8 @@ $(document).on('click', '.article_edit', function () {
             var $category = $(".select_category").val();
             var $article_title = $(".articleName").val();
             var $cover = $(".image_url").attr("data-id");
+            alert(0);
+
             var $article_content = $converter.makeHtml(md_editor.value());
             var $article_content_md = md_editor.value();
 
