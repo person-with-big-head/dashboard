@@ -123,6 +123,7 @@ def update_post(post_id):
         BasketArticleList.update(**body).where(BasketArticleList.post_id == post_id).execute()
 
         del body['article_summary']
+        del body['show_status']
         body['article_content'] = args['article_content']
         body['article_content_md'] = args['article_content_md']
 
@@ -176,6 +177,7 @@ def create_post():
         BasketArticleList.create(**body)
 
         del body['article_summary']
+        del body['show_status']
         body['article_content'] = args['article_content']
         body['article_content_md'] = args['article_content_md']
 
