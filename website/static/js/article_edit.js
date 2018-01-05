@@ -412,7 +412,7 @@ $(document).on('click', '.article_edit', function () {
             }
 
             if (!$category || !$article_title || !$article_content || !$cover){
-                swal({title: "提示", text: "请填写所有字段", timer: 2000});
+                swal("提示", "请填写所有字段");
             }else{
                 var $data = {
                     post_status: 2,
@@ -429,7 +429,7 @@ $(document).on('click', '.article_edit', function () {
                 updateArticle($data, $result.post_id, function () {
                     $(".article_list").trigger("click");
                     md_editor = null;
-                    swal({title: "提示", text: "请填写所有字段", timer: 2000});
+                    swal("提示", "发布成功");
                 });
             }
         });
