@@ -120,13 +120,13 @@ def update_post(post_id):
 
     with db.atomic():
 
-        BasketArticleList.update(body).where(BasketArticleList.post_id == post_id).execute()
+        BasketArticleList.update(**body).where(BasketArticleList.post_id == post_id).execute()
 
         del body['article_summary']
         body['article_content'] = args['article_content']
         body['article_content_md'] = args['article_content_md']
 
-        PoolArticle.update(body).where(PoolArticle.post_id == post_id).execute()
+        PoolArticle.update(**body).where(PoolArticle.post_id == post_id).execute()
 
     app = default_app()
     es_ = Elasticsearch(app.config['es.host'])
