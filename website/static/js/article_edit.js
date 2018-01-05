@@ -383,6 +383,108 @@ $(document).on('click', '.article_edit', function () {
 
         $(".articleName").val($result.article_title);
 
+        // 发布文章
+        $(document).on('click', '.edit_release_article', function () {
+            // $(".edit_release_article").click(function (e) {return false;});
+
+            alert(1);
+
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
+            var $article_content_md = md_editor.value();
+
+            var $show_status = $(".edit_make_public").hasClass("make_public_checked");
+            var $is_top = $(".edit_make_top").hasClass("make_top_checked");
+
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
+
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
+
+            if (!$category || !$article_title || !$article_content || !$cover){
+                swal("提示", "请填写所有字段");
+            }else{
+                var $data = {
+                    post_status: 2,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    article_content_md: $article_content_md,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
+
+                updateArticle($data, $result.post_id, function () {
+                    $(".article_list").trigger("click");
+                    md_editor = null;
+                    swal("提示", "发布成功");
+                });
+            }
+        });
+
+        // 保存草稿
+        $(document).on('click', '.edit_save_as_draft', function () {
+            var $converter = new showdown.Converter();
+            var $category = $(".select_category").val();
+            var $article_title = $(".articleName").val();
+            var $cover = $(".image_url").attr("data-id");
+            var $article_content = $converter.makeHtml(md_editor.value());
+            var $article_content_md = md_editor.value();
+
+            var $show_status = $(".make_public").hasClass("make_public_checked");
+            var $is_top = $(".make_top").hasClass("make_top_checked");
+
+            // 是否公开
+            if ($show_status){
+                $show_status = 1;
+            }else{
+                $show_status = 0;
+            }
+
+            // 是否置顶
+            if ($is_top){
+                $is_top = 1;
+            }else{
+                $is_top = 0;
+            }
+
+            if (!$article_title || !$article_content){
+                swal({title: "提示", text: "请填写所有字段", timer: 2000});
+            }else{
+                var $data = {
+                    post_status: 1,
+                    category: $category,
+                    article_title: $article_title,
+                    article_content: $article_content,
+                    article_content_md: $article_content_md,
+                    cover: $cover,
+                    show_status: $show_status,
+                    judge_status: 1,
+                    is_top: $is_top
+                };
+
+                updateArticle($data, $result.post_id, function () {
+                    $(".article_list").trigger("click");
+                    md_editor = null;
+                    swal({title: "提示", text: "请填写所有字段", timer: 2000});
+                });
+            }
+        });
+
     });
 });
 
@@ -430,105 +532,4 @@ function renderingSelectCategories($data){
 
 $(document).on('click', '.edit_make_public', function() {
     $(this).toggleClass("make_public_checked");
-});
-
-
-// 发布文章
-$(document).on('click', '.edit_release_article', function () {
-    // $(".edit_release_article").click(function (e) {return false;});
-
-    var $converter = new showdown.Converter();
-    var $category = $(".select_category").val();
-    var $article_title = $(".articleName").val();
-    var $cover = $(".image_url").attr("data-id");
-    var $article_content = $converter.makeHtml(md_editor.value());
-    var $article_content_md = md_editor.value();
-
-    var $show_status = $(".edit_make_public").hasClass("make_public_checked");
-    var $is_top = $(".edit_make_top").hasClass("make_top_checked");
-
-    // 是否公开
-    if ($show_status){
-        $show_status = 1;
-    }else{
-        $show_status = 0;
-    }
-
-    // 是否置顶
-    if ($is_top){
-        $is_top = 1;
-    }else{
-        $is_top = 0;
-    }
-
-    if (!$category || !$article_title || !$article_content || !$cover){
-        swal("提示", "请填写所有字段");
-    }else{
-        var $data = {
-            post_status: 2,
-            category: $category,
-            article_title: $article_title,
-            article_content: $article_content,
-            article_content_md: $article_content_md,
-            cover: $cover,
-            show_status: $show_status,
-            judge_status: 1,
-            is_top: $is_top
-        };
-
-        updateArticle($data, $result.post_id, function () {
-            $(".article_list").trigger("click");
-            md_editor = null;
-            swal("提示", "发布成功");
-        });
-    }
-});
-
-// 保存草稿
-$(document).on('click', '.edit_save_as_draft', function () {
-    var $converter = new showdown.Converter();
-    var $category = $(".select_category").val();
-    var $article_title = $(".articleName").val();
-    var $cover = $(".image_url").attr("data-id");
-    var $article_content = $converter.makeHtml(md_editor.value());
-    var $article_content_md = md_editor.value();
-
-    var $show_status = $(".make_public").hasClass("make_public_checked");
-    var $is_top = $(".make_top").hasClass("make_top_checked");
-
-    // 是否公开
-    if ($show_status){
-        $show_status = 1;
-    }else{
-        $show_status = 0;
-    }
-
-    // 是否置顶
-    if ($is_top){
-        $is_top = 1;
-    }else{
-        $is_top = 0;
-    }
-
-    if (!$article_title || !$article_content){
-        swal({title: "提示", text: "请填写所有字段", timer: 2000});
-    }else{
-        var $data = {
-            post_status: 1,
-            category: $category,
-            article_title: $article_title,
-            article_content: $article_content,
-            article_content_md: $article_content_md,
-            cover: $cover,
-            show_status: $show_status,
-            judge_status: 1,
-            is_top: $is_top
-        };
-
-        updateArticle($data, $result.post_id, function () {
-            $(".article_list").trigger("click");
-            md_editor = null;
-            swal({title: "提示", text: "请填写所有字段", timer: 2000});
-        });
-    }
 });
