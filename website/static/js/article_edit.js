@@ -331,7 +331,6 @@ $(document).on('click', '.article_edit', function () {
 
         // 编辑器
         var md_editor = mdEditor();
-        alert(333);
 
         // 编辑器发生文本变化计算code语法。
         // md_editor.codemirror.on("change", function(){
@@ -395,6 +394,8 @@ $(document).on('click', '.article_edit', function () {
             var $article_title = $(".articleName").val();
             var $cover = $(".image_url").attr("data-id");
             alert(0);
+
+            alert(md_editor);
 
             var $article_content = $converter.makeHtml(md_editor.value());
             var $article_content_md = md_editor.value();
