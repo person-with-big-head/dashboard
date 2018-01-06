@@ -276,10 +276,22 @@ $(document).on('click', '.article-batchDel', function () {
     var $post_list = $("[class*='dashboard-form-checked']");
 
     if (!($("div.dashboard-form-checkbox").hasClass("dashboard-form-checked"))){
-        method.msg_layer({title:"提示", content:"请选择需要删除的文章!"});
-        method.msg_close();
+        swal("提示", "请选择需要删除的文章");
         return
     }
+
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    },
+    function(){
+        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+    });
 
     var $item = $post_list.parent().parent();
     $item.addClass('removed-item')
