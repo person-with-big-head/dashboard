@@ -80,7 +80,7 @@ $(document).on('click', '.confirm-cover-batch-delete', function () {
     var $cover_list = $("[class*='dashboard-icon-checked']");
 
     if (!($("div.dashboard-icon").hasClass("dashboard-icon-checked"))){
-        swal("提示", "请选择需要删除的文章");
+        swal("提示", "请选择需要删除的封面");
         return;
     }
 

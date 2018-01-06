@@ -91,6 +91,12 @@ class CoversSerializer(Schema):
     cover_name = fields.Str()
 
 
+class TagSerializer(Schema):
+    tag_id = fields.Str()
+    tag_name = fields.Str()
+    tag_description = fields.Str()
+
+
 class BasketArticleListSerializer(Schema):
     post_id = fields.Str()
     post_status = fields.Integer()
@@ -112,3 +118,4 @@ class BasketArticleListSerializer(Schema):
 basket_article_list_serializer = BasketArticleListSerializer(strict=True)
 categories_serializer = CategoriesSerializer(strict=True)
 covers_serializer = CoversSerializer(strict=True)
+tags_serializer = TagSerializer(strict=True)
