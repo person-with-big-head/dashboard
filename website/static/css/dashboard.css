@@ -951,3 +951,7 @@ td div.modal-dialog, td div.modal-lg{
     float: right;
     color: #666;
 }
+
+div.pulseWarning{
+    background-image: none;
+}

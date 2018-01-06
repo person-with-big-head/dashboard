@@ -286,11 +286,11 @@ $(document).on('click', '.article-batchDel', function () {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "Yes",
         closeOnConfirm: false
     },
     function(){
-        swal("Deleted!", "已删除.", "success");
+        swal("提示", "已删除.", "success");
 
         var $item = $post_list.parent().parent();
         $item.addClass('removed-item')
