@@ -281,8 +281,8 @@ $(document).on('click', '.article-batchDel', function () {
     }
 
     swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
+        title: "提示",
+        text: "确定将选中的内容删除?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
@@ -290,29 +290,29 @@ $(document).on('click', '.article-batchDel', function () {
         closeOnConfirm: false
     },
     function(){
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    });
+        swal("Deleted!", "已删除.", "success");
 
-    var $item = $post_list.parent().parent();
-    $item.addClass('removed-item')
-        .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
-        $item.remove();
-    });
+        var $item = $post_list.parent().parent();
+        $item.addClass('removed-item')
+            .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
+            $item.remove();
+        });
 
-    var $post_list_id = [];
-    $.each($post_list, function () {
-        $post_list_id.push($(this).parent().closest('tr').attr('data-id'));
-    });
-    $post_list_id.slice(0);
+        var $post_list_id = [];
+        $.each($post_list, function () {
+            $post_list_id.push($(this).parent().closest('tr').attr('data-id'));
+        });
+        $post_list_id.slice(0);
 
-    var $url = $root + '/v1/posts/batch_delete';
+        var $url = $root + '/v1/posts/batch_delete';
 
-    $.ajax({
-        type: 'POST',
-        url: $url,
-        data: {post_id_list: JSON.stringify($post_list_id)},
-        success: function () {
-        }
+        $.ajax({
+            type: 'POST',
+            url: $url,
+            data: {post_id_list: JSON.stringify($post_list_id)},
+            success: function () {
+            }
+        });
     });
 });
 
