@@ -277,7 +277,7 @@ $(document).on('click', '.article-batchDel', function () {
 
     if (!($("div.dashboard-form-checkbox").hasClass("dashboard-form-checked"))){
         swal("提示", "请选择需要删除的文章");
-        return
+        return;
     }
 
     swal({

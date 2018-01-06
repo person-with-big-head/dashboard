@@ -80,35 +80,46 @@ $(document).on('click', '.confirm-cover-batch-delete', function () {
     var $cover_list = $("[class*='dashboard-icon-checked']");
 
     if (!($("div.dashboard-icon").hasClass("dashboard-icon-checked"))){
-        method.msg_layer({title:"提示", content:"请选择需要删除的封面!"});
-        method.msg_close();
-        return
+        swal("提示", "请选择需要删除的文章");
+        return;
     }
 
-    var $item = $cover_list.parent().parent().parent().parent();
-    $item.addClass('removed-item')
-        .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
-        $item.remove();
-    });
+    swal({
+        title: "提示",
+        text: "确定将选中的内容删除?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes delete it!",
+        closeOnConfirm: false
+    },
+    function() {
+        swal("提示", "已删除.", "success");
 
-    var $cover_id_list = [];
-    $.each($cover_list, function () {
-        $cover_id_list.push($(this).parent().parent().parent().closest('li').attr('data-url'));
-    });
+        var $item = $cover_list.parent().parent().parent().parent();
+        $item.addClass('removed-item')
+            .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
+                $item.remove();
+            });
 
-    var $url = $root + '/v1/covers/batch_delete';
+        var $cover_id_list = [];
+        $.each($cover_list, function () {
+            $cover_id_list.push($(this).parent().parent().parent().closest('li').attr('data-url'));
+        });
 
-    $.ajax({
-        type: 'POST',
-        url: $url,
-        data: {cover_id_list: JSON.stringify($cover_id_list)},
-        success: function () {
-            method.msg_layer({title:"提示", content:"删除成功"});
-            method.msg_close();
-        }
+        var $url = $root + '/v1/covers/batch_delete';
+
+        $.ajax({
+            type: 'POST',
+            url: $url,
+            data: {cover_id_list: JSON.stringify($cover_id_list)},
+            success: function () {
+                method.msg_layer({title: "提示", content: "删除成功"});
+                method.msg_close();
+            }
+        });
     });
 });
-
 
 $(document).on('click', '.select_cover_icon', function () {
     $(this).toggleClass("dashboard-icon-checked");
