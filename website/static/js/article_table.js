@@ -286,7 +286,7 @@ $(document).on('click', '.article-batchDel', function () {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes",
+        confirmButtonText: "Yes delete it!",
         closeOnConfirm: false
     },
     function(){

@@ -955,3 +955,8 @@ td div.modal-dialog, td div.modal-lg{
 div.pulseWarning{
     background-image: none;
 }
+
+div.warning, div.error, div.info, div.success, div.info, div.custom{
+    background-image: none;
+}
+
